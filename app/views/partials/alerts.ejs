@@ -1,0 +1,7 @@
+<% if (typeof flash !== 'undefined' && flash) { %>
+  <% const cls = flash.type === 'error' ? 'danger' : (flash.type === 'success' ? 'success' : 'info'); %>
+  <div class="alert alert-<%= cls %> alert-dismissible fade show" role="alert">
+    <%= flash.message %>
+    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+  </div>
+<% } %>

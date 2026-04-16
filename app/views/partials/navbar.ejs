@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-dark bg-crimson shadow-sm">
+  <div class="container">
+    <a class="navbar-brand fw-bold" href="/">CougarMarket</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navMain">
+      <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
+        <li class="nav-item"><a class="nav-link" href="/listings">Browse Listings</a></li>
+        <% if (currentUser) { %>
+          <li class="nav-item"><a class="nav-link" href="/listings/new">Create Listing</a></li>
+          <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+          <% if (currentUser.role === 'moderator' || currentUser.role === 'admin') { %>
+            <li class="nav-item"><a class="nav-link" href="/moderator">Moderator</a></li>
+          <% } %>
+          <% if (currentUser.role === 'admin') { %>
+            <li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
+          <% } %>
+        <% } %>
+        <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+      </ul>
+      <div class="d-flex gap-2 align-items-center">
+        <% if (currentUser) { %>
+          <span class="text-white small me-2">
+            <i class="bi bi-person-circle"></i>
+            <%= currentUser.first_name %>
+            <span class="badge bg-light text-dark ms-1 text-uppercase"><%= currentUser.role %></span>
+          </span>
+          <form action="/logout" method="POST" class="m-0">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+            <button type="submit" class="btn btn-outline-light btn-sm">Log out</button>
+          </form>
+        <% } else { %>
+          <a href="/login" class="btn btn-outline-light btn-sm">Login</a>
+          <a href="/register" class="btn btn-light btn-sm fw-semibold" style="color:var(--crimson);">Sign Up</a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>

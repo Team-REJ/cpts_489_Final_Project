@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><%- include('partials/head') %></head>
+<body>
+<%- include('partials/navbar') %>
+
+<main class="container py-5">
+  <div class="text-center py-5">
+    <h1 class="display-4 fw-bold text-crimson"><%= status %></h1>
+    <p class="lead"><%= message %></p>
+    <a href="/" class="btn btn-outline-crimson mt-3">Return home</a>
+  </div>
+</main>
+
+<%- include('partials/footer') %>
+</body>
+</html>
