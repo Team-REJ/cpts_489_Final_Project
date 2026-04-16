@@ -102,8 +102,8 @@ pids/
 data/*.sqlite
 data/*.sqlite3
 data/*.db
-database/*.sqlite
-database/*.sqlite3
+database/*.sqlite*
+database/*.sqlite3*
 database/*.db*
 
 # Project-local documentation (kept out of the repo on purpose)

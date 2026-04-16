@@ -10,6 +10,10 @@ let stmt;
 module.exports = function attachUser(req, res, next) {
   if (!stmt) stmt = getUserStmt();
 
+  res.locals.currentUser = null;
+  res.locals.flash = null;
+  res.locals.csrfToken = '';
+
   if (req.session && req.session.userId) {
     const user = stmt.get(req.session.userId);
     if (user) {
