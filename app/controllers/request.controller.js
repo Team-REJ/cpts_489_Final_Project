@@ -1,0 +1,176 @@
+const Request = require('../models/request.model');
+const Message = require('../models/message.model');
+const Listing = require('../models/listing.model');
+const Notification = require('../models/notification.model');
+
+function setFlash(req, type, message) {
+  req.session.flash = { type, message };
+}
+
+exports.getThread = (req, res, next) => {
+  try {
+    const requestId = req.params.id;
+    const request = Request.findById(requestId);
+
+    if (!request) {
+      return res.status(404).render('error', { title: 'Not Found', status: 404, message: 'Request not found.' });
+    }
+
+    // Authorization: User must be buyer or seller
+    if (request.buyer_id !== req.session.userId && request.seller_id !== req.session.userId) {
+      setFlash(req, 'error', 'You do not have permission to view this thread.');
+      return res.redirect('/dashboard');
+    }
+
+    const listing = Listing.findById(request.listing_id);
+    const messages = Message.findByRequestId(requestId);
+
+    res.render('request-thread', { 
+      title: 'Request Thread', 
+      request, 
+      listing, 
+      messages,
+      currentUser: req.session.userId 
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.postCreate = (req, res, next) => {
+  try {
+    const { listing_id, initial_message, offer_amount } = req.body;
+    const listing = Listing.findById(listing_id);
+
+    if (!listing) {
+      setFlash(req, 'error', 'Invalid listing.');
+      return res.redirect('/listings');
+    }
+
+    if (listing.owner_id === req.session.userId) {
+      setFlash(req, 'error', 'You cannot send a request for your own listing.');
+      return res.redirect('/listings/' + listing_id);
+    }
+
+    const requestResult = Request.create({
+      listing_id,
+      buyer_id: req.session.userId,
+      seller_id: listing.owner_id,
+      current_offer: offer_amount ? parseFloat(offer_amount) : listing.price
+    });
+
+    const requestId = requestResult.lastInsertRowid;
+
+    // Create the initial message
+    Message.create({
+      request_id: requestId,
+      sender_id: req.session.userId,
+      body: initial_message || 'I am interested in this item.',
+      message_type: 'user'
+    });
+
+    // Notify the seller
+    Notification.create({
+      recipient_id: listing.owner_id,
+      type: 'new_request',
+      body: `You received a new request for "${listing.title}".`,
+      related_listing_id: listing_id,
+      related_request_id: requestId
+    });
+
+    setFlash(req, 'success', 'Request sent successfully!');
+    res.redirect('/requests/' + requestId);
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.postMessage = (req, res, next) => {
+  try {
+    const requestId = req.params.id;
+    const { body } = req.body;
+    const request = Request.findById(requestId);
+
+    if (!request || (request.buyer_id !== req.session.userId && request.seller_id !== req.session.userId)) {
+      setFlash(req, 'error', 'Unauthorized.');
+      return res.redirect('/dashboard');
+    }
+
+    Message.create({
+      request_id: requestId,
+      sender_id: req.session.userId,
+      body
+    });
+
+    // Notify the other party
+    const recipientId = (req.session.userId === request.buyer_id) ? request.seller_id : request.buyer_id;
+    Notification.create({
+      recipient_id: recipientId,
+      type: 'new_message',
+      body: 'New message in request thread.',
+      related_request_id: requestId
+    });
+
+    res.redirect('/requests/' + requestId);
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.postAccept = (req, res, next) => {
+  try {
+    const request = Request.findById(req.params.id);
+    if (!request || request.seller_id !== req.session.userId) {
+      setFlash(req, 'error', 'Unauthorized.');
+      return res.redirect('/dashboard');
+    }
+
+    Request.updateStatus(req.params.id, 'accepted');
+    
+    // Also mark listing as completed if appropriate
+    Listing.update(request.listing_id, { status: 'completed' });
+
+    Message.create({
+      request_id: req.params.id,
+      sender_id: null,
+      body: 'Request has been accepted. The item is now marked as sold.',
+      message_type: 'system'
+    });
+
+    Notification.create({
+      recipient_id: request.buyer_id,
+      type: 'request_accepted',
+      body: 'Your purchase request was accepted!',
+      related_request_id: req.params.id
+    });
+
+    setFlash(req, 'success', 'Request accepted.');
+    res.redirect('/requests/' + req.params.id);
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.postReject = (req, res, next) => {
+  try {
+    const request = Request.findById(req.params.id);
+    if (!request || request.seller_id !== req.session.userId) {
+      setFlash(req, 'error', 'Unauthorized.');
+      return res.redirect('/dashboard');
+    }
+
+    Request.updateStatus(req.params.id, 'rejected');
+
+    Message.create({
+      request_id: req.params.id,
+      sender_id: null,
+      body: 'Request has been declined by the seller.',
+      message_type: 'system'
+    });
+
+    setFlash(req, 'success', 'Request rejected.');
+    res.redirect('/requests/' + req.params.id);
+  } catch (err) {
+    next(err);
+  }
+};
