@@ -1,0 +1,145 @@
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+Icon
+._*
+.Spotlight-V100
+.Trashes
+.fseventsd
+
+# Windows
+Thumbs.db
+Thumbs.db:encryptable
+ehthumbs.db
+Desktop.ini
+$RECYCLE.BIN/
+
+# Linux
+*~
+.directory
+.Trash-*
+
+# Node dependencies
+node_modules/
+jspm_packages/
+bower_components/
+
+# Package manager files and caches
+.npm/
+.pnpm-store/
+.yarn/
+!.yarn/patches/
+!.yarn/plugins/
+!.yarn/releases/
+!.yarn/sdks/
+!.yarn/versions/
+.pnp.*
+
+# Logs
+logs/
+*.log
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+lerna-debug.log*
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+!.env.sample
+*.pem
+*.key
+*.crt
+*.p12
+*.pfx
+
+# Build outputs
+dist/
+build/
+out/
+public/build/
+public/dist/
+coverage/
+.nyc_output/
+.cache/
+.parcel-cache/
+.vite/
+.rollup.cache/
+.turbo/
+.next/
+.nuxt/
+.svelte-kit/
+storybook-static/
+
+# TypeScript
+*.tsbuildinfo
+
+# Test and coverage artifacts
+junit.xml
+coverage-final.json
+test-results/
+playwright-report/
+blob-report/
+cypress/screenshots/
+cypress/videos/
+
+# Runtime data
+pids/
+*.pid
+*.seed
+*.pid.lock
+
+# Local databases and generated data
+*.sqlite
+*.sqlite3
+*.db
+*.db-journal
+*.db-shm
+*.db-wal
+data/*.sqlite
+data/*.sqlite3
+data/*.db
+
+# Uploads and generated user files
+uploads/
+tmp/
+temp/
+.tmp/
+
+# Framework and deployment caches
+.vercel/
+.netlify/
+.firebase/
+.wrangler/
+.serverless/
+.sst/
+
+# Docker and local compose overrides
+docker-compose.override.yml
+.docker/
+
+# IDEs and editors
+.idea/
+.vscode/
+!.vscode/extensions.json
+!.vscode/settings.json
+*.swp
+*.swo
+*.swn
+*.bak
+*.orig
+
+# Tooling
+.eslintcache
+.stylelintcache
+.prettier-cache
+
+# Misc generated archives
+*.tgz
+*.zip
+*.tar
+*.tar.gz
+
