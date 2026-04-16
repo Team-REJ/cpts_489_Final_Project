@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Admin Dashboard — CougarMarket</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ── Navbar ── -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-crimson shadow-sm">
+    <div class="container-fluid">
+      <a class="navbar-brand fw-bold" href="index.html">CougarMarket</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="listings.html">Browse Listings</a></li>
+          <li class="nav-item"><a class="nav-link" href="dashboard.html">My Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link active-page" href="admin-dashboard.html">Admin Panel</a></li>
+        </ul>
+        <div class="d-flex gap-2 align-items-center">
+          <span class="badge bg-warning text-dark fw-semibold">
+            <i class="bi bi-shield-fill me-1"></i>ADMIN
+          </span>
+          <span class="navbar-text text-light ms-2 small">admin@wsu.edu</span>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <div class="container-fluid py-0">
+    <div class="row g-0" style="min-height:calc(100vh - 56px);">
+
+      <!-- ── Left Sidebar ── -->
+      <div class="col-lg-2 bg-white border-end py-4">
+        <div class="px-3 mb-3">
+          <div class="small text-uppercase text-muted fw-bold mb-2">Navigation</div>
+        </div>
+        <nav class="nav flex-column">
+          <a class="nav-link active d-flex align-items-center" href="#stats"
+             style="background:var(--crimson-bg);color:var(--crimson);padding:0.55rem 1.25rem;font-weight:600;font-size:0.9rem;">
+            <i class="bi bi-speedometer2 me-2"></i>Overview
+          </a>
+          <a class="nav-link d-flex align-items-center" href="#listings"
+             style="padding:0.55rem 1.25rem;color:#374151;font-size:0.9rem;">
+            <i class="bi bi-grid me-2"></i>Listings
+            <span class="badge bg-warning text-dark ms-auto small">3 pending</span>
+          </a>
+          <a class="nav-link d-flex align-items-center" href="#users"
+             style="padding:0.55rem 1.25rem;color:#374151;font-size:0.9rem;">
+            <i class="bi bi-people me-2"></i>Users
+          </a>
+          <a class="nav-link d-flex align-items-center" href="#requests"
+             style="padding:0.55rem 1.25rem;color:#374151;font-size:0.9rem;">
+            <i class="bi bi-chat-dots me-2"></i>Requests
+          </a>
+          <hr class="mx-3 my-2" />
+          <a class="nav-link d-flex align-items-center" href="index.html"
+             style="padding:0.55rem 1.25rem;color:#374151;font-size:0.9rem;">
+            <i class="bi bi-arrow-left me-2"></i>Back to Site
+          </a>
+        </nav>
+      </div>
+
+      <!-- ── Main Content ── -->
+      <div class="col-lg-10 p-4" style="background:#f9fafb;">
+
+        <!-- Page Title -->
+        <div class="d-flex justify-content-between align-items-start mb-4">
+          <div>
+            <h2 class="h4 fw-bold mb-0">Admin Dashboard</h2>
+            <p class="text-muted small mb-0">Moderate listings, manage users, and monitor platform health.</p>
+          </div>
+          <span class="small text-muted">Last refreshed: just now</span>
+        </div>
+
+        <!-- ── Stats ── -->
+        <div class="row g-3 mb-4" id="stats">
+          <div class="col-6 col-lg-3">
+            <div class="stat-card">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <div class="stat-number text-crimson">5</div>
+                  <div class="stat-label">Total Users</div>
+                </div>
+                <i class="bi bi-people stat-icon"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="stat-card">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <div class="stat-number" style="color:#16a34a;">2</div>
+                  <div class="stat-label">Active Listings</div>
+                </div>
+                <i class="bi bi-check-circle stat-icon"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="stat-card">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <div class="stat-number text-warning">3</div>
+                  <div class="stat-label">Pending Approval</div>
+                </div>
+                <i class="bi bi-hourglass-split stat-icon"></i>
+              </div>
+              <div class="small text-warning mt-1">Needs review</div>
+            </div>
+          </div>
+          <div class="col-6 col-lg-3">
+            <div class="stat-card">
+              <div class="d-flex justify-content-between">
+                <div>
+                  <div class="stat-number text-primary">4</div>
+                  <div class="stat-label">Total Requests</div>
+                </div>
+                <i class="bi bi-inbox stat-icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- ── Pending Listings ── -->
+        <div class="mb-5" id="listings">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold mb-0">
+              <i class="bi bi-hourglass-split text-warning me-2"></i>Pending Listings
+              <span class="badge bg-warning text-dark ms-2">3</span>
+            </h5>
+            <div class="d-flex gap-2">
+              <select class="form-select form-select-sm" style="width:auto;">
+                <option>All Categories</option>
+                <option>Textbooks</option>
+                <option>Electronics</option>
+              </select>
+              <a href="listings.html" class="btn btn-outline-secondary btn-sm">View All Listings</a>
+            </div>
+          </div>
+
+          <div class="table-section">
+            <table class="table table-hover align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>Item</th>
+                  <th>Seller</th>
+                  <th>Type</th>
+                  <th>Price</th>
+                  <th>Category</th>
+                  <th>Submitted</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <span class="fw-semibold small">Headphones</span>
+                  </td>
+                  <td class="small">WSU Student</td>
+                  <td><span class="status-badge type-sell">SELL</span></td>
+                  <td class="fw-bold small">$180</td>
+                  <td class="small text-muted">Electronics</td>
+                  <td class="small text-muted">2 hrs ago</td>
+                  <td>
+                    <button class="btn btn-success btn-sm me-1">
+                      <i class="bi bi-check-lg me-1"></i>Approve
+                    </button>
+                    <button class="btn btn-outline-danger btn-sm">
+                      <i class="bi bi-x-lg me-1"></i>Remove
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="fw-semibold small">Futon — Good Condition</span>
+                  </td>
+                  <td class="small">WSU Student</td>
+                  <td><span class="status-badge type-sell">SELL</span></td>
+                  <td class="fw-bold small">$95</td>
+                  <td class="small text-muted">Furniture</td>
+                  <td class="small text-muted">5 hrs ago</td>
+                  <td>
+                    <button class="btn btn-success btn-sm me-1">
+                      <i class="bi bi-check-lg me-1"></i>Approve
+                    </button>
+                    <button class="btn btn-outline-danger btn-sm">
+                      <i class="bi bi-x-lg me-1"></i>Remove
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <span class="fw-semibold small">Engineering Drawing Set</span>
+                  </td>
+                  <td class="small">WSU Student</td>
+                  <td><span class="status-badge type-free">FREE</span></td>
+                  <td class="fw-bold small text-success">Free</td>
+                  <td class="small text-muted">Textbooks</td>
+                  <td class="small text-muted">1 day ago</td>
+                  <td>
+                    <button class="btn btn-success btn-sm me-1">
+                      <i class="bi bi-check-lg me-1"></i>Approve
+                    </button>
+                    <button class="btn btn-outline-danger btn-sm">
+                      <i class="bi bi-x-lg me-1"></i>Remove
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+
+        <!-- ── User Management ── -->
+        <div id="users">
+          <div class="d-flex justify-content-between align-items-center mb-3">
+            <h5 class="fw-bold mb-0">
+              <i class="bi bi-people-fill text-crimson me-2"></i>User Management
+            </h5>
+            <div class="d-flex gap-2">
+              <input type="text" class="form-control form-control-sm" placeholder="Search users…" style="width:200px;" />
+              <select class="form-select form-select-sm" style="width:auto;">
+                <option>All Roles</option>
+                <option>STUDENT</option>
+                <option>MODERATOR</option>
+                <option>ADMIN</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="table-section">
+            <table class="table table-hover align-middle mb-0">
+              <thead>
+                <tr>
+                  <th>User</th>
+                  <th>Email</th>
+                  <th>Role</th>
+                  <th>Status</th>
+                  <th>Listings</th>
+                  <th>Joined</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="seller-avatar" style="width:32px;height:32px;font-size:0.9rem;">A</div>
+                      <span class="fw-semibold small">WSU Student</span>
+                    </div>
+                  </td>
+                  <td class="small text-muted">student.a@wsu.edu</td>
+                  <td>
+                    <select class="form-select form-select-sm" style="width:130px;">
+                      <option selected>STUDENT</option>
+                      <option>MODERATOR</option>
+                    </select>
+                  </td>
+                  <td><span class="status-badge badge-active">Active</span></td>
+                  <td class="small text-center">2</td>
+                  <td class="small text-muted">Jan 2025</td>
+                  <td>
+                    <button class="btn btn-outline-warning btn-sm">
+                      <i class="bi bi-slash-circle me-1"></i>Suspend
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="seller-avatar" style="width:32px;height:32px;font-size:0.9rem;">B</div>
+                      <span class="fw-semibold small">WSU Student</span>
+                    </div>
+                  </td>
+                  <td class="small text-muted">student.b@wsu.edu</td>
+                  <td>
+                    <select class="form-select form-select-sm" style="width:130px;">
+                      <option selected>STUDENT</option>
+                      <option>MODERATOR</option>
+                    </select>
+                  </td>
+                  <td><span class="status-badge badge-active">Active</span></td>
+                  <td class="small text-center">1</td>
+                  <td class="small text-muted">Aug 2024</td>
+                  <td>
+                    <button class="btn btn-outline-warning btn-sm">
+                      <i class="bi bi-slash-circle me-1"></i>Suspend
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="seller-avatar" style="width:32px;height:32px;font-size:0.9rem;">C</div>
+                      <span class="fw-semibold small">WSU Student</span>
+                    </div>
+                  </td>
+                  <td class="small text-muted">student.c@wsu.edu</td>
+                  <td>
+                    <select class="form-select form-select-sm" style="width:130px;">
+                      <option>STUDENT</option>
+                      <option selected>MODERATOR</option>
+                    </select>
+                  </td>
+                  <td><span class="status-badge badge-active">Active</span></td>
+                  <td class="small text-center">0</td>
+                  <td class="small text-muted">Sep 2024</td>
+                  <td>
+                    <button class="btn btn-outline-warning btn-sm">
+                      <i class="bi bi-slash-circle me-1"></i>Suspend
+                    </button>
+                  </td>
+                </tr>
+                <tr>
+                  <td>
+                    <div class="d-flex align-items-center gap-2">
+                      <div class="seller-avatar" style="width:32px;height:32px;font-size:0.9rem;background:#dc3545;">D</div>
+                      <span class="fw-semibold small">WSU Student</span>
+                    </div>
+                  </td>
+                  <td class="small text-muted">student.d@wsu.edu</td>
+                  <td>
+                    <select class="form-select form-select-sm" style="width:130px;">
+                      <option selected>STUDENT</option>
+                      <option>MODERATOR</option>
+                    </select>
+                  </td>
+                  <td><span class="status-badge badge-removed">Suspended</span></td>
+                  <td class="small text-center">0</td>
+                  <td class="small text-muted">Oct 2024</td>
+                  <td>
+                    <button class="btn btn-outline-success btn-sm">
+                      <i class="bi bi-check-circle me-1"></i>Unsuspend
+                    </button>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+
+          <!-- Pagination -->
+          <nav class="mt-3">
+            <ul class="pagination pagination-sm justify-content-end mb-0">
+              <li class="page-item disabled"><a class="page-link" href="#">&laquo;</a></li>
+              <li class="page-item active"><a class="page-link" href="#">1</a></li>
+              <li class="page-item disabled"><a class="page-link" href="#">&raquo;</a></li>
+            </ul>
+          </nav>
+        </div>
+
+      </div><!-- /main content -->
+    </div><!-- /row -->
+  </div><!-- /container-fluid -->
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

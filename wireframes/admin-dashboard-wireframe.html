@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[WIREFRAME] Admin Dashboard — CougarMarket</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    body { font-family: 'Courier New', Courier, monospace; }
+  </style>
+</head>
+<body class="wireframe-page">
+
+  <!-- Wireframe Nav -->
+  <div class="wireframe-nav">
+    <div class="wf-brand">[ CougarMarket ]</div>
+    <div class="wf-nav-links">
+      <span>Home</span>
+      <span>Browse</span>
+      <span>[ ADMIN PANEL ]</span>
+      <span>Logout</span>
+    </div>
+  </div>
+
+  <!-- Annotation Banner -->
+  <div style="background:#fffce6;border-bottom:2px dashed #f0d700;padding:8px 24px;font-family:monospace;font-size:0.8rem;color:#5a4200;">
+    WIREFRAME — Admin Dashboard (Screen: Admin Flow) — CougarMarket · CPT_S 489 Team REJ
+  </div>
+
+  <div class="wf-container" style="max-width:1100px;">
+
+    <div class="wf-title">Admin Dashboard — Wireframe</div>
+
+    <div class="wf-note">
+      Design Note: The admin dashboard is accessible only to users with the ADMIN role.
+      Administrators have full control over the platform: they can manage users, remove content,
+      assign roles, and monitor system health. 
+    </div>
+
+    <!-- Two-column layout: sidebar + main -->
+    <div class="wf-row" style="align-items:flex-start;gap:16px;">
+
+      <!-- Sidebar -->
+      <div style="flex:0 0 200px;">
+        <div class="wf-section" style="padding:0;">
+          <div style="padding:10px 14px;border-bottom:2px solid #ccc;font-weight:bold;font-size:0.85rem;">
+            Admin Navigation
+          </div>
+          <div style="padding:10px 14px;background:#ccc;font-size:0.82rem;font-weight:bold;border-bottom:1px solid #bbb;">
+            [ Overview ]
+          </div>
+          <div style="padding:10px 14px;font-size:0.82rem;border-bottom:1px solid #ddd;">User Management</div>
+          <div style="padding:10px 14px;font-size:0.82rem;border-bottom:1px solid #ddd;display:flex;justify-content:space-between;">
+            All Listings
+            <span class="wf-tag" style="font-size:0.65rem;padding:1px 6px;">5</span>
+          </div>
+          <div style="padding:10px 14px;font-size:0.82rem;border-bottom:1px solid #ddd;">System Stats</div>
+          <div style="padding:10px 14px;font-size:0.82rem;border-bottom:1px solid #ddd;">Role Management</div>
+          <div style="padding:10px 14px;font-size:0.82rem;border-bottom:1px solid #ddd;color:#666;">
+            <a href="../index.html" style="color:#555;text-decoration:underline;">Back to Site</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main content -->
+      <div style="flex:1;">
+
+        <!-- System stats row -->
+        <div class="wf-row" style="gap:10px;margin-bottom:16px;">
+          <div class="wf-card" style="flex:1;text-align:center;padding:14px 10px;">
+            <div style="font-size:1.6rem;font-weight:bold;">4</div>
+            <div style="font-size:0.75rem;color:#666;">Total Users</div>
+          </div>
+          <div class="wf-card" style="flex:1;text-align:center;padding:14px 10px;">
+            <div style="font-size:1.6rem;font-weight:bold;">5</div>
+            <div style="font-size:0.75rem;color:#666;">Total Listings</div>
+          </div>
+          <div class="wf-card" style="flex:1;text-align:center;padding:14px 10px;">
+            <div style="font-size:1.6rem;font-weight:bold;">3</div>
+            <div style="font-size:0.75rem;color:#666;">Pending Review</div>
+          </div>
+          <div class="wf-card" style="flex:1;text-align:center;padding:14px 10px;">
+            <div style="font-size:1.6rem;font-weight:bold;">1</div>
+            <div style="font-size:0.75rem;color:#666;">Suspended Users</div>
+          </div>
+        </div>
+
+        <!-- User Management section -->
+        <div class="wf-section">
+          <div class="wf-title" style="font-size:1rem;border-bottom-width:1px;">User Management</div>
+          <div class="wf-annotation">
+            Admins can view all registered users, change their roles, or suspend/ban accounts.
+          </div>
+
+          <!-- Search/filter bar -->
+          <div class="wf-row" style="gap:8px;margin-bottom:10px;">
+            <div class="wf-box" style="flex:1;height:30px;font-size:0.78rem;text-align:left;padding-left:8px;">[ Search users by name or email… ]</div>
+            <div class="wf-box" style="width:130px;height:30px;font-size:0.75rem;">[ All Roles ▼ ]</div>
+            <div class="wf-btn" style="font-size:0.75rem;padding:5px 10px;">[ Filter ]</div>
+          </div>
+
+          <!-- User table header -->
+          <div style="display:grid;grid-template-columns:2fr 2fr 1fr 1fr 1fr 1fr;gap:4px;padding:6px 8px;background:#ccc;font-size:0.75rem;font-weight:bold;border:1px solid #aaa;">
+            <span>Name</span>
+            <span>Email</span>
+            <span>Role</span>
+            <span>Status</span>
+            <span>Listings</span>
+            <span>Actions</span>
+          </div>
+
+          <!-- User rows -->
+          <div style="display:grid;grid-template-columns:2fr 2fr 1fr 1fr 1fr 1fr;gap:4px;padding:6px 8px;border:1px solid #ddd;border-top:none;font-size:0.75rem;align-items:center;">
+            <span>Student A</span>
+            <span>student.a@wsu.edu</span>
+            <div class="wf-box" style="height:22px;font-size:0.7rem;">[ STUDENT ▼ ]</div>
+            <span class="wf-tag" style="font-size:0.65rem;background:#c8e6c9;color:#2e7d32;">Active</span>
+            <span style="text-align:center;">2</span>
+            <div class="wf-btn" style="font-size:0.65rem;padding:3px 6px;">[ Suspend ]</div>
+          </div>
+          <div style="display:grid;grid-template-columns:2fr 2fr 1fr 1fr 1fr 1fr;gap:4px;padding:6px 8px;border:1px solid #ddd;border-top:none;font-size:0.75rem;align-items:center;">
+            <span>Student B</span>
+            <span>student.b@wsu.edu</span>
+            <div class="wf-box" style="height:22px;font-size:0.7rem;">[ STUDENT ▼ ]</div>
+            <span class="wf-tag" style="font-size:0.65rem;background:#c8e6c9;color:#2e7d32;">Active</span>
+            <span style="text-align:center;">1</span>
+            <div class="wf-btn" style="font-size:0.65rem;padding:3px 6px;">[ Suspend ]</div>
+          </div>
+          <div style="display:grid;grid-template-columns:2fr 2fr 1fr 1fr 1fr 1fr;gap:4px;padding:6px 8px;border:1px solid #ddd;border-top:none;font-size:0.75rem;align-items:center;">
+            <span>Student C</span>
+            <span>student.c@wsu.edu</span>
+            <div class="wf-box" style="height:22px;font-size:0.7rem;">[ MODERATOR ▼ ]</div>
+            <span class="wf-tag" style="font-size:0.65rem;background:#c8e6c9;color:#2e7d32;">Active</span>
+            <span style="text-align:center;">0</span>
+            <div class="wf-btn" style="font-size:0.65rem;padding:3px 6px;">[ Suspend ]</div>
+          </div>
+          <div style="display:grid;grid-template-columns:2fr 2fr 1fr 1fr 1fr 1fr;gap:4px;padding:6px 8px;border:1px solid #ddd;border-top:none;font-size:0.75rem;align-items:center;background:#fde0dc;">
+            <span>Student D</span>
+            <span>student.d@wsu.edu</span>
+            <div class="wf-box" style="height:22px;font-size:0.7rem;">[ STUDENT ▼ ]</div>
+            <span class="wf-tag" style="font-size:0.65rem;background:#ffcdd2;color:#b71c1c;">Suspended</span>
+            <span style="text-align:center;">0</span>
+            <div class="wf-btn" style="font-size:0.65rem;padding:3px 6px;background:#c8e6c9;">[ Unsuspend ]</div>
+          </div>
+
+          <div class="wf-annotation" style="margin-top:8px;">
+            Role dropdown: changing role requires confirmation modal before saving.
+            Suspending a user hides all their active listings and blocks login.
+          </div>
+        </div>
+
+        <!-- All Listings section -->
+        <div class="wf-section" style="margin-top:1rem;">
+          <div class="wf-title" style="font-size:1rem;border-bottom-width:1px;">
+            All Listings
+            <span class="wf-tag" style="margin-left:8px;font-size:0.7rem;">5 total</span>
+          </div>
+          <div class="wf-annotation">
+            Admins can view all listings regardless of status, and remove any listing from the platform.
+          </div>
+
+          <!-- Listing table header -->
+          <div style="display:grid;grid-template-columns:2.5fr 1.5fr 1fr 1fr 1fr 1fr;gap:4px;padding:6px 8px;background:#ccc;font-size:0.75rem;font-weight:bold;border:1px solid #aaa;">
+            <span>Title</span>
+            <span>Seller</span>
+            <span>Type</span>
+            <span>Price</span>
+            <span>Status</span>
+            <span>Actions</span>
+          </div>
+          <div style="display:grid;grid-template-columns:2.5fr 1.5fr 1fr 1fr 1fr 1fr;gap:4px;padding:6px 8px;border:1px solid #ddd;border-top:none;font-size:0.75rem;align-items:center;">
+            <span>MacBook Pro 2020</span>
+            <span>Student A</span>
+            <span class="wf-tag" style="font-size:0.65rem;">SELL</span>
+            <span>$850</span>
+            <span class="wf-tag" style="font-size:0.65rem;background:#c8e6c9;color:#2e7d32;">Active</span>
+            <div class="wf-btn" style="font-size:0.65rem;padding:3px 6px;background:#ffcdd2;">[ Remove ]</div>
+          </div>
+          <div style="display:grid;grid-template-columns:2.5fr 1.5fr 1fr 1fr 1fr 1fr;gap:4px;padding:6px 8px;border:1px solid #ddd;border-top:none;font-size:0.75rem;align-items:center;">
+            <span>Desk Chair</span>
+            <span>Student A</span>
+            <span class="wf-tag" style="font-size:0.65rem;">SELL</span>
+            <span>$45</span>
+            <span class="wf-tag" style="font-size:0.65rem;background:#c8e6c9;color:#2e7d32;">Active</span>
+            <div class="wf-btn" style="font-size:0.65rem;padding:3px 6px;background:#ffcdd2;">[ Remove ]</div>
+          </div>
+          <div style="display:grid;grid-template-columns:2.5fr 1.5fr 1fr 1fr 1fr 1fr;gap:4px;padding:6px 8px;border:1px solid #ddd;border-top:none;font-size:0.75rem;align-items:center;">
+            <span>Calculus Textbook</span>
+            <span>Student B</span>
+            <span class="wf-tag" style="font-size:0.65rem;">SELL</span>
+            <span>$35</span>
+            <span class="wf-tag" style="font-size:0.65rem;background:#c8e6c9;color:#2e7d32;">Active</span>
+            <div class="wf-btn" style="font-size:0.65rem;padding:3px 6px;background:#ffcdd2;">[ Remove ]</div>
+          </div>
+          <div style="display:grid;grid-template-columns:2.5fr 1.5fr 1fr 1fr 1fr 1fr;gap:4px;padding:6px 8px;border:1px solid #ddd;border-top:none;font-size:0.75rem;align-items:center;">
+            <span>Headphones</span>
+            <span>Student A</span>
+            <span class="wf-tag" style="font-size:0.65rem;">SELL</span>
+            <span>$180</span>
+            <span class="wf-tag" style="font-size:0.65rem;background:#fff3cd;color:#856404;">Pending</span>
+            <div class="wf-btn" style="font-size:0.65rem;padding:3px 6px;background:#ffcdd2;">[ Remove ]</div>
+          </div>
+          <div style="display:grid;grid-template-columns:2.5fr 1.5fr 1fr 1fr 1fr 1fr;gap:4px;padding:6px 8px;border:1px solid #ddd;border-top:none;font-size:0.75rem;align-items:center;">
+            <span>Futon — Good Condition</span>
+            <span>Student B</span>
+            <span class="wf-tag" style="font-size:0.65rem;">SELL</span>
+            <span>$95</span>
+            <span class="wf-tag" style="font-size:0.65rem;background:#fff3cd;color:#856404;">Pending</span>
+            <div class="wf-btn" style="font-size:0.65rem;padding:3px 6px;background:#ffcdd2;">[ Remove ]</div>
+          </div>
+        </div>
+
+        <!-- System Stats section -->
+        <div class="wf-section" style="margin-top:1rem;">
+          <div class="wf-title" style="font-size:1rem;border-bottom-width:1px;">System Statistics</div>
+          <div class="wf-annotation">Platform health metrics. Not yet fully implemented.</div>
+          <div class="wf-row" style="gap:10px;flex-wrap:wrap;">
+            <div class="wf-card" style="flex:1;min-width:140px;padding:10px;">
+              <div style="font-size:0.75rem;color:#666;margin-bottom:4px;">New Users (this week)</div>
+              <div class="wf-box" style="height:24px;background:#e0e0e0;font-size:0.8rem;">[ chart placeholder ]</div>
+            </div>
+            <div class="wf-card" style="flex:1;min-width:140px;padding:10px;">
+              <div style="font-size:0.75rem;color:#666;margin-bottom:4px;">Listings Created (this week)</div>
+              <div class="wf-box" style="height:24px;background:#e0e0e0;font-size:0.8rem;">[ chart placeholder ]</div>
+            </div>
+            <div class="wf-card" style="flex:1;min-width:140px;padding:10px;">
+              <div style="font-size:0.75rem;color:#666;margin-bottom:4px;">Active Requests</div>
+              <div class="wf-box" style="height:24px;background:#e0e0e0;font-size:0.8rem;">[ chart placeholder ]</div>
+            </div>
+          </div>
+        </div>
+
+      </div><!-- /main -->
+    </div><!-- /wf-row -->
+
+    <!-- Implementation Notes -->
+    <div class="wf-section" style="margin-top:1.5rem;">
+      <div style="font-weight:bold;font-size:0.85rem;margin-bottom:8px;">Implementation Status</div>
+      <ul style="font-size:0.8rem;color:#555;padding-left:1.2rem;margin:0;">
+        <li>Role: ADMIN — manually seeded in database; not assignable via UI currently</li>
+        <li>NOT YET IMPLEMENTED: Full admin UI — this is a wireframe</li>
+        <li>NOT YET IMPLEMENTED: Role assignment UI (currently via DB seed only)</li>
+        <li>NOT YET IMPLEMENTED: System stats charts</li>
+        <li>NOT YET IMPLEMENTED: Audit log for admin actions</li>
+        <li>Planned API: DELETE /listings/:id (admin only)</li>
+        <li>Planned API: PATCH /users/:id/role { role: "STUDENT" | "MODERATOR" | "ADMIN" }</li>
+        <li>Planned API: PATCH /users/:id/suspend { suspended: true | false }</li>
+      </ul>
+    </div>
+
+  </div><!-- /wf-container -->
+
+  <!-- Wireframe navigation -->
+  <div style="background:#ddd;border-top:2px dashed #bbb;padding:12px 24px;font-family:monospace;font-size:0.8rem;">
+    <strong>Wireframe Navigation:</strong>
+    <a href="login-wireframe.html" style="margin:0 8px;">← Login</a> |
+    <a href="register-wireframe.html" style="margin:0 8px;">← Register</a> |
+    <a href="moderator-dashboard-wireframe.html" style="margin:0 8px;">← Moderator Dashboard</a> |
+    <a href="admin-dashboard-wireframe.html" style="margin:0 8px;font-weight:bold;">[Current] Admin Dashboard</a> |
+    <a href="user-profile-wireframe.html" style="margin:0 8px;">→ User Profile</a> |
+    <a href="messages-wireframe.html" style="margin:0 8px;">→ Messages</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="../index.html" style="margin:0 8px;">← Back to Full Prototype</a>
+  </div>
+
+  <div class="wf-footer">
+    CougarMarket · CPT_S 489 · Team REJ · Washington State University · Spring 2026
+  </div>
+
+</body>
+</html>

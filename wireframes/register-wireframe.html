@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[WIREFRAME] Register — CougarMarket</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    body { font-family: 'Courier New', Courier, monospace; }
+  </style>
+</head>
+<body class="wireframe-page">
+
+  <!-- Wireframe Nav -->
+  <div class="wireframe-nav">
+    <div class="wf-brand">[ CougarMarket ]</div>
+    <div class="wf-nav-links">
+      <span>Home</span>
+      <span>Browse</span>
+      <span>Login</span>
+      <span>[ SIGN UP ]</span>
+    </div>
+  </div>
+
+  <!-- Annotation Banner -->
+  <div style="background:#fffce6;border-bottom:2px dashed #f0d700;padding:8px 24px;font-family:monospace;font-size:0.8rem;color:#5a4200;">
+    WIREFRAME — Registration Page (Screen 2 of 3: Authentication Flow) — CougarMarket · CPT_S 489 Team REJ
+  </div>
+
+  <div class="wf-container">
+
+    <div class="wf-title">Registration Page — Wireframe</div>
+
+    <div class="wf-note">
+      Design Note: All new users are assigned the STUDENT role by default. No email
+      verification is currently implemented.
+    </div>
+
+    <div style="max-width:480px;margin:0 auto;">
+
+      <!-- Header Card -->
+      <div class="wf-card" style="text-align:center;margin-bottom:1rem;padding:1.5rem;">
+        <div class="wf-box" style="height:50px;margin-bottom:1rem;">[LOGO — CougarMarket]</div>
+        <div style="font-size:1.1rem;font-weight:bold;color:#333;">Create Your Account</div>
+        <div style="font-size:0.82rem;color:#666;margin-top:4px;">
+          Join the WSU campus marketplace — it's free
+        </div>
+        <div class="wf-tag" style="margin-top:8px;">DEFAULT ROLE: STUDENT</div>
+      </div>
+
+      <!-- Registration Form -->
+      <div class="wf-section">
+        <div class="wf-title" style="font-size:1rem;border-bottom-width:1px;">Registration Form Fields</div>
+
+        <span class="wf-label">Full Name</span>
+        <div class="wf-input"></div>
+        <div class="wf-annotation">Placeholder: "Your Full Name" — min 2 characters required</div>
+
+        <span class="wf-label" style="margin-top:12px;">WSU Email Address</span>
+        <div class="wf-input"></div>
+        <div class="wf-annotation">
+          Placeholder: "yourname@wsu.edu"<br/>
+          Validated as email format (no domain restriction in v1 — future: restrict to @wsu.edu)
+        </div>
+
+        <span class="wf-label" style="margin-top:12px;">Password</span>
+        <div class="wf-input"></div>
+        <div class="wf-annotation">
+          Min 8 characters enforced client-side and server-side (Zod schema).<br/>
+          Password strength indicator: TODO in future sprint.
+        </div>
+
+        <span class="wf-label" style="margin-top:12px;">Confirm Password</span>
+        <div class="wf-input"></div>
+        <div class="wf-annotation">
+          Client-side validation: must match password field before submit.<br/>
+          Error: "Passwords do not match" shown below this field.
+        </div>
+
+        <!-- Terms checkbox placeholder -->
+        <div style="display:flex;align-items:flex-start;gap:8px;margin:12px 0;font-size:0.82rem;">
+          <div style="width:18px;height:18px;border:2px solid #aaa;background:#fff;flex-shrink:0;margin-top:2px;"></div>
+          <span>I agree to the <u>Terms of Service</u> and <u>Privacy Policy</u> [Links not yet created — TODO]</span>
+        </div>
+
+        <div style="text-align:center;margin-bottom:12px;">
+          <div class="wf-btn" style="width:100%;display:block;text-align:center;box-sizing:border-box;">
+            [ CREATE ACCOUNT ]
+          </div>
+        </div>
+
+        <div class="wf-annotation">
+          On success: auto-login, redirect to /dashboard with welcome message.<br/>
+          On failure: Zod validation errors shown per-field (e.g., "Email already in use").
+        </div>
+
+        <div class="wf-divider"></div>
+
+        <div style="text-align:center;font-size:0.82rem;color:#555;">
+          Already have an account?
+          <a href="login-wireframe.html" style="color:#333;font-weight:bold;text-decoration:underline;">Sign in here</a>
+        </div>
+      </div>
+
+      <!-- Field Validation States -->
+      <div class="wf-card" style="margin-top:1rem;">
+        <div style="font-weight:bold;margin-bottom:8px;font-size:0.85rem;">Validation States</div>
+        <div class="wf-row">
+          <div>
+            <div class="wf-label">Valid Field</div>
+            <div class="wf-box" style="height:34px;background:#f0fdf4;border-color:#22c55e;">[ Input Value ✓ ]</div>
+          </div>
+          <div>
+            <div class="wf-label">Invalid Field</div>
+            <div class="wf-box" style="height:34px;background:#fef2f2;border-color:#ef4444;">[ Input Value ✗ ]</div>
+          </div>
+        </div>
+        <div class="wf-annotation">
+          Field-level errors displayed beneath each input.<br/>
+          Example: "Password must be at least 8 characters."
+        </div>
+      </div>
+
+      <!-- Success State -->
+      <div class="wf-card" style="margin-top:1rem;">
+        <div style="font-weight:bold;margin-bottom:8px;font-size:0.85rem;">Success State</div>
+        <div class="wf-box" style="height:36px;background:#f0fdf4;border-color:#22c55e;color:#15803d;">
+          [ SUCCESS: "Account created! Welcome to CougarMarket." ]
+        </div>
+        <div class="wf-annotation">Shown briefly before redirect to /dashboard.</div>
+      </div>
+
+      <!-- Design Notes -->
+      <div class="wf-section" style="margin-top:1rem;">
+        <div style="font-weight:bold;margin-bottom:8px;font-size:0.85rem;">Design Notes</div>
+        <ul style="font-size:0.8rem;color:#444;padding-left:1.2rem;margin:0;">
+          <li>Mobile: single-column stack, full-width inputs</li>
+          <li>Desktop: centered card, max-width 480px</li>
+          <li>All new users get STUDENT role — cannot self-promote</li>
+          <li>Duplicate email: clear error from server (HTTP 409)</li>
+          <li>No email verification flow yet — planned for Sprint 3</li>
+          <li>No reCAPTCHA yet — planned for Sprint 4</li>
+          <li>Password is hashed with bcryptjs (10 rounds) server-side</li>
+        </ul>
+      </div>
+
+    </div><!-- /centered -->
+  </div><!-- /wf-container -->
+
+  <!-- Navigation between wireframes -->
+  <div style="background:#ddd;border-top:2px dashed #bbb;padding:12px 24px;font-family:monospace;font-size:0.8rem;">
+    <strong>Wireframe Navigation:</strong>
+    <a href="login-wireframe.html" style="margin:0 8px;">← Login</a> |
+    <a href="register-wireframe.html" style="margin:0 8px;font-weight:bold;">[Current] Register</a> |
+    <a href="user-profile-wireframe.html" style="margin:0 8px;">→ User Profile</a> |
+    <a href="notifications-wireframe.html" style="margin:0 8px;">→ Notifications</a> |
+    <a href="messages-wireframe.html" style="margin:0 8px;">→ Messages</a> |
+    <a href="settings-wireframe.html" style="margin:0 8px;">→ Settings</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="../index.html" style="margin:0 8px;">← Back to Full Prototype</a>
+  </div>
+
+  <div class="wf-footer">
+    CougarMarket · CPT_S 489 · Team REJ · Washington State University · Spring 2026
+  </div>
+
+</body>
+</html>

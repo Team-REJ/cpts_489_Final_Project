@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[WIREFRAME] Login — CougarMarket</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    body { font-family: 'Courier New', Courier, monospace; }
+  </style>
+</head>
+<body class="wireframe-page">
+
+  <!-- Wireframe Nav -->
+  <div class="wireframe-nav">
+    <div class="wf-brand">[ CougarMarket ]</div>
+    <div class="wf-nav-links">
+      <span>Home</span>
+      <span>Browse</span>
+      <span>[ LOGIN ]</span>
+      <span>Sign Up</span>
+    </div>
+  </div>
+
+  <!-- Annotation Banner -->
+  <div style="background:#fffce6;border-bottom:2px dashed #f0d700;padding:8px 24px;font-family:monospace;font-size:0.8rem;color:#5a4200;">
+    WIREFRAME — Login Page (Authentication Flow) — CougarMarket · CPT_S 489 Team REJ
+  </div>
+
+  <div class="wf-container">
+
+    <div class="wf-title">Login Page — Wireframe</div>
+
+    <div class="wf-note">
+      Design Note: Login screen is the entry point for all authenticated features.
+      On successful login, user is redirected to their dashboard or the page they were
+      trying to access (protected route).
+    </div>
+
+    <!-- Centered login card -->
+    <div style="max-width:440px;margin:0 auto;">
+
+      <!-- Logo area -->
+      <div class="wf-card" style="text-align:center;margin-bottom:1rem;padding:1.5rem;">
+        <div class="wf-box" style="height:60px;margin-bottom:1rem;">[LOGO — CougarMarket]</div>
+        <div style="font-size:1.1rem;font-weight:bold;color:#333;">Welcome Back</div>
+        <div style="font-size:0.82rem;color:#666;margin-top:4px;">Sign in to your WSU student account</div>
+      </div>
+
+      <!-- Login Form -->
+      <div class="wf-section">
+        <div class="wf-title" style="font-size:1rem;border-bottom-width:1px;">Login Form</div>
+
+        <span class="wf-label">Email Address</span>
+        <div class="wf-input"></div>
+        <div class="wf-annotation">Placeholder: your.name@wsu.edu</div>
+
+        <span class="wf-label" style="margin-top:12px;">Password</span>
+        <div class="wf-input"></div>
+        <div class="wf-annotation">Masked input • "Forgot password?" link (not yet implemented)</div>
+
+        <div style="display:flex;justify-content:space-between;align-items:center;margin-bottom:16px;margin-top:4px;">
+          <div style="display:flex;align-items:center;gap:6px;font-size:0.8rem;">
+            <div style="width:16px;height:16px;border:2px solid #aaa;background:#fff;"></div>
+            <span>Remember me</span>
+          </div>
+          <span style="font-size:0.8rem;color:#888;text-decoration:underline;">Forgot password?</span>
+        </div>
+
+        <div style="text-align:center;margin-bottom:12px;">
+          <div class="wf-btn" style="width:100%;display:block;text-align:center;box-sizing:border-box;">
+            [ SIGN IN ]
+          </div>
+        </div>
+
+        <div class="wf-annotation">
+          On success: session cookie set → redirect to /dashboard or intended page.<br/>
+          On failure: inline error message shown ("Invalid email or password").
+        </div>
+
+        <div class="wf-divider"></div>
+
+        <div style="text-align:center;font-size:0.82rem;color:#555;">
+          Don't have an account?
+          <a href="register-wireframe.html" style="color:#333;font-weight:bold;text-decoration:underline;">Register here</a>
+        </div>
+      </div>
+
+      <!-- Error State -->
+      <div class="wf-card" style="border:2px dashed #e57373;margin-top:1rem;">
+        <div style="font-weight:bold;margin-bottom:6px;font-size:0.85rem;">Error State (when login fails)</div>
+        <div class="wf-box" style="height:36px;background:#fde0dc;border-color:#e57373;color:#b71c1c;">
+          [ ERROR ALERT: "Invalid email or password. Please try again." ]
+        </div>
+        <div class="wf-annotation" style="margin-top:8px;">
+          Error displayed above the form, not inline per-field. Form fields retain values.
+          Password field is cleared on error.
+        </div>
+      </div>
+
+      <!-- Loading State -->
+      <div class="wf-card" style="margin-top:1rem;">
+        <div style="font-weight:bold;margin-bottom:6px;font-size:0.85rem;">Loading State (during API call)</div>
+        <div class="wf-box" style="height:40px;background:#e0e0e0;">
+          [ BUTTON: "Signing in…" — spinner icon — disabled ]
+        </div>
+        <div class="wf-annotation" style="margin-top:8px;">
+          Button becomes disabled with spinner while POST /auth/login is in flight.
+        </div>
+      </div>
+
+    </div><!-- /centered card -->
+
+    <!-- Demo Role Login -->
+    <div style="max-width:440px;margin:1.5rem auto 0;">
+      <div class="wf-section" style="border:2px dashed #f0d700;background:#fffce6;">
+        <div style="font-weight:bold;margin-bottom:4px;font-size:0.9rem;">Demo Login — Select a Role</div>
+        <div class="wf-annotation" style="margin-bottom:12px;">
+          For prototype demonstration only. Choose a role to navigate directly to that role's dashboard.
+        </div>
+        <div style="display:flex;flex-direction:column;gap:8px;">
+          <a href="../dashboard.html" style="text-decoration:none;">
+            <div class="wf-btn" style="width:100%;display:block;text-align:center;box-sizing:border-box;padding:10px;font-size:0.85rem;background:#c8e6c9;border-color:#4caf50;color:#2e7d32;">
+              [ Login as Student ] → Student Dashboard
+            </div>
+          </a>
+          <a href="moderator-dashboard-wireframe.html" style="text-decoration:none;">
+            <div class="wf-btn" style="width:100%;display:block;text-align:center;box-sizing:border-box;padding:10px;font-size:0.85rem;background:#ddeeff;border-color:#3399cc;color:#1a5580;">
+              [ Login as Moderator ] → Moderator Dashboard (Wireframe)
+            </div>
+          </a>
+          <a href="admin-dashboard-wireframe.html" style="text-decoration:none;">
+            <div class="wf-btn" style="width:100%;display:block;text-align:center;box-sizing:border-box;padding:10px;font-size:0.85rem;background:#fde0dc;border-color:#e57373;color:#b71c1c;">
+              [ Login as Admin ] → Admin Dashboard (Wireframe)
+            </div>
+          </a>
+        </div>
+        <div class="wf-annotation" style="margin-top:10px;">
+          Role hierarchy: Student &lt; Moderator &lt; Admin.
+          Students are the primary user type.
+          Moderator and Admin pages are wireframes (planned future implementation).
+        </div>
+      </div>
+    </div>
+
+    <!-- Design Notes -->
+    <div style="max-width:440px;margin:1.5rem auto 0;">
+      <div class="wf-section">
+        <div style="font-weight:bold;margin-bottom:8px;font-size:0.85rem;">Design Notes</div>
+        <ul style="font-size:0.8rem;color:#444;padding-left:1.2rem;margin:0;">
+          <li>Layout: vertically centered card on desktop, full-width on mobile</li>
+          <li>Roles: STUDENT (default), MODERATOR, ADMIN</li>
+          <li>No OAuth / social login in current scope</li>
+          <li>Session cookie: httpOnly, sameSite=lax, 30-day expiry</li>
+          <li>Suspended users see specific error: "Your account has been suspended"</li>
+          <li>On login success: redirect to role-appropriate dashboard</li>
+        </ul>
+      </div>
+    </div>
+
+  </div><!-- /wf-container -->
+
+  <!-- Navigation between wireframes -->
+  <div style="background:#ddd;border-top:2px dashed #bbb;padding:12px 24px;font-family:monospace;font-size:0.8rem;">
+    <strong>Wireframe Navigation:</strong>
+    <a href="login-wireframe.html" style="margin:0 8px;font-weight:bold;">[Current] Login</a> |
+    <a href="register-wireframe.html" style="margin:0 8px;">→ Register</a> |
+    <a href="user-profile-wireframe.html" style="margin:0 8px;">→ User Profile</a> |
+    <a href="notifications-wireframe.html" style="margin:0 8px;">→ Notifications</a> |
+    <a href="messages-wireframe.html" style="margin:0 8px;">→ Messages</a> |
+    <a href="settings-wireframe.html" style="margin:0 8px;">→ Settings</a> |
+    <a href="moderator-dashboard-wireframe.html" style="margin:0 8px;">→ Moderator Dashboard</a> |
+    <a href="admin-dashboard-wireframe.html" style="margin:0 8px;">→ Admin Dashboard</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="../index.html" style="margin:0 8px;">← Back to Full Prototype</a>
+  </div>
+
+  <div class="wf-footer">
+    CougarMarket · CPT_S 489 · Team REJ · Washington State University · Spring 2026
+  </div>
+
+</body>
+</html>

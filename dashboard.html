@@ -1,0 +1,422 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>My Dashboard — CougarMarket</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-crimson shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">CougarMarket</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="listings.html">Browse Listings</a></li>
+          <li class="nav-item"><a class="nav-link" href="create-listing.html">Create Listing</a></li>
+          <li class="nav-item"><a class="nav-link active-page" href="dashboard.html">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        </ul>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Page header -->
+  <div class="page-header">
+    <div class="container">
+      <div class="d-flex align-items-center gap-3">
+        <div class="user-avatar-lg">S</div>
+        <div>
+          <h1 class="h3 fw-bold mb-0">Welcome back</h1>
+          <p class="text-muted small mb-0">
+            student@wsu.edu &nbsp;·&nbsp;
+            <span class="badge bg-light border text-muted">STUDENT</span>
+          </p>
+        </div>
+        <div class="ms-auto">
+          <a href="create-listing.html" class="btn btn-crimson">
+            <i class="bi bi-plus-circle-fill me-1"></i>New Listing
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="container py-4">
+    <div class="row g-4">
+
+      <!-- Sidebar navigation -->
+      <div class="col-lg-3">
+        <div class="form-section p-0">
+          <div class="px-3 pt-3 pb-2">
+            <div class="small text-uppercase text-muted fw-bold mb-1" style="font-size:0.7rem;">My Account</div>
+          </div>
+          <nav class="nav flex-column">
+            <a class="nav-link d-flex align-items-center py-2 px-3 active"
+               href="dashboard.html"
+               style="background:var(--crimson-bg);color:var(--crimson);font-weight:600;font-size:0.9rem;">
+              <i class="bi bi-speedometer2 me-2"></i>Dashboard
+            </a>
+            <a class="nav-link d-flex align-items-center py-2 px-3"
+               href="create-listing.html"
+               style="color:#374151;font-size:0.9rem;">
+              <i class="bi bi-plus-circle me-2"></i>Create Listing
+            </a>
+            <a class="nav-link d-flex align-items-center py-2 px-3"
+               href="listing-edit.html"
+               style="color:#374151;font-size:0.9rem;">
+              <i class="bi bi-grid me-2"></i>My Listings
+            </a>
+            <a class="nav-link d-flex align-items-center py-2 px-3"
+               href="listings.html"
+               style="color:#374151;font-size:0.9rem;">
+              <i class="bi bi-search me-2"></i>Browse Listings
+            </a>
+            <hr class="mx-3 my-1" />
+            <div class="px-3 pt-1 pb-1">
+              <div class="small text-uppercase text-muted fw-bold mb-1" style="font-size:0.7rem;">Planned Features</div>
+            </div>
+            <a class="nav-link d-flex align-items-center py-2 px-3"
+               href="wireframes/messages-wireframe.html"
+               style="color:#374151;font-size:0.9rem;">
+              <i class="bi bi-chat-dots me-2"></i>Messages
+              <span class="badge bg-light border text-muted ms-auto small">Wireframe</span>
+            </a>
+            <a class="nav-link d-flex align-items-center py-2 px-3"
+               href="wireframes/notifications-wireframe.html"
+               style="color:#374151;font-size:0.9rem;">
+              <i class="bi bi-bell me-2"></i>Notifications
+              <span class="badge bg-light border text-muted ms-auto small">Wireframe</span>
+            </a>
+            <a class="nav-link d-flex align-items-center py-2 px-3"
+               href="wireframes/user-profile-wireframe.html"
+               style="color:#374151;font-size:0.9rem;">
+              <i class="bi bi-person me-2"></i>Profile
+              <span class="badge bg-light border text-muted ms-auto small">Wireframe</span>
+            </a>
+            <a class="nav-link d-flex align-items-center py-2 px-3"
+               href="wireframes/settings-wireframe.html"
+               style="color:#374151;font-size:0.9rem;">
+              <i class="bi bi-gear me-2"></i>Settings
+              <span class="badge bg-light border text-muted ms-auto small">Wireframe</span>
+            </a>
+          </nav>
+        </div>
+      </div>
+
+      <!-- Main content -->
+      <div class="col-lg-9">
+
+        <!-- Stats row -->
+        <div class="row g-3 mb-4">
+          <div class="col-6 col-md-3">
+            <div class="stat-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <div class="stat-number text-crimson">3</div>
+                  <div class="stat-label">Active Listings</div>
+                </div>
+                <i class="bi bi-grid stat-icon"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="stat-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <div class="stat-number text-warning">0</div>
+                  <div class="stat-label">Pending Approval</div>
+                </div>
+                <i class="bi bi-hourglass-split stat-icon"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="stat-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <div class="stat-number" style="color:#16a34a;">1</div>
+                  <div class="stat-label">Requests Received</div>
+                </div>
+                <i class="bi bi-inbox stat-icon"></i>
+              </div>
+            </div>
+          </div>
+          <div class="col-6 col-md-3">
+            <div class="stat-card">
+              <div class="d-flex justify-content-between align-items-start">
+                <div>
+                  <div class="stat-number text-primary">1</div>
+                  <div class="stat-label">Requests Sent</div>
+                </div>
+                <i class="bi bi-send stat-icon"></i>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Tabs -->
+        <ul class="nav nav-tabs mb-4" id="dashTabs">
+          <li class="nav-item">
+            <button class="nav-link active fw-semibold" data-bs-toggle="tab" data-bs-target="#myListings">
+              <i class="bi bi-grid me-1"></i>My Listings
+              <span class="badge bg-crimson ms-1">3</span>
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link fw-semibold" data-bs-toggle="tab" data-bs-target="#requestsOnMe">
+              <i class="bi bi-inbox me-1"></i>Requests on My Listings
+              <span class="badge bg-secondary ms-1">1</span>
+            </button>
+          </li>
+          <li class="nav-item">
+            <button class="nav-link fw-semibold" data-bs-toggle="tab" data-bs-target="#mySentRequests">
+              <i class="bi bi-send me-1"></i>My Sent Requests
+              <span class="badge bg-secondary ms-1">1</span>
+            </button>
+          </li>
+        </ul>
+
+        <div class="tab-content">
+
+          <!-- My listings tab -->
+          <div class="tab-pane fade show active" id="myListings">
+            <div class="row g-3">
+
+              <!-- Listing 1: MacBook Pro -->
+              <div class="col-md-6 col-lg-4">
+                <div class="form-section h-100">
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-laptop" style="font-size:2rem;margin-right:10px;color:#aaa;"></i>
+                    <div class="flex-fill">
+                      <div class="fw-semibold">MacBook Pro 2020</div>
+                      <div class="text-crimson fw-bold">$850.00</div>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-1 mb-3">
+                    <span class="status-badge badge-active">Active</span>
+                    <span class="status-badge type-sell">SELL</span>
+                    <span class="badge bg-light border text-muted small">Like New</span>
+                  </div>
+                  <div class="small text-muted mb-3">
+                    <i class="bi bi-people me-1"></i>1 request received
+                    &nbsp;·&nbsp;
+                    <i class="bi bi-eye me-1"></i>12 views
+                  </div>
+                  <div class="d-flex gap-2">
+                    <a href="listing-details.html" class="btn btn-outline-crimson btn-sm flex-fill">
+                      <i class="bi bi-eye me-1"></i>View
+                    </a>
+                    <a href="listing-edit.html" class="btn btn-outline-secondary btn-sm flex-fill">
+                      <i class="bi bi-pencil me-1"></i>Edit
+                    </a>
+                    <button class="btn btn-outline-danger btn-sm">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Listing 2: Desk Chair -->
+              <div class="col-md-6 col-lg-4">
+                <div class="form-section h-100">
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-person-workspace" style="font-size:2rem;margin-right:10px;color:#aaa;"></i>
+                    <div class="flex-fill">
+                      <div class="fw-semibold">Desk Chair</div>
+                      <div class="text-crimson fw-bold">$45.00</div>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-1 mb-3">
+                    <span class="status-badge badge-active">Active</span>
+                    <span class="status-badge type-sell">SELL</span>
+                    <span class="badge bg-light border text-muted small">Good</span>
+                  </div>
+                  <div class="small text-muted mb-3">
+                    <i class="bi bi-people me-1"></i>0 requests received
+                    &nbsp;·&nbsp;
+                    <i class="bi bi-eye me-1"></i>7 views
+                  </div>
+                  <div class="d-flex gap-2">
+                    <a href="listing-details.html" class="btn btn-outline-crimson btn-sm flex-fill">
+                      <i class="bi bi-eye me-1"></i>View
+                    </a>
+                    <a href="listing-edit.html" class="btn btn-outline-secondary btn-sm flex-fill">
+                      <i class="bi bi-pencil me-1"></i>Edit
+                    </a>
+                    <button class="btn btn-outline-danger btn-sm">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+              <!-- Listing 3: Calculus Textbook -->
+              <div class="col-md-6 col-lg-4">
+                <div class="form-section h-100">
+                  <div class="d-flex align-items-center mb-2">
+                    <i class="bi bi-book" style="font-size:2rem;margin-right:10px;color:#aaa;"></i>
+                    <div class="flex-fill">
+                      <div class="fw-semibold">Calculus Textbook</div>
+                      <div class="text-crimson fw-bold">$35.00</div>
+                    </div>
+                  </div>
+                  <div class="d-flex gap-1 mb-3">
+                    <span class="status-badge badge-active">Active</span>
+                    <span class="status-badge type-sell">SELL</span>
+                    <span class="badge bg-light border text-muted small">Good</span>
+                  </div>
+                  <div class="small text-muted mb-3">
+                    <i class="bi bi-people me-1"></i>0 requests received
+                    &nbsp;·&nbsp;
+                    <i class="bi bi-eye me-1"></i>5 views
+                  </div>
+                  <div class="d-flex gap-2">
+                    <a href="listing-details.html" class="btn btn-outline-crimson btn-sm flex-fill">
+                      <i class="bi bi-eye me-1"></i>View
+                    </a>
+                    <a href="listing-edit.html" class="btn btn-outline-secondary btn-sm flex-fill">
+                      <i class="bi bi-pencil me-1"></i>Edit
+                    </a>
+                    <button class="btn btn-outline-danger btn-sm">
+                      <i class="bi bi-trash"></i>
+                    </button>
+                  </div>
+                </div>
+              </div>
+
+            </div><!-- /row -->
+          </div><!-- /my listings tab -->
+
+          <!-- Requests on my listings tab -->
+          <div class="tab-pane fade" id="requestsOnMe">
+            <div class="table-section">
+              <table class="table table-hover align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th>Listing</th>
+                    <th>Student</th>
+                    <th>Message Preview</th>
+                    <th>Offer</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <i class="bi bi-laptop" style="font-size:1.2rem;"></i>
+                      <span class="fw-semibold ms-1 small">MacBook Pro 2020</span>
+                    </td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div class="seller-avatar" style="width:32px;height:32px;font-size:0.9rem;">B</div>
+                        <span class="small">Student B</span>
+                      </div>
+                    </td>
+                    <td class="small text-muted">Hi! Is the MacBook still available…</td>
+                    <td><span class="fw-bold text-crimson small">$800</span></td>
+                    <td><span class="status-badge badge-negotiating">Negotiating</span></td>
+                    <td>
+                      <a href="request-thread.html" class="btn btn-crimson btn-sm">
+                        <i class="bi bi-chat-dots me-1"></i>Chat
+                      </a>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div><!-- /requests on me tab -->
+
+          <!-- My sent requests tab -->
+          <div class="tab-pane fade" id="mySentRequests">
+            <div class="table-section">
+              <table class="table table-hover align-middle mb-0">
+                <thead>
+                  <tr>
+                    <th>Listing</th>
+                    <th>Listed By</th>
+                    <th>My Message</th>
+                    <th>My Offer</th>
+                    <th>Status</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>
+                      <i class="bi bi-book" style="font-size:1.2rem;"></i>
+                      <span class="fw-semibold ms-1 small">Calculus Textbook</span>
+                    </td>
+                    <td>
+                      <div class="d-flex align-items-center gap-2">
+                        <div class="seller-avatar" style="width:32px;height:32px;font-size:0.9rem;">A</div>
+                        <span class="small">Student A</span>
+                      </div>
+                    </td>
+                    <td class="small text-muted">Hi, is this still available?</td>
+                    <td><span class="fw-bold text-crimson small">$30</span></td>
+                    <td><span class="status-badge badge-pending">Pending</span></td>
+                    <td>
+                      <a href="request-thread.html" class="btn btn-crimson btn-sm me-1">
+                        <i class="bi bi-chat-dots"></i>
+                      </a>
+                      <button class="btn btn-outline-danger btn-sm">
+                        <i class="bi bi-x"></i>
+                      </button>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </div><!-- /my sent requests tab -->
+
+        </div><!-- /tab-content -->
+
+      </div><!-- /col-lg-9 -->
+    </div><!-- /row -->
+  </div><!-- /container -->
+
+  <!-- Footer -->
+  <footer class="site-footer py-4 mt-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="brand-text mb-2">CougarMarket</div>
+          <p class="small mb-0">The campus marketplace for WSU students.</p>
+        </div>
+        <div class="col-lg-2 col-6">
+          <h6 class="mb-3">Marketplace</h6>
+          <ul class="list-unstyled small">
+            <li class="mb-1"><a href="listings.html">Browse Listings</a></li>
+            <li class="mb-1"><a href="create-listing.html">Post an Item</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-6">
+          <h6 class="mb-3">Account</h6>
+          <ul class="list-unstyled small">
+            <li class="mb-1"><a href="wireframes/login-wireframe.html">Login</a></li>
+            <li class="mb-1"><a href="wireframes/register-wireframe.html">Register</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4">
+          <h6 class="mb-3">About</h6>
+          <p class="small mb-0">CPT_S 489 · Team REJ · WSU</p>
+        </div>
+      </div>
+      <hr class="border-secondary mt-3" />
+      <div class="text-center small">© 2026 CougarMarket — CPT_S 489 | Team REJ</div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

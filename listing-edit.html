@@ -1,0 +1,240 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Edit Listing — MacBook Pro 2020 — CougarMarket</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ── Navbar ── -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-crimson shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">CougarMarket</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="listings.html">Browse Listings</a></li>
+          <li class="nav-item"><a class="nav-link" href="create-listing.html">Create Listing</a></li>
+          <li class="nav-item"><a class="nav-link active-page" href="dashboard.html">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        </ul>
+        <div class="d-flex gap-2 align-items-center">
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Page Header ── -->
+  <div class="page-header">
+    <div class="container">
+      <nav aria-label="breadcrumb" class="mb-2">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+          <li class="breadcrumb-item"><a href="listing-details.html">MacBook Pro 2020</a></li>
+          <li class="breadcrumb-item active">Edit Listing</li>
+        </ol>
+      </nav>
+      <div class="d-flex justify-content-between align-items-start">
+        <div>
+          <h1 class="h3 fw-bold mb-0">Edit Listing</h1>
+          <p class="text-muted small mb-0">Update your listing details below.</p>
+        </div>
+        <span class="status-badge badge-active">Currently Active</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container py-4">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+
+        <!-- Warning -->
+        <div class="alert alert-warning small mb-4" role="alert">
+          <i class="bi bi-exclamation-triangle-fill me-1"></i>
+          <strong>Heads up:</strong> Editing a live listing will set it back to <strong>Pending</strong> status
+          and require re-approval by a moderator.
+        </div>
+
+        <form>
+
+          <!-- Basic Info -->
+          <div class="form-section mb-4">
+            <h5 class="fw-bold mb-4">
+              <span class="step-circle d-inline-flex align-items-center justify-content-center me-2"
+                    style="width:28px;height:28px;font-size:0.85rem;">1</span>
+              Basic Information
+            </h5>
+            <div class="mb-3">
+              <label class="form-label" for="title">Listing Title <span class="required-star">*</span></label>
+              <input type="text" class="form-control" id="title" value="MacBook Pro 2020" />
+            </div>
+            <div class="mb-0">
+              <label class="form-label" for="description">Description <span class="required-star">*</span></label>
+              <textarea class="form-control" id="description" rows="5">Selling my MacBook Pro 2020. This laptop is in excellent like-new condition — only used for one semester for coursework. No scratches, no dents.
+
+Includes the original USB-C charger, box, and documentation. Happy to meet on campus. Serious buyers only please.</textarea>
+            </div>
+          </div>
+
+          <!-- Category & Condition -->
+          <div class="form-section mb-4">
+            <h5 class="fw-bold mb-4">
+              <span class="step-circle d-inline-flex align-items-center justify-content-center me-2"
+                    style="width:28px;height:28px;font-size:0.85rem;">2</span>
+              Category &amp; Condition
+            </h5>
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label">Category <span class="required-star">*</span></label>
+                <select class="form-select">
+                  <option>Textbooks</option>
+                  <option selected>Electronics</option>
+                  <option>Furniture</option>
+                  <option>Clothing</option>
+                  <option>Sports</option>
+                  <option>Dorm Essentials</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label">Condition <span class="required-star">*</span></label>
+                <select class="form-select">
+                  <option>New</option>
+                  <option selected>Like New</option>
+                  <option>Good</option>
+                  <option>Fair</option>
+                  <option>Poor</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Type & Price -->
+          <div class="form-section mb-4">
+            <h5 class="fw-bold mb-4">
+              <span class="step-circle d-inline-flex align-items-center justify-content-center me-2"
+                    style="width:28px;height:28px;font-size:0.85rem;">3</span>
+              Listing Type &amp; Price
+            </h5>
+            <div class="mb-3">
+              <label class="form-label">Type <span class="required-star">*</span></label>
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <label class="d-block border border-crimson rounded p-3 text-center" style="cursor:pointer;">
+                    <input type="radio" name="type" value="SELL" class="form-check-input me-1" checked />
+                    <strong>For Sale</strong>
+                    <div class="small text-muted mt-1">You set a price</div>
+                  </label>
+                </div>
+                <div class="col-md-4">
+                  <label class="d-block border rounded p-3 text-center" style="cursor:pointer;border-color:#e5e7eb!important;">
+                    <input type="radio" name="type" value="TRADE" class="form-check-input me-1" />
+                    <strong>Trade</strong>
+                    <div class="small text-muted mt-1">Swap for another item</div>
+                  </label>
+                </div>
+                <div class="col-md-4">
+                  <label class="d-block border rounded p-3 text-center" style="cursor:pointer;border-color:#e5e7eb!important;">
+                    <input type="radio" name="type" value="FREE" class="form-check-input me-1" />
+                    <strong>Free</strong>
+                    <div class="small text-muted mt-1">Give it away</div>
+                  </label>
+                </div>
+              </div>
+            </div>
+            <div class="mb-0">
+              <label class="form-label">Asking Price <span class="required-star">*</span></label>
+              <div class="input-group" style="max-width:280px;">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" value="850.00" min="0" step="0.01" />
+              </div>
+            </div>
+          </div>
+
+          <!-- Photos -->
+          <div class="form-section mb-4">
+            <h5 class="fw-bold mb-4">
+              <span class="step-circle d-inline-flex align-items-center justify-content-center me-2"
+                    style="width:28px;height:28px;font-size:0.85rem;">4</span>
+              Photos
+            </h5>
+            <p class="text-muted small mb-3">Current photos (click to remove, or add new ones below):</p>
+            <div class="d-flex gap-2 mb-3 flex-wrap">
+              <div class="img-thumb active"><i class="bi bi-laptop text-muted"></i></div>
+              <div class="img-thumb"><i class="bi bi-plug text-muted"></i></div>
+              <div class="img-thumb"><i class="bi bi-box text-muted"></i></div>
+            </div>
+            <div class="upload-zone">
+              <i class="bi bi-cloud-upload fs-3 text-muted mb-2 d-block"></i>
+              <div class="fw-semibold text-muted small">Add more photos</div>
+              <button type="button" class="btn btn-outline-secondary btn-sm mt-2">
+                <i class="bi bi-images me-1"></i>Choose Files
+              </button>
+            </div>
+          </div>
+
+          <!-- Danger Zone -->
+          <div class="border border-danger rounded p-3 mb-4">
+            <h6 class="text-danger fw-bold mb-2">
+              <i class="bi bi-exclamation-octagon-fill me-1"></i>Danger Zone
+            </h6>
+            <p class="small text-muted mb-2">These actions are permanent and cannot be undone.</p>
+            <button type="button" class="btn btn-outline-danger btn-sm me-2">
+              <i class="bi bi-check-circle me-1"></i>Mark as Completed
+            </button>
+            <button type="button" class="btn btn-danger btn-sm">
+              <i class="bi bi-trash me-1"></i>Delete Listing
+            </button>
+          </div>
+
+          <!-- Submit -->
+          <div class="d-flex gap-3 justify-content-end">
+            <a href="dashboard.html" class="btn btn-outline-secondary px-4">Cancel</a>
+            <a href="listing-details.html" class="btn btn-outline-crimson px-4">
+              <i class="bi bi-eye me-1"></i>Preview
+            </a>
+            <button type="submit" class="btn btn-crimson px-5">
+              <i class="bi bi-check2-circle me-1"></i>Save Changes
+            </button>
+          </div>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer py-4 mt-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="brand-text mb-2">CougarMarket</div>
+          <p class="small mb-0">The campus marketplace for WSU students.</p>
+        </div>
+        <div class="col-lg-4">
+          <h6 class="mb-3">Quick Links</h6>
+          <ul class="list-unstyled small">
+            <li class="mb-1"><a href="dashboard.html">My Dashboard</a></li>
+            <li class="mb-1"><a href="listings.html">Browse Listings</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4">
+          <h6 class="mb-3">About</h6>
+          <p class="small mb-0">CPT_S 489 · Team REJ · WSU</p>
+        </div>
+      </div>
+      <hr class="border-secondary mt-3" />
+      <div class="text-center small">© 2026 CougarMarket — CPT_S 489 | Team REJ</div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

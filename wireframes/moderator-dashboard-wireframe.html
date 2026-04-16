@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[WIREFRAME] Moderator Dashboard — CougarMarket</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    body { font-family: 'Courier New', Courier, monospace; }
+  </style>
+</head>
+<body class="wireframe-page">
+
+  <!-- Wireframe Nav -->
+  <div class="wireframe-nav">
+    <div class="wf-brand">[ CougarMarket ]</div>
+    <div class="wf-nav-links">
+      <span>Home</span>
+      <span>Browse</span>
+      <span>[ MODERATOR PANEL ]</span>
+      <span>Logout</span>
+    </div>
+  </div>
+
+  <!-- Annotation Banner -->
+  <div style="background:#fffce6;border-bottom:2px dashed #f0d700;padding:8px 24px;font-family:monospace;font-size:0.8rem;color:#5a4200;">
+    WIREFRAME — Moderator Dashboard (Screen: Moderation Flow) — CougarMarket · CPT_S 489 Team REJ
+  </div>
+
+  <div class="wf-container" style="max-width:1100px;">
+
+    <div class="wf-title">Moderator Dashboard — Wireframe</div>
+
+    <div class="wf-note">
+      Design Note: The moderator dashboard is accessible only to users with the MODERATOR or ADMIN role.
+      Moderators can review pending listings, approve or reject content, and flag user accounts.
+      This page is planned for a future sprint and is shown here as a wireframe.
+    </div>
+
+    <!-- Two-column layout: sidebar + main -->
+    <div class="wf-row" style="align-items:flex-start;gap:16px;">
+
+      <!-- Sidebar -->
+      <div style="flex:0 0 200px;">
+        <div class="wf-section" style="padding:0;">
+          <div style="padding:10px 14px;border-bottom:2px solid #ccc;font-weight:bold;font-size:0.85rem;">
+            Mod Navigation
+          </div>
+          <div style="padding:10px 14px;background:#ccc;font-size:0.82rem;font-weight:bold;border-bottom:1px solid #bbb;">
+            [ Overview ]
+          </div>
+          <div style="padding:10px 14px;font-size:0.82rem;border-bottom:1px solid #ddd;display:flex;justify-content:space-between;">
+            Pending Listings
+            <span class="wf-tag" style="font-size:0.65rem;padding:1px 6px;">3</span>
+          </div>
+          <div style="padding:10px 14px;font-size:0.82rem;border-bottom:1px solid #ddd;">Flagged Users</div>
+          <div style="padding:10px 14px;font-size:0.82rem;border-bottom:1px solid #ddd;">Mod Activity Log</div>
+          <div style="padding:10px 14px;font-size:0.82rem;border-bottom:1px solid #ddd;color:#666;">
+            <a href="../index.html" style="color:#555;text-decoration:underline;">Back to Site</a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Main content -->
+      <div style="flex:1;">
+
+        <!-- Stats row -->
+        <div class="wf-row" style="gap:10px;margin-bottom:16px;">
+          <div class="wf-card" style="flex:1;text-align:center;padding:14px 10px;">
+            <div style="font-size:1.6rem;font-weight:bold;">3</div>
+            <div style="font-size:0.75rem;color:#666;">Pending Review</div>
+          </div>
+          <div class="wf-card" style="flex:1;text-align:center;padding:14px 10px;">
+            <div style="font-size:1.6rem;font-weight:bold;">12</div>
+            <div style="font-size:0.75rem;color:#666;">Approved Today</div>
+          </div>
+          <div class="wf-card" style="flex:1;text-align:center;padding:14px 10px;">
+            <div style="font-size:1.6rem;font-weight:bold;">1</div>
+            <div style="font-size:0.75rem;color:#666;">Flagged Users</div>
+          </div>
+          <div class="wf-card" style="flex:1;text-align:center;padding:14px 10px;">
+            <div style="font-size:1.6rem;font-weight:bold;">2</div>
+            <div style="font-size:0.75rem;color:#666;">Rejected Listings</div>
+          </div>
+        </div>
+
+        <!-- Pending Listings section -->
+        <div class="wf-section">
+          <div class="wf-title" style="font-size:1rem;border-bottom-width:1px;">
+            Pending Listings — Awaiting Approval
+            <span class="wf-tag" style="margin-left:8px;font-size:0.7rem;">3 items</span>
+          </div>
+
+          <div class="wf-annotation">
+            Each listing below has been submitted by a student and requires moderator review before going live.
+            Moderators can approve, reject, or flag the listing for admin review.
+          </div>
+
+          <!-- Listing row 1 -->
+          <div class="wf-card" style="margin-bottom:10px;">
+            <div class="wf-row" style="justify-content:space-between;align-items:flex-start;">
+              <div style="flex:1;">
+                <div style="font-weight:bold;font-size:0.9rem;">Headphones</div>
+                <div style="font-size:0.78rem;color:#555;margin-top:3px;">
+                  Submitted by: Student A &nbsp;·&nbsp; Category: Electronics &nbsp;·&nbsp; Price: $180
+                </div>
+                <div style="font-size:0.75rem;color:#666;margin-top:4px;">
+                  Submitted: 2 hours ago
+                </div>
+              </div>
+              <div style="display:flex;gap:8px;flex-shrink:0;margin-left:12px;">
+                <div class="wf-btn" style="font-size:0.75rem;padding:5px 12px;background:#c8e6c9;">[ Approve ]</div>
+                <div class="wf-btn" style="font-size:0.75rem;padding:5px 12px;background:#ffcdd2;">[ Reject ]</div>
+                <div class="wf-btn" style="font-size:0.75rem;padding:5px 10px;">[ Flag ]</div>
+              </div>
+            </div>
+            <div class="wf-annotation" style="margin-top:8px;">
+              Moderation Notes: <span class="wf-box" style="display:inline-block;width:200px;height:18px;vertical-align:middle;font-size:0.7rem;">[Add note…]</span>
+            </div>
+          </div>
+
+          <!-- Listing row 2 -->
+          <div class="wf-card" style="margin-bottom:10px;">
+            <div class="wf-row" style="justify-content:space-between;align-items:flex-start;">
+              <div style="flex:1;">
+                <div style="font-weight:bold;font-size:0.9rem;">Futon — Good Condition</div>
+                <div style="font-size:0.78rem;color:#555;margin-top:3px;">
+                  Submitted by: Student B &nbsp;·&nbsp; Category: Furniture &nbsp;·&nbsp; Price: $95
+                </div>
+                <div style="font-size:0.75rem;color:#666;margin-top:4px;">
+                  Submitted: 5 hours ago
+                </div>
+              </div>
+              <div style="display:flex;gap:8px;flex-shrink:0;margin-left:12px;">
+                <div class="wf-btn" style="font-size:0.75rem;padding:5px 12px;background:#c8e6c9;">[ Approve ]</div>
+                <div class="wf-btn" style="font-size:0.75rem;padding:5px 12px;background:#ffcdd2;">[ Reject ]</div>
+                <div class="wf-btn" style="font-size:0.75rem;padding:5px 10px;">[ Flag ]</div>
+              </div>
+            </div>
+            <div class="wf-annotation" style="margin-top:8px;">
+              Moderation Notes: <span class="wf-box" style="display:inline-block;width:200px;height:18px;vertical-align:middle;font-size:0.7rem;">[Add note…]</span>
+            </div>
+          </div>
+
+          <!-- Listing row 3 -->
+          <div class="wf-card" style="margin-bottom:0;">
+            <div class="wf-row" style="justify-content:space-between;align-items:flex-start;">
+              <div style="flex:1;">
+                <div style="font-weight:bold;font-size:0.9rem;">Engineering Drawing Set</div>
+                <div style="font-size:0.78rem;color:#555;margin-top:3px;">
+                  Submitted by: Student C &nbsp;·&nbsp; Category: Textbooks &nbsp;·&nbsp; Price: Free
+                </div>
+                <div style="font-size:0.75rem;color:#666;margin-top:4px;">
+                  Submitted: 1 day ago
+                </div>
+              </div>
+              <div style="display:flex;gap:8px;flex-shrink:0;margin-left:12px;">
+                <div class="wf-btn" style="font-size:0.75rem;padding:5px 12px;background:#c8e6c9;">[ Approve ]</div>
+                <div class="wf-btn" style="font-size:0.75rem;padding:5px 12px;background:#ffcdd2;">[ Reject ]</div>
+                <div class="wf-btn" style="font-size:0.75rem;padding:5px 10px;">[ Flag ]</div>
+              </div>
+            </div>
+            <div class="wf-annotation" style="margin-top:8px;">
+              Moderation Notes: <span class="wf-box" style="display:inline-block;width:200px;height:18px;vertical-align:middle;font-size:0.7rem;">[Add note…]</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Flagged Users section -->
+        <div class="wf-section" style="margin-top:1rem;">
+          <div class="wf-title" style="font-size:1rem;border-bottom-width:1px;">
+            Flagged Users
+            <span class="wf-tag" style="margin-left:8px;font-size:0.7rem;background:#ffcdd2;color:#b71c1c;">1 flagged</span>
+          </div>
+
+          <div class="wf-annotation">
+            Users flagged for suspicious activity, policy violations, or repeated reports.
+            Moderators can escalate to admin for banning.
+          </div>
+
+          <div class="wf-card">
+            <div class="wf-row" style="justify-content:space-between;align-items:center;">
+              <div>
+                <div style="font-weight:bold;font-size:0.85rem;">Student D</div>
+                <div style="font-size:0.75rem;color:#555;margin-top:2px;">student.d@wsu.edu &nbsp;·&nbsp; Flagged reason: Repeated low-quality listings</div>
+              </div>
+              <div style="display:flex;gap:8px;">
+                <div class="wf-btn" style="font-size:0.75rem;padding:5px 12px;">[ View Profile ]</div>
+                <div class="wf-btn" style="font-size:0.75rem;padding:5px 12px;">[ Escalate to Admin ]</div>
+                <div class="wf-btn" style="font-size:0.75rem;padding:5px 12px;background:#c8e6c9;">[ Clear Flag ]</div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Moderation Activity Log -->
+        <div class="wf-section" style="margin-top:1rem;">
+          <div class="wf-title" style="font-size:1rem;border-bottom-width:1px;">Recent Moderation Activity</div>
+          <div style="font-size:0.78rem;color:#555;">
+            <div style="padding:6px 0;border-bottom:1px solid #ddd;">Approved: "Desk Chair" by Student A — 30 min ago</div>
+            <div style="padding:6px 0;border-bottom:1px solid #ddd;">Rejected: "Old Mattress" by Student B — 2 hrs ago (reason: prohibited item)</div>
+            <div style="padding:6px 0;">Approved: "Calculus Textbook" by Student A — 1 day ago</div>
+          </div>
+        </div>
+
+      </div><!-- /main -->
+    </div><!-- /wf-row -->
+
+    <!-- Implementation Notes -->
+    <div class="wf-section" style="margin-top:1.5rem;">
+      <div style="font-weight:bold;font-size:0.85rem;margin-bottom:8px;">Implementation Status</div>
+      <ul style="font-size:0.8rem;color:#555;padding-left:1.2rem;margin:0;">
+        <li>Role: MODERATOR — assigned by ADMIN via admin dashboard</li>
+        <li>NOT YET IMPLEMENTED: Full moderation UI — this is a wireframe</li>
+        <li>NOT YET IMPLEMENTED: Email notifications when listing is approved/rejected</li>
+        <li>NOT YET IMPLEMENTED: Moderation notes saved to database</li>
+        <li>NOT YET IMPLEMENTED: Bulk approve/reject actions</li>
+        <li>Planned API: PATCH /listings/:id/status { status: "ACTIVE" | "REJECTED" }</li>
+        <li>Planned API: POST /users/:id/flag { reason: string }</li>
+      </ul>
+    </div>
+
+  </div><!-- /wf-container -->
+
+  <!-- Wireframe navigation -->
+  <div style="background:#ddd;border-top:2px dashed #bbb;padding:12px 24px;font-family:monospace;font-size:0.8rem;">
+    <strong>Wireframe Navigation:</strong>
+    <a href="login-wireframe.html" style="margin:0 8px;">← Login</a> |
+    <a href="register-wireframe.html" style="margin:0 8px;">← Register</a> |
+    <a href="moderator-dashboard-wireframe.html" style="margin:0 8px;font-weight:bold;">[Current] Moderator Dashboard</a> |
+    <a href="admin-dashboard-wireframe.html" style="margin:0 8px;">→ Admin Dashboard</a> |
+    <a href="user-profile-wireframe.html" style="margin:0 8px;">→ User Profile</a> |
+    <a href="messages-wireframe.html" style="margin:0 8px;">→ Messages</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="../index.html" style="margin:0 8px;">← Back to Full Prototype</a>
+  </div>
+
+  <div class="wf-footer">
+    CougarMarket · CPT_S 489 · Team REJ · Washington State University · Spring 2026
+  </div>
+
+</body>
+</html>

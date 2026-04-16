@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[WIREFRAME] User Profile — CougarMarket</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    body { font-family: 'Courier New', Courier, monospace; }
+  </style>
+</head>
+<body class="wireframe-page">
+
+  <!-- Wireframe Nav -->
+  <div class="wireframe-nav">
+    <div class="wf-brand">[ CougarMarket ]</div>
+    <div class="wf-nav-links">
+      <span>Home</span>
+      <span>Browse</span>
+      <span>Dashboard</span>
+      <span>[ PROFILE ]</span>
+    </div>
+  </div>
+
+  <!-- Annotation Banner -->
+  <div style="background:#fffce6;border-bottom:2px dashed #f0d700;padding:8px 24px;font-family:monospace;font-size:0.8rem;color:#5a4200;">
+    WIREFRAME — User Profile Page — CPT_S 489 Team REJ
+  </div>
+
+  <div class="wf-container" style="max-width:900px;">
+
+    <div class="wf-title">User Profile Page — Wireframe</div>
+
+    <div class="wf-note">
+      Design Note: This page is NOT yet implemented in the current deliverable.
+      The User model exists in the database but a dedicated profile page has not been built yet.
+    </div>
+
+    <!-- Layout Sketch -->
+    <div class="wf-row" style="align-items:flex-start;">
+
+      <!-- Left: Profile Card -->
+      <div style="flex:0 0 260px;">
+        <div class="wf-section">
+          <div class="wf-title" style="font-size:1rem;border-bottom-width:1px;">Profile Card</div>
+
+          <!-- Avatar -->
+          <div class="wf-box" style="height:100px;width:100px;border-radius:50%;margin:0 auto 12px;font-size:2rem;">
+          </div>
+
+          <!-- Name & role -->
+          <div style="text-align:center;margin-bottom:8px;">
+            <div class="wf-box" style="height:28px;margin-bottom:4px;">[Full Name]</div>
+            <div class="wf-box" style="height:22px;width:80px;margin:0 auto;font-size:0.7rem;">[ROLE BADGE]</div>
+          </div>
+
+          <div class="wf-annotation">Email: user@wsu.edu (read-only)</div>
+
+          <div class="wf-divider"></div>
+
+          <!-- Stats -->
+          <div class="wf-box" style="height:70px;margin-bottom:8px;font-size:0.75rem;">
+            [Stats: Listings / Sold / Rating]
+          </div>
+
+          <div class="wf-box" style="height:34px;font-size:0.8rem;">[Edit Profile Button]</div>
+        </div>
+      </div>
+
+      <!-- Right: Tabs Content -->
+      <div style="flex:1;">
+        <div class="wf-section">
+          <div class="wf-title" style="font-size:1rem;border-bottom-width:1px;">Profile Content Tabs</div>
+
+          <!-- Tab Bar -->
+          <div class="wf-row" style="margin-bottom:12px;">
+            <div class="wf-box" style="height:36px;background:#bbb;font-weight:bold;">[ Active Listings ]</div>
+            <div class="wf-box" style="height:36px;">[ Reviews ]</div>
+            <div class="wf-box" style="height:36px;">[ Transaction History ]</div>
+          </div>
+
+          <!-- Active Listings Grid -->
+          <div class="wf-row">
+            <div class="wf-box" style="height:120px;flex-direction:column;gap:4px;">
+              <span style="font-size:0.7rem;">[Listing Card]</span>
+              <span style="font-size:0.65rem;">Title / Price / Status</span>
+            </div>
+            <div class="wf-box" style="height:120px;flex-direction:column;gap:4px;">
+              <span style="font-size:0.7rem;">[Listing Card]</span>
+              <span style="font-size:0.65rem;">Title / Price / Status</span>
+            </div>
+            <div class="wf-box" style="height:120px;flex-direction:column;gap:4px;">
+              <span style="font-size:0.7rem;">[Listing Card]</span>
+              <span style="font-size:0.65rem;">Title / Price / Status</span>
+            </div>
+          </div>
+          <div class="wf-annotation">Mirrors listings from GET /listings/me — same data as Dashboard</div>
+
+          <!-- Reviews Placeholder -->
+          <div class="wf-divider"></div>
+          <div style="font-weight:bold;font-size:0.82rem;margin-bottom:6px;">Reviews Tab (Future Feature)</div>
+          <div class="wf-box" style="height:80px;">[ Review System Not Yet Implemented ]</div>
+          <div class="wf-annotation">
+            Reviews/ratings system is out of scope for current deliverable.<br/>
+            Planned for a post-MVP enhancement.
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /layout row -->
+
+    <!-- Edit Profile Section -->
+    <div class="wf-section" style="margin-top:1rem;">
+      <div class="wf-title" style="font-size:1rem;border-bottom-width:1px;">Edit Profile Form (Modal or Inline)</div>
+
+      <div class="wf-row">
+        <div>
+          <span class="wf-label">Display Name</span>
+          <div class="wf-input"></div>
+          <div class="wf-annotation">Pre-filled with current name</div>
+        </div>
+        <div>
+          <span class="wf-label">Email Address</span>
+          <div class="wf-input" style="background:#eee;"></div>
+          <div class="wf-annotation">Read-only — email cannot be changed</div>
+        </div>
+      </div>
+
+      <div class="wf-row" style="margin-top:8px;">
+        <div>
+          <span class="wf-label">Current Password</span>
+          <div class="wf-input"></div>
+        </div>
+        <div>
+          <span class="wf-label">New Password</span>
+          <div class="wf-input"></div>
+        </div>
+      </div>
+
+      <div class="wf-annotation">
+        Password change is optional — leave blank to keep current password.<br/>
+        PUT /api/auth/update-profile endpoint: NOT YET IMPLEMENTED
+      </div>
+
+      <div style="margin-top:12px;display:flex;gap:8px;">
+        <div class="wf-btn">[ Save Changes ]</div>
+        <div class="wf-btn-outline">[ Cancel ]</div>
+      </div>
+    </div>
+
+    <!-- Status / Limitations -->
+    <div class="wf-card" style="border-color:#e57373;border-width:2px;">
+      <div style="font-weight:bold;font-size:0.85rem;margin-bottom:8px;">Implementation Status</div>
+      <ul style="font-size:0.8rem;color:#555;padding-left:1.2rem;margin:0;">
+        <li>User model and DB schema complete (name, email, role, status)</li>
+        <li>GET /api/auth/me returns current user info</li>
+        <li>NO: Dedicated /profile route: NOT YET IMPLEMENTED</li>
+        <li>NO: Profile editing (PATCH /auth/profile): NOT YET IMPLEMENTED</li>
+        <li>NO: Avatar upload: NOT YET IMPLEMENTED</li>
+        <li>NO: Review/rating system: NOT IN SCOPE (future enhancement)</li>
+        <li>NO: Public profile (view other user's listings): NOT YET IMPLEMENTED</li>
+      </ul>
+    </div>
+
+  </div><!-- /wf-container -->
+
+  <!-- Navigation between wireframes -->
+  <div style="background:#ddd;border-top:2px dashed #bbb;padding:12px 24px;font-family:monospace;font-size:0.8rem;">
+    <strong>Wireframe Navigation:</strong>
+    <a href="login-wireframe.html" style="margin:0 8px;">← Login</a> |
+    <a href="register-wireframe.html" style="margin:0 8px;">← Register</a> |
+    <a href="user-profile-wireframe.html" style="margin:0 8px;font-weight:bold;">[Current] Profile</a> |
+    <a href="notifications-wireframe.html" style="margin:0 8px;">→ Notifications</a> |
+    <a href="messages-wireframe.html" style="margin:0 8px;">→ Messages</a> |
+    <a href="settings-wireframe.html" style="margin:0 8px;">→ Settings</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="../index.html" style="margin:0 8px;">← Back to Full Prototype</a>
+  </div>
+
+  <div class="wf-footer">
+    CougarMarket · CPT_S 489 · Team REJ · Washington State University · Spring 2026
+  </div>
+
+</body>
+</html>

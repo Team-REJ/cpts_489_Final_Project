@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[WIREFRAME] Account Settings — CougarMarket</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    body { font-family: 'Courier New', Courier, monospace; }
+  </style>
+</head>
+<body class="wireframe-page">
+
+  <!-- Wireframe Nav -->
+  <div class="wireframe-nav">
+    <div class="wf-brand">[ CougarMarket ]</div>
+    <div class="wf-nav-links">
+      <span>Home</span>
+      <span>Browse</span>
+      <span>Dashboard</span>
+      <span>Profile ▾</span>
+      <span>[ Settings ]</span>
+    </div>
+  </div>
+
+  <div style="background:#fffce6;border-bottom:2px dashed #f0d700;padding:8px 24px;font-family:monospace;font-size:0.8rem;color:#5a4200;">
+    WIREFRAME — Account Settings Page (Planned Feature) — CougarMarket · CPT_S 489 Team REJ
+  </div>
+
+  <div class="wf-container" style="max-width:860px;">
+
+    <div class="wf-title">Account Settings — Wireframe</div>
+
+    <div class="wf-note">
+      Design Note: A dedicated Settings page is planned but not yet implemented.
+      Currently, the only user data modifiable is done by Admins (role, suspension).
+    </div>
+
+    <div class="wf-row" style="align-items:flex-start;gap:16px;">
+
+      <!-- Left Sidebar -->
+      <div style="flex:0 0 200px;">
+        <div class="wf-card" style="padding:0;">
+          <div style="padding:8px 12px;border-bottom:2px solid #bbb;font-weight:bold;font-size:0.82rem;">Settings Menu</div>
+          <div style="padding:8px 12px;border-bottom:1px solid #ccc;background:#bbb;font-weight:bold;font-size:0.8rem;">
+            ▶ Account Info
+          </div>
+          <div style="padding:8px 12px;border-bottom:1px solid #ccc;font-size:0.8rem;">Security &amp; Password</div>
+          <div style="padding:8px 12px;border-bottom:1px solid #ccc;font-size:0.8rem;">Notifications</div>
+          <div style="padding:8px 12px;border-bottom:1px solid #ccc;font-size:0.8rem;">Privacy</div>
+          <div style="padding:8px 12px;font-size:0.8rem;color:#c00;">Delete Account</div>
+        </div>
+      </div>
+
+      <!-- Right Content -->
+      <div style="flex:1;">
+
+        <!-- Account Info Section -->
+        <div class="wf-section" style="margin-bottom:1rem;">
+          <div class="wf-title" style="font-size:1rem;border-bottom-width:1px;">Account Information</div>
+
+          <div class="wf-row">
+            <div>
+              <span class="wf-label">Display Name</span>
+              <div class="wf-input" style="background:#fff;"></div>
+            </div>
+            <div>
+              <span class="wf-label">Email Address</span>
+              <div class="wf-input" style="background:#eee;"></div>
+              <div class="wf-annotation">Read-only — cannot be changed</div>
+            </div>
+          </div>
+
+          <div class="wf-row" style="margin-top:8px;">
+            <div>
+              <span class="wf-label">Current Role</span>
+              <div class="wf-box" style="height:34px;background:#d8d8d8;font-size:0.8rem;">[ STUDENT — Assigned by Admin ]</div>
+              <div class="wf-annotation">Role cannot be self-modified</div>
+            </div>
+            <div>
+              <span class="wf-label">Account Status</span>
+              <div class="wf-box" style="height:34px;background:#d0f0d0;color:#1a5c1a;font-size:0.8rem;">[ ACTIVE ]</div>
+            </div>
+          </div>
+
+          <div style="margin-top:12px;display:flex;gap:8px;">
+            <div class="wf-btn">[ Save Account Info ]</div>
+            <div class="wf-btn-outline">[ Cancel ]</div>
+          </div>
+        </div>
+
+        <!-- Security Section -->
+        <div class="wf-section" style="margin-bottom:1rem;">
+          <div class="wf-title" style="font-size:1rem;border-bottom-width:1px;">Security &amp; Password</div>
+
+          <span class="wf-label">Current Password</span>
+          <div class="wf-input"></div>
+
+          <div class="wf-row" style="margin-top:4px;">
+            <div>
+              <span class="wf-label">New Password</span>
+              <div class="wf-input"></div>
+            </div>
+            <div>
+              <span class="wf-label">Confirm New Password</span>
+              <div class="wf-input"></div>
+            </div>
+          </div>
+
+          <div class="wf-annotation">
+            Min 8 characters required.<br/>
+            All active sessions will be invalidated when password changes.
+          </div>
+
+          <!-- Password Strength Bar (TBD) -->
+          <div style="margin:8px 0;">
+            <div class="wf-label">Password Strength Indicator (TBD)</div>
+            <div style="display:flex;gap:4px;">
+              <div class="wf-box" style="height:8px;flex:1;background:#e0e0e0;border-style:solid;border-width:1px;"></div>
+              <div class="wf-box" style="height:8px;flex:1;background:#e0e0e0;border-style:solid;border-width:1px;"></div>
+              <div class="wf-box" style="height:8px;flex:1;background:#e0e0e0;border-style:solid;border-width:1px;"></div>
+              <div class="wf-box" style="height:8px;flex:1;background:#e0e0e0;border-style:solid;border-width:1px;"></div>
+            </div>
+          </div>
+
+          <div style="margin-top:10px;">
+            <div class="wf-btn">[ Update Password ]</div>
+          </div>
+        </div>
+
+        <!-- Notifications Prefs -->
+        <div class="wf-section" style="margin-bottom:1rem;">
+          <div class="wf-title" style="font-size:1rem;border-bottom-width:1px;">Notification Preferences</div>
+          <div class="wf-annotation" style="margin-bottom:12px;">
+            Notifications system not yet implemented — these settings are UI placeholders only.
+          </div>
+
+          <div style="font-size:0.82rem;margin-bottom:8px;">
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #ccc;">
+              <span>New request on my listing</span>
+              <div class="wf-box" style="width:44px;height:22px;font-size:0.65rem;">[ ON ]</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #ccc;">
+              <span>New message in request thread</span>
+              <div class="wf-box" style="width:44px;height:22px;font-size:0.65rem;">[ ON ]</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px dashed #ccc;">
+              <span>Listing approved by moderator</span>
+              <div class="wf-box" style="width:44px;height:22px;font-size:0.65rem;">[ ON ]</div>
+            </div>
+            <div style="display:flex;justify-content:space-between;padding:8px 0;">
+              <span>Platform announcements</span>
+              <div class="wf-box" style="width:44px;height:22px;font-size:0.65rem;">[ OFF ]</div>
+            </div>
+          </div>
+
+          <div class="wf-btn">[ Save Preferences ]</div>
+        </div>
+
+        <!-- Danger Zone -->
+        <div class="wf-card" style="border-color:#e57373;border-width:2px;">
+          <div style="font-weight:bold;color:#c00;margin-bottom:8px;font-size:0.85rem;">Danger Zone</div>
+          <div style="font-size:0.82rem;margin-bottom:10px;color:#555;">
+            These actions are <strong>permanent and irreversible</strong>. Please be certain before proceeding.
+          </div>
+          <div style="display:flex;gap:8px;">
+            <div class="wf-btn" style="background:#e57373;border-color:#c00;font-size:0.8rem;">
+              [ Delete My Account ]
+            </div>
+          </div>
+          <div class="wf-annotation" style="margin-top:8px;">
+            DELETE /api/auth/account — NOT YET IMPLEMENTED.<br/>
+            Deleting account will remove user data. Listings will be set to REMOVED status.
+          </div>
+        </div>
+
+      </div><!-- /right content -->
+    </div><!-- /row -->
+
+    <!-- Implementation Status -->
+    <div class="wf-section" style="margin-top:1rem;">
+      <div style="font-weight:bold;font-size:0.85rem;margin-bottom:8px;">Implementation Status</div>
+      <ul style="font-size:0.8rem;color:#555;padding-left:1.2rem;margin:0;">
+        <li>User model exists with name, email, role, status fields</li>
+        <li>Password stored as bcryptjs hash (10 rounds)</li>
+        <li>NO: /settings route: NOT YET IMPLEMENTED</li>
+        <li>NO: PATCH /auth/profile (name change): NOT YET IMPLEMENTED</li>
+        <li>NO: PATCH /auth/password: NOT YET IMPLEMENTED</li>
+        <li>NO: Notification preferences: NOT YET IMPLEMENTED (no notification system)</li>
+        <li>NO: Account deletion: NOT YET IMPLEMENTED</li>
+      </ul>
+    </div>
+
+  </div><!-- /wf-container -->
+
+  <div style="background:#ddd;border-top:2px dashed #bbb;padding:12px 24px;font-family:monospace;font-size:0.8rem;">
+    <strong>Wireframe Navigation:</strong>
+    <a href="login-wireframe.html" style="margin:0 8px;">← Login</a> |
+    <a href="register-wireframe.html" style="margin:0 8px;">← Register</a> |
+    <a href="user-profile-wireframe.html" style="margin:0 8px;">← Profile</a> |
+    <a href="notifications-wireframe.html" style="margin:0 8px;">← Notifications</a> |
+    <a href="messages-wireframe.html" style="margin:0 8px;">← Messages</a> |
+    <a href="settings-wireframe.html" style="margin:0 8px;font-weight:bold;">[Current] Settings</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="../index.html" style="margin:0 8px;">← Back to Full Prototype</a>
+  </div>
+
+  <div class="wf-footer">
+    CougarMarket · CPT_S 489 · Team REJ · Washington State University · Spring 2026
+  </div>
+
+</body>
+</html>

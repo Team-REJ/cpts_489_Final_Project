@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[WIREFRAME] Messages Inbox — CougarMarket</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    body { font-family: 'Courier New', Courier, monospace; }
+  </style>
+</head>
+<body class="wireframe-page">
+
+  <!-- Wireframe Nav -->
+  <div class="wireframe-nav">
+    <div class="wf-brand">[ CougarMarket ]</div>
+    <div class="wf-nav-links">
+      <span>Home</span>
+      <span>Browse</span>
+      <span>Dashboard</span>
+      <span>[ 💬 Messages ]</span>
+    </div>
+  </div>
+
+  <div style="background:#fffce6;border-bottom:2px dashed #f0d700;padding:8px 24px;font-family:monospace;font-size:0.8rem;color:#5a4200;">
+    WIREFRAME — Messages Inbox — CougarMarket · CPT_S 489 Team REJ
+  </div>
+
+  <div class="wf-container" style="max-width:960px;">
+
+    <div class="wf-title">Messages / Inbox — Wireframe</div>
+
+    <div class="wf-note">
+      Design Note: This inbox view aggregates all active request threads in one place.
+      Currently, message threads are only accessible through Dashboard → individual request buttons and we want a dedicated place for all messages.
+    </div>
+
+    <!-- Two-panel layout sketch -->
+    <div class="wf-row" style="align-items:flex-start;gap:12px;">
+
+      <!-- Left Panel: Thread List -->
+      <div style="flex:0 0 300px;">
+        <div class="wf-section" style="padding:0;">
+          <div style="padding:10px 14px;border-bottom:2px solid #ccc;font-weight:bold;font-size:0.85rem;">
+            Conversations (7)
+          </div>
+
+          <!-- Search -->
+          <div style="padding:8px 12px;border-bottom:1px solid #ccc;">
+            <div class="wf-box" style="height:30px;font-size:0.75rem;">[ Search conversations… ]</div>
+          </div>
+
+          <!-- Thread items -->
+          <!-- Active/selected -->
+          <div style="padding:10px 12px;border-bottom:1px solid #ccc;background:#ccc;">
+            <div style="display:flex;gap:8px;align-items:center;">
+              <div class="wf-box" style="width:38px;height:38px;flex-shrink:0;border-radius:50%;font-size:1rem;">M</div>
+              <div style="flex:1;overflow:hidden;">
+                <div class="wf-box" style="height:14px;margin-bottom:3px;background:#aaa;width:80%;">[BOLD] Maria G. — MacBook Pro</div>
+                <div class="wf-box" style="height:12px;width:90%;font-size:0.65rem;background:#bbb;">You: "That's a bit lower…"</div>
+              </div>
+              <div style="text-align:right;font-size:0.65rem;">2m</div>
+            </div>
+            <div class="wf-tag" style="margin-top:4px;font-size:0.65rem;">NEGOTIATING</div>
+          </div>
+
+          <!-- Unread -->
+          <div style="padding:10px 12px;border-bottom:1px solid #ddd;border-left:3px solid #555;">
+            <div style="display:flex;gap:8px;align-items:center;">
+              <div class="wf-box" style="width:38px;height:38px;flex-shrink:0;border-radius:50%;font-size:1rem;">T</div>
+              <div style="flex:1;">
+                <div class="wf-box" style="height:14px;margin-bottom:3px;background:#bbb;width:75%;">[BOLD] Tyler S. — MacBook Pro</div>
+                <div class="wf-box" style="height:12px;width:85%;font-size:0.65rem;">"Would $800 work?"</div>
+              </div>
+              <div style="font-size:0.65rem;">15m</div>
+            </div>
+            <div class="wf-tag" style="margin-top:4px;font-size:0.65rem;">PENDING</div>
+          </div>
+
+          <!-- Read threads -->
+          <div style="padding:10px 12px;border-bottom:1px solid #ddd;opacity:0.75;">
+            <div style="display:flex;gap:8px;align-items:center;">
+              <div class="wf-box" style="width:38px;height:38px;flex-shrink:0;border-radius:50%;font-size:1rem;">K</div>
+              <div style="flex:1;">
+                <div class="wf-box" style="height:13px;margin-bottom:3px;width:70%;font-size:0.72rem;">Kevin P. — Desk Lamp</div>
+                <div class="wf-box" style="height:12px;width:80%;font-size:0.65rem;">Kevin: "I'll take it!"</div>
+              </div>
+              <div style="font-size:0.65rem;">1h</div>
+            </div>
+            <div class="wf-tag" style="margin-top:4px;font-size:0.65rem;background:#c8e6c9;color:#2e7d32;">ACCEPTED</div>
+          </div>
+
+          <div style="padding:10px 12px;border-bottom:1px solid #ddd;opacity:0.6;">
+            <div style="display:flex;gap:8px;align-items:center;">
+              <div class="wf-box" style="width:38px;height:38px;flex-shrink:0;border-radius:50%;font-size:1rem;">M</div>
+              <div style="flex:1;">
+                <div class="wf-box" style="height:13px;margin-bottom:3px;width:65%;font-size:0.72rem;">Maria G. — Organic Chem</div>
+                <div class="wf-box" style="height:12px;width:70%;font-size:0.65rem;">You: "Hi Maria, is this…"</div>
+              </div>
+              <div style="font-size:0.65rem;">1d</div>
+            </div>
+            <div class="wf-tag" style="margin-top:4px;font-size:0.65rem;">PENDING</div>
+          </div>
+
+        </div>
+      </div>
+
+      <!-- Right Panel: Active Thread -->
+      <div style="flex:1;">
+        <div class="wf-section" style="padding:0;">
+          <!-- Thread Header -->
+          <div style="padding:10px 14px;border-bottom:2px solid #ccc;display:flex;justify-content:space-between;align-items:center;">
+            <div>
+              <div style="font-weight:bold;font-size:0.9rem;">Maria Garcia — MacBook Pro 2021 M1</div>
+              <div style="font-size:0.75rem;color:#666;">Offer: $850 · Status: NEGOTIATING</div>
+            </div>
+            <div class="wf-box" style="height:28px;width:90px;font-size:0.7rem;">[ View Listing ]</div>
+          </div>
+
+          <!-- Message Area -->
+          <div style="height:280px;padding:12px;overflow-y:auto;background:#ececec;display:flex;flex-direction:column;gap:8px;">
+            <div class="wf-annotation" style="text-align:center;">System: Request opened · March 3, 2026</div>
+
+            <!-- Received -->
+            <div style="align-self:flex-start;max-width:70%;">
+              <div class="wf-box" style="height:auto;padding:8px 12px;min-height:36px;text-align:left;border-radius:0 8px 8px 8px;font-size:0.78rem;">
+                Hi! Is the MacBook still available?
+              </div>
+              <div style="font-size:0.65rem;color:#777;margin-top:2px;">Maria · 9:14 AM</div>
+            </div>
+
+            <!-- Sent -->
+            <div style="align-self:flex-end;max-width:70%;">
+              <div class="wf-box" style="height:auto;padding:8px 12px;min-height:36px;text-align:left;border-radius:8px 0 8px 8px;background:#999;color:#fff;font-size:0.78rem;">
+                Yes it's available! In great condition.
+              </div>
+              <div style="font-size:0.65rem;color:#777;margin-top:2px;text-align:right;">You · 9:28 AM</div>
+            </div>
+
+            <!-- Received -->
+            <div style="align-self:flex-start;max-width:70%;">
+              <div class="wf-box" style="height:auto;padding:8px 12px;min-height:36px;text-align:left;border-radius:0 8px 8px 8px;font-size:0.78rem;">
+                Would you take $850?
+              </div>
+              <div style="font-size:0.65rem;color:#777;margin-top:2px;">Maria · 9:45 AM</div>
+            </div>
+
+            <!-- Offer event -->
+            <div style="text-align:center;">
+              <div class="wf-tag" style="background:#dde8ff;">Maria offered $850 ↕</div>
+            </div>
+
+            <!-- Sent -->
+            <div style="align-self:flex-end;max-width:70%;">
+              <div class="wf-box" style="height:auto;padding:8px 12px;min-height:36px;text-align:left;border-radius:8px 0 8px 8px;background:#999;color:#fff;font-size:0.78rem;">
+                That's a bit lower than I hoped. How about $875?
+              </div>
+              <div style="font-size:0.65rem;color:#777;margin-top:2px;text-align:right;">You · 10:02 AM</div>
+            </div>
+          </div>
+
+          <!-- Input Bar -->
+          <div style="padding:10px 12px;border-top:2px solid #ccc;">
+            <div style="display:flex;gap:6px;">
+              <div class="wf-box" style="flex:1;height:36px;font-size:0.78rem;text-align:left;padding-left:8px;">[ Type a message… ]</div>
+              <div class="wf-btn" style="padding:6px 14px;font-size:0.8rem;">[ Send ]</div>
+            </div>
+            <div class="wf-annotation" style="margin-top:6px;">
+              Quick actions: [ Accept Offer ] [ Counteroffer ] [ Reject ] — shown based on role and status
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div><!-- /two-panel layout -->
+
+    <!-- Implementation Notes -->
+    <div class="wf-section" style="margin-top:1rem;">
+      <div style="font-weight:bold;font-size:0.85rem;margin-bottom:8px;">Implementation Status</div>
+      <ul style="font-size:0.8rem;color:#555;padding-left:1.2rem;margin:0;">
+        <li>Individual request thread exists at /request-thread.html (implemented)</li>
+        <li>API: GET /requests/me returns all threads</li>
+        <li>API: GET /requests/:id/messages returns thread messages</li>
+        <li>NO: Unified inbox page: NOT YET IMPLEMENTED (this wireframe)</li>
+        <li>NO: Unread message count badge in navbar: NOT YET IMPLEMENTED</li>
+        <li>NO: Real-time push: NOT YET IMPLEMENTED (currently 5s polling)</li>
+        <li>NO: Message search/filter: NOT YET IMPLEMENTED</li>
+      </ul>
+    </div>
+
+  </div><!-- /wf-container -->
+
+  <div style="background:#ddd;border-top:2px dashed #bbb;padding:12px 24px;font-family:monospace;font-size:0.8rem;">
+    <strong>Wireframe Navigation:</strong>
+    <a href="login-wireframe.html" style="margin:0 8px;">← Login</a> |
+    <a href="register-wireframe.html" style="margin:0 8px;">← Register</a> |
+    <a href="user-profile-wireframe.html" style="margin:0 8px;">← Profile</a> |
+    <a href="notifications-wireframe.html" style="margin:0 8px;">← Notifications</a> |
+    <a href="messages-wireframe.html" style="margin:0 8px;font-weight:bold;">[Current] Messages</a> |
+    <a href="settings-wireframe.html" style="margin:0 8px;">→ Settings</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="../index.html" style="margin:0 8px;">← Back to Full Prototype</a>
+  </div>
+
+  <div class="wf-footer">
+    CougarMarket · CPT_S 489 · Team REJ · Washington State University · Spring 2026
+  </div>
+
+</body>
+</html>

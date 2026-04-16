@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>[WIREFRAME] Notifications — CougarMarket</title>
+  <link rel="stylesheet" href="../css/styles.css" />
+  <style>
+    body { font-family: 'Courier New', Courier, monospace; }
+  </style>
+</head>
+<body class="wireframe-page">
+
+  <!-- Wireframe Nav -->
+  <div class="wireframe-nav">
+    <div class="wf-brand">[ CougarMarket ]</div>
+    <div class="wf-nav-links">
+      <span>Home</span>
+      <span>Browse</span>
+      <span>Dashboard</span>
+      <span>[ 3 Notifications ]</span>
+    </div>
+  </div>
+
+  <div style="background:#fffce6;border-bottom:2px dashed #f0d700;padding:8px 24px;font-family:monospace;font-size:0.8rem;color:#5a4200;">
+    WIREFRAME — Notifications (Feature Planned — Not Yet Implemented) — CPT_S 489 Team REJ
+  </div>
+
+  <div class="wf-container" style="max-width:700px;">
+
+    <div class="wf-title">Notifications Page — Wireframe</div>
+
+    <div class="wf-note">
+      Design Note: Real-time notifications are NOT yet implemented. This wireframe documents
+      the planned notification system. Currently, users must manually check their Dashboard
+      to see new requests and messages.
+    </div>
+
+    <!-- Notification List Layout -->
+    <div class="wf-section">
+      <div class="wf-title" style="font-size:1rem;border-bottom-width:1px;">Notification Feed Layout</div>
+
+      <!-- Filter tabs -->
+      <div class="wf-row" style="margin-bottom:16px;">
+        <div class="wf-box" style="height:34px;background:#bbb;font-weight:bold;">[ All (8) ]</div>
+        <div class="wf-box" style="height:34px;">[ Unread (3) ]</div>
+        <div class="wf-box" style="height:34px;">[ Requests ]</div>
+        <div class="wf-box" style="height:34px;">[ Messages ]</div>
+      </div>
+
+      <!-- Notification Items -->
+
+      <!-- Unread — new request -->
+      <div class="wf-card" style="border-left:4px solid #555;margin-bottom:8px;">
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <div class="wf-box" style="width:40px;height:40px;flex-shrink:0;font-size:1.2rem;"></div>
+          <div style="flex:1;">
+            <div class="wf-box" style="height:18px;margin-bottom:4px;background:#bbb;width:60%;">[BOLD] New Request on MacBook Pro</div>
+            <div class="wf-box" style="height:16px;margin-bottom:4px;width:85%;font-size:0.7rem;">Maria Garcia sent you a purchase request — $850 offer</div>
+            <div class="wf-box" style="height:14px;width:30%;font-size:0.65rem;background:#e0e0e0;">2 minutes ago</div>
+          </div>
+          <div class="wf-box" style="width:60px;height:28px;font-size:0.7rem;">[ View ]</div>
+        </div>
+        <div class="wf-annotation" style="margin-top:6px;">Unread — highlighted background + blue dot indicator</div>
+      </div>
+
+      <!-- Unread — message -->
+      <div class="wf-card" style="border-left:4px solid #555;margin-bottom:8px;">
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <div class="wf-box" style="width:40px;height:40px;flex-shrink:0;font-size:1.2rem;"></div>
+          <div style="flex:1;">
+            <div class="wf-box" style="height:18px;margin-bottom:4px;background:#bbb;width:55%;">[BOLD] New Message from Tyler S.</div>
+            <div class="wf-box" style="height:16px;margin-bottom:4px;width:80%;font-size:0.7rem;">Re: MacBook Pro — "Would $800 work?"</div>
+            <div class="wf-box" style="height:14px;width:30%;font-size:0.65rem;background:#e0e0e0;">15 minutes ago</div>
+          </div>
+          <div class="wf-box" style="width:60px;height:28px;font-size:0.7rem;">[ View ]</div>
+        </div>
+        <div class="wf-annotation" style="margin-top:6px;"> Unread</div>
+      </div>
+
+      <!-- Unread — listing approved -->
+      <div class="wf-card" style="border-left:4px solid #555;margin-bottom:8px;">
+        <div style="display:flex;gap:10px;align-items:flex-start;">
+          <div class="wf-box" style="width:40px;height:40px;flex-shrink:0;font-size:1.2rem;"></div>
+          <div style="flex:1;">
+            <div class="wf-box" style="height:18px;margin-bottom:4px;background:#bbb;width:60%;">[BOLD] Listing Approved!</div>
+            <div class="wf-box" style="height:16px;margin-bottom:4px;width:75%;font-size:0.7rem;">Your "Desk Lamp" listing is now live on the marketplace</div>
+            <div class="wf-box" style="height:14px;width:30%;font-size:0.65rem;background:#e0e0e0;">1 hour ago</div>
+          </div>
+          <div class="wf-box" style="width:60px;height:28px;font-size:0.7rem;">[ View ]</div>
+        </div>
+        <div class="wf-annotation" style="margin-top:6px;">Unread</div>
+      </div>
+
+      <!-- Read notifications (dimmed) -->
+      <div style="margin-top:12px;margin-bottom:8px;font-size:0.8rem;color:#777;font-weight:bold;">— Earlier (Read) —</div>
+
+      <div class="wf-card" style="opacity:0.65;margin-bottom:8px;">
+        <div style="display:flex;gap:10px;align-items:center;">
+          <div class="wf-box" style="width:40px;height:40px;flex-shrink:0;font-size:1.2rem;"></div>
+          <div style="flex:1;">
+            <div class="wf-box" style="height:16px;margin-bottom:4px;width:55%;font-size:0.75rem;">Message from Kevin P. re: Desk Lamp</div>
+            <div class="wf-box" style="height:13px;width:25%;font-size:0.65rem;background:#e0e0e0;">Yesterday</div>
+          </div>
+          <div class="wf-box" style="width:60px;height:28px;font-size:0.7rem;">[ View ]</div>
+        </div>
+      </div>
+
+      <div class="wf-card" style="opacity:0.65;margin-bottom:8px;">
+        <div style="display:flex;gap:10px;align-items:center;">
+          <div class="wf-box" style="width:40px;height:40px;flex-shrink:0;font-size:1.2rem;"></div>
+          <div style="flex:1;">
+            <div class="wf-box" style="height:16px;margin-bottom:4px;width:60%;font-size:0.75rem;">Request COMPLETED — Physics Textbook sold to Carlos</div>
+            <div class="wf-box" style="height:13px;width:25%;font-size:0.65rem;background:#e0e0e0;">Jan 15, 2026</div>
+          </div>
+          <div class="wf-box" style="width:60px;height:28px;font-size:0.7rem;">[ View ]</div>
+        </div>
+      </div>
+
+      <!-- Mark all read button -->
+      <div style="text-align:right;margin-top:12px;">
+        <div class="wf-btn-outline" style="font-size:0.8rem;padding:5px 14px;">[ Mark all as read ]</div>
+      </div>
+
+    </div>
+
+    <!-- Notification Types Planned -->
+    <div class="wf-section">
+      <div style="font-weight:bold;font-size:0.85rem;margin-bottom:8px;">Planned Notification Event Types</div>
+      <table style="width:100%;border-collapse:collapse;font-size:0.78rem;">
+        <thead>
+          <tr style="background:#ccc;">
+            <th style="padding:6px 8px;text-align:left;border:1px solid #bbb;">Event</th>
+            <th style="padding:6px 8px;text-align:left;border:1px solid #bbb;">Trigger</th>
+            <th style="padding:6px 8px;text-align:left;border:1px solid #bbb;">Status</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr style="background:#e8e8e8;">
+            <td style="padding:5px 8px;border:1px solid #ccc;">New request on listing</td>
+            <td style="padding:5px 8px;border:1px solid #ccc;">POST /requests</td>
+            <td style="padding:5px 8px;border:1px solid #ccc;">Not implemented</td>
+          </tr>
+          <tr>
+            <td style="padding:5px 8px;border:1px solid #ccc;">New message in thread</td>
+            <td style="padding:5px 8px;border:1px solid #ccc;">POST /requests/:id/messages</td>
+            <td style="padding:5px 8px;border:1px solid #ccc;">Not implemented</td>
+          </tr>
+          <tr style="background:#e8e8e8;">
+            <td style="padding:5px 8px;border:1px solid #ccc;">Listing approved</td>
+            <td style="padding:5px 8px;border:1px solid #ccc;">PATCH /admin/listings/:id/status</td>
+            <td style="padding:5px 8px;border:1px solid #ccc;">Not implemented</td>
+          </tr>
+          <tr>
+            <td style="padding:5px 8px;border:1px solid #ccc;">Offer accepted/rejected</td>
+            <td style="padding:5px 8px;border:1px solid #ccc;">POST /requests/:id/accept or reject</td>
+            <td style="padding:5px 8px;border:1px solid #ccc;">Not implemented</td>
+          </tr>
+        </tbody>
+      </table>
+      <div class="wf-annotation" style="margin-top:8px;">
+        Implementation approach: polling (current RequestThread uses 5s polling) or WebSocket push (preferred for future)
+      </div>
+    </div>
+
+  </div><!-- /wf-container -->
+
+  <div style="background:#ddd;border-top:2px dashed #bbb;padding:12px 24px;font-family:monospace;font-size:0.8rem;">
+    <strong>Wireframe Navigation:</strong>
+    <a href="login-wireframe.html" style="margin:0 8px;">← Login</a> |
+    <a href="register-wireframe.html" style="margin:0 8px;">← Register</a> |
+    <a href="user-profile-wireframe.html" style="margin:0 8px;">← Profile</a> |
+    <a href="notifications-wireframe.html" style="margin:0 8px;font-weight:bold;">[Current] Notifications</a> |
+    <a href="messages-wireframe.html" style="margin:0 8px;">→ Messages</a> |
+    <a href="settings-wireframe.html" style="margin:0 8px;">→ Settings</a>
+    &nbsp;&nbsp;|&nbsp;&nbsp;
+    <a href="../index.html" style="margin:0 8px;">← Back to Full Prototype</a>
+  </div>
+
+  <div class="wf-footer">
+    CougarMarket · CPT_S 489 · Team REJ · Washington State University · Spring 2026
+  </div>
+
+</body>
+</html>

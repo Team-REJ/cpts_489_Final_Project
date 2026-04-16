@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>About — CougarMarket</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-crimson shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">CougarMarket</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="listings.html">Browse Listings</a></li>
+          <li class="nav-item"><a class="nav-link" href="create-listing.html">Create Listing</a></li>
+          <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link active-page" href="about.html">About</a></li>
+        </ul>
+        <div class="d-flex gap-2">
+          <a href="wireframes/login-wireframe.html" class="btn btn-outline-light btn-sm">Login</a>
+          <a href="wireframes/register-wireframe.html" class="btn btn-light btn-sm fw-semibold" style="color:var(--crimson);">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero -->
+  <div style="background:linear-gradient(135deg,#1a1a1a,var(--crimson-dark));color:#fff;padding:4rem 0;">
+    <div class="container text-center">
+      <h1 class="fw-bold mb-2">About CougarMarket</h1>
+      <p class="lead mb-0 opacity-75">A campus marketplace built by WSU students, for WSU students.</p>
+    </div>
+  </div>
+
+  <!-- About content -->
+  <div class="container py-5">
+
+    <!-- Project Overview -->
+    <div class="row g-5 align-items-center mb-5">
+      <div class="col-lg-6">
+        <h2 class="fw-bold mb-3">What is CougarMarket?</h2>
+        <p class="text-muted mb-3">
+          CougarMarket is a campus-exclusive online marketplace designed to make it easy for Washington State
+          University students to buy, sell, and trade items within the Cougar community. Whether you're looking
+          to offload last semester's textbooks or find affordable furniture for your dorm, CougarMarket connects
+          you with fellow students.
+        </p>
+        <p class="text-muted mb-3">
+          Unlike generic platforms like Facebook Marketplace or Craigslist, CougarMarket is built specifically
+          for WSU students. All users are verified WSU members, making every transaction safer and more
+          trustworthy.
+        </p>
+        <div class="d-flex gap-3 flex-wrap">
+          <a href="wireframes/register-wireframe.html" class="btn btn-crimson">Get Started</a>
+          <a href="listings.html" class="btn btn-outline-crimson">Browse Listings</a>
+        </div>
+      </div>
+      <div class="col-lg-6">
+        <div class="row g-3">
+          <div class="col-6">
+            <div class="p-3 border rounded text-center" style="background:var(--crimson-bg);">
+              <i class="bi bi-grid fs-2 text-crimson mb-2 d-block"></i>
+              <div class="fw-bold">Listing Management</div>
+              <div class="small text-muted mt-1">Post items in minutes with categories, conditions, and photos</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="p-3 border rounded text-center" style="background:#eff6ff;">
+              <i class="bi bi-chat-dots fs-2 text-primary mb-2 d-block"></i>
+              <div class="fw-bold">Request System</div>
+              <div class="small text-muted mt-1">Negotiate directly with buyers and sellers via in-app chat</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="p-3 border rounded text-center" style="background:#f0fdf4;">
+              <i class="bi bi-shield-check fs-2 text-success mb-2 d-block"></i>
+              <div class="fw-bold">Admin Moderation</div>
+              <div class="small text-muted mt-1">All listings reviewed by moderators before going live</div>
+            </div>
+          </div>
+          <div class="col-6">
+            <div class="p-3 border rounded text-center" style="background:#fefce8;">
+              <i class="bi bi-arrow-left-right fs-2 text-warning mb-2 d-block"></i>
+              <div class="fw-bold">Counteroffer Flow</div>
+              <div class="small text-muted mt-1">Negotiate prices back and forth before committing</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Tech Stack -->
+    <div class="mb-5">
+      <h2 class="fw-bold mb-4 text-center">Technology Stack</h2>
+      <div class="row g-3 justify-content-center">
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="text-center p-3 border rounded">
+            <div class="fw-semibold small">React 18</div>
+            <div class="text-muted" style="font-size:0.72rem;">Frontend</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="text-center p-3 border rounded">
+            <div class="fw-semibold small">Node.js</div>
+            <div class="text-muted" style="font-size:0.72rem;">Runtime</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="text-center p-3 border rounded">
+            <div class="fw-semibold small">Express</div>
+            <div class="text-muted" style="font-size:0.72rem;">Backend API</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="text-center p-3 border rounded">
+            <div class="fw-semibold small">PostgreSQL</div>
+            <div class="text-muted" style="font-size:0.72rem;">Database</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="text-center p-3 border rounded">
+            <div class="fw-semibold small">Prisma</div>
+            <div class="text-muted" style="font-size:0.72rem;">ORM</div>
+          </div>
+        </div>
+        <div class="col-6 col-md-3 col-lg-2">
+          <div class="text-center p-3 border rounded">
+            <div class="fw-semibold small">TailwindCSS</div>
+            <div class="text-muted" style="font-size:0.72rem;">Styling</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- User Roles -->
+    <div class="mb-5">
+      <h2 class="fw-bold mb-4 text-center">User Roles</h2>
+      <div class="table-section">
+        <table class="table align-middle mb-0">
+          <thead>
+            <tr>
+              <th>Role</th>
+              <th>Description</th>
+              <th>Permissions</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                <span class="badge" style="background:#dcfce7;color:#15803d;font-size:0.85rem;padding:6px 12px;">
+                  STUDENT
+                </span>
+              </td>
+              <td class="small text-muted">Default role for all registered WSU students</td>
+              <td class="small">Browse listings, create listings, send/receive purchase requests, negotiate</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="badge" style="background:#dbeafe;color:#1d4ed8;font-size:0.85rem;padding:6px 12px;">
+                  MODERATOR
+                </span>
+              </td>
+              <td class="small text-muted">Trusted users who help maintain marketplace quality</td>
+              <td class="small">All Student permissions + approve or remove listings, access admin panel</td>
+            </tr>
+            <tr>
+              <td>
+                <span class="badge" style="background:var(--crimson-bg);color:var(--crimson);font-size:0.85rem;padding:6px 12px;">
+                  ADMIN
+                </span>
+              </td>
+              <td class="small text-muted">Platform administrators with full control</td>
+              <td class="small">All Moderator permissions + manage users, change roles, suspend accounts</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- Team -->
+    <div class="text-center py-4" style="background:var(--crimson-bg);border-radius:16px;">
+      <h3 class="fw-bold mb-3">Built by Team REJ</h3>
+      <p class="text-muted mb-2">CPT_S 489 — Software Engineering Course Project</p>
+      <p class="text-muted mb-4">Washington State University · Spring 2026</p>
+      <div class="d-flex justify-content-center gap-2 flex-wrap">
+        <span class="badge bg-light border text-muted px-3 py-2">Raul Martinez</span>
+        <span class="badge bg-light border text-muted px-3 py-2">Edwin Quinonez</span>
+        <span class="badge bg-light border text-muted px-3 py-2">Jaydon Larios</span>
+      </div>
+      <p class="mt-4 small text-muted">Go Cougs!</p>
+    </div>
+
+  </div><!-- /container -->
+
+  <!-- Footer -->
+  <footer class="site-footer py-4 mt-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="brand-text mb-2">CougarMarket</div>
+          <p class="small mb-0">The campus marketplace for WSU students.</p>
+        </div>
+        <div class="col-lg-2 col-6">
+          <h6 class="mb-3">Marketplace</h6>
+          <ul class="list-unstyled small">
+            <li class="mb-1"><a href="listings.html">Browse Listings</a></li>
+            <li class="mb-1"><a href="create-listing.html">Post an Item</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-6">
+          <h6 class="mb-3">Account</h6>
+          <ul class="list-unstyled small">
+            <li class="mb-1"><a href="wireframes/login-wireframe.html">Login</a></li>
+            <li class="mb-1"><a href="wireframes/register-wireframe.html">Register</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4">
+          <h6 class="mb-3">About</h6>
+          <p class="small mb-0">CPT_S 489 · Team REJ · WSU</p>
+        </div>
+      </div>
+      <hr class="border-secondary mt-3" />
+      <div class="text-center small">© 2026 CougarMarket — CPT_S 489 | Team REJ</div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

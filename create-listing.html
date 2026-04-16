@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Create Listing — CougarMarket</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="css/styles.css" />
+</head>
+<body>
+
+  <!-- ── Navbar ── -->
+  <nav class="navbar navbar-expand-lg navbar-dark bg-crimson shadow-sm">
+    <div class="container">
+      <a class="navbar-brand fw-bold" href="index.html">CougarMarket</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMain">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMain">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item"><a class="nav-link" href="listings.html">Browse Listings</a></li>
+          <li class="nav-item"><a class="nav-link active-page" href="create-listing.html">Create Listing</a></li>
+          <li class="nav-item"><a class="nav-link" href="dashboard.html">Dashboard</a></li>
+          <li class="nav-item"><a class="nav-link" href="about.html">About</a></li>
+        </ul>
+        <div class="d-flex gap-2 align-items-center">
+          <a href="wireframes/login-wireframe.html" class="btn btn-outline-light btn-sm">Login</a>
+          <a href="wireframes/register-wireframe.html" class="btn btn-light btn-sm fw-semibold" style="color:var(--crimson);">Sign Up</a>
+        </div>
+      </div>
+    </div>
+  </nav>
+
+  <!-- ── Page Header ── -->
+  <div class="page-header">
+    <div class="container">
+      <nav aria-label="breadcrumb" class="mb-2">
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item"><a href="index.html">Home</a></li>
+          <li class="breadcrumb-item"><a href="dashboard.html">Dashboard</a></li>
+          <li class="breadcrumb-item active">Create Listing</li>
+        </ol>
+      </nav>
+      <h1 class="h3 fw-bold mb-0">Create New Listing</h1>
+      <p class="text-muted small mb-0">Fill in the details below to post your item to the marketplace.</p>
+    </div>
+  </div>
+
+  <div class="container py-4">
+    <div class="row justify-content-center">
+      <div class="col-lg-8">
+
+        <!-- Info Banner -->
+        <div class="alert alert-light border mb-4 small" role="alert">
+          <i class="bi bi-info-circle-fill text-crimson me-1"></i>
+          <strong>Note:</strong> New listings will be reviewed by a moderator before going live.
+          This usually takes less than 24 hours.
+        </div>
+
+        <!-- Form -->
+        <form>
+
+          <!-- Section 1: Basic Info -->
+          <div class="form-section mb-4">
+            <h5 class="fw-bold mb-4">
+              <span class="step-circle d-inline-flex align-items-center justify-content-center me-2"
+                    style="width:28px;height:28px;font-size:0.85rem;">1</span>
+              Basic Information
+            </h5>
+
+            <div class="mb-3">
+              <label class="form-label" for="title">
+                Listing Title <span class="required-star">*</span>
+              </label>
+              <input type="text" class="form-control" id="title"
+                     placeholder="e.g. MacBook Pro 2021 M1 — Excellent Condition"
+                     maxlength="100" />
+              <div class="form-text">Be specific. A good title helps buyers find your item. Min 5 characters.</div>
+            </div>
+
+            <div class="mb-3">
+              <label class="form-label" for="description">
+                Description <span class="required-star">*</span>
+              </label>
+              <textarea class="form-control" id="description" rows="5"
+                placeholder="Describe your item in detail — age, features, reason for selling, what's included, preferred meetup location, etc."></textarea>
+              <div class="form-text">Minimum 10 characters. More detail = more interest.</div>
+            </div>
+
+          </div>
+
+          <!-- Section 2: Category & Condition -->
+          <div class="form-section mb-4">
+            <h5 class="fw-bold mb-4">
+              <span class="step-circle d-inline-flex align-items-center justify-content-center me-2"
+                    style="width:28px;height:28px;font-size:0.85rem;">2</span>
+              Category &amp; Condition
+            </h5>
+
+            <div class="row g-3">
+              <div class="col-md-6">
+                <label class="form-label" for="category">
+                  Category <span class="required-star">*</span>
+                </label>
+                <select class="form-select" id="category">
+                  <option value="" disabled selected>Select a category…</option>
+                  <option value="Textbooks">Textbooks</option>
+                  <option value="Electronics">Electronics</option>
+                  <option value="Furniture">Furniture</option>
+                  <option value="Clothing">Clothing</option>
+                  <option value="Sports">Sports</option>
+                  <option value="Dorm Essentials">Dorm Essentials</option>
+                </select>
+              </div>
+              <div class="col-md-6">
+                <label class="form-label" for="condition">
+                  Condition <span class="required-star">*</span>
+                </label>
+                <select class="form-select" id="condition">
+                  <option value="" disabled selected>Select condition…</option>
+                  <option value="New">New — Never used, in original packaging</option>
+                  <option value="Like New">Like New — Used briefly, no signs of wear</option>
+                  <option value="Good">Good — Normal use, minor cosmetic wear</option>
+                  <option value="Fair">Fair — Visible wear but fully functional</option>
+                  <option value="Poor">Poor — Heavy use or minor damage</option>
+                </select>
+              </div>
+            </div>
+          </div>
+
+          <!-- Section 3: Listing Type & Price -->
+          <div class="form-section mb-4">
+            <h5 class="fw-bold mb-4">
+              <span class="step-circle d-inline-flex align-items-center justify-content-center me-2"
+                    style="width:28px;height:28px;font-size:0.85rem;">3</span>
+              Listing Type &amp; Price
+            </h5>
+
+            <div class="mb-3">
+              <label class="form-label">Listing Type <span class="required-star">*</span></label>
+              <div class="row g-3">
+                <div class="col-md-4">
+                  <label class="d-block border rounded p-3 text-center cursor-pointer"
+                         style="cursor:pointer;border-color:#e5e7eb!important;"
+                         id="typeSellLabel">
+                    <input type="radio" name="type" value="SELL" class="form-check-input me-1" />
+                    <strong>For Sale</strong>
+                    <div class="small text-muted mt-1">You set a price</div>
+                  </label>
+                </div>
+                <div class="col-md-4">
+                  <label class="d-block border rounded p-3 text-center"
+                         style="cursor:pointer;border-color:#e5e7eb!important;">
+                    <input type="radio" name="type" value="TRADE" class="form-check-input me-1" />
+                    <strong>Trade</strong>
+                    <div class="small text-muted mt-1">Swap for another item</div>
+                  </label>
+                </div>
+                <div class="col-md-4">
+                  <label class="d-block border rounded p-3 text-center"
+                         style="cursor:pointer;border-color:#e5e7eb!important;">
+                    <input type="radio" name="type" value="FREE" class="form-check-input me-1" />
+                    <strong>Free</strong>
+                    <div class="small text-muted mt-1">Give it away</div>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <div class="mb-0" id="priceSection">
+              <label class="form-label" for="price">
+                Asking Price <span class="required-star">*</span>
+                <span class="text-muted small ms-1">(required for "For Sale" listings)</span>
+              </label>
+              <div class="input-group" style="max-width:280px;">
+                <span class="input-group-text">$</span>
+                <input type="number" class="form-control" id="price" placeholder="0.00"
+                       min="0" step="0.01" />
+              </div>
+              <div class="form-text">Leave blank if your listing type is Trade or Free.</div>
+            </div>
+          </div>
+
+          <!-- Section 4: Photos -->
+          <div class="form-section mb-4">
+            <h5 class="fw-bold mb-4">
+              <span class="step-circle d-inline-flex align-items-center justify-content-center me-2"
+                    style="width:28px;height:28px;font-size:0.85rem;">4</span>
+              Photos
+              <span class="text-muted small fw-normal ms-2"></span>
+            </h5>
+
+            <div class="upload-zone mb-3">
+              <i class="bi bi-cloud-upload fs-2 text-muted mb-2 d-block"></i>
+              <div class="fw-semibold text-muted">Drag &amp; drop photos here</div>
+              <div class="small text-muted mb-2">or</div>
+              <button type="button" class="btn btn-outline-secondary btn-sm">
+                <i class="bi bi-images me-1"></i>Choose Files
+              </button>
+              <div class="form-text mt-2">Up to 6 photos · JPG, PNG · Max 5 MB each</div>
+            </div>
+
+            <!-- Preview Thumbnails (placeholder) -->
+            <div class="d-flex gap-2">
+              <div class="img-thumb" style="opacity:0.4;">
+                <i class="bi bi-plus-circle fs-4 text-muted"></i>
+              </div>
+            </div>
+          </div>
+
+          <!-- Submit -->
+          <div class="d-flex gap-3 justify-content-end">
+            <a href="dashboard.html" class="btn btn-outline-secondary px-4">Cancel</a>
+            <button type="submit" class="btn btn-crimson px-5">
+              <i class="bi bi-check2-circle me-1"></i>Post Listing
+            </button>
+          </div>
+
+        </form>
+      </div><!-- /col-lg-8 -->
+    </div><!-- /row -->
+  </div><!-- /container -->
+
+  <!-- ── Footer ── -->
+  <footer class="site-footer py-4 mt-5">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <div class="brand-text mb-2">CougarMarket</div>
+          <p class="small mb-0">The campus marketplace for WSU students.</p>
+        </div>
+        <div class="col-lg-2 col-6">
+          <h6 class="mb-3">Marketplace</h6>
+          <ul class="list-unstyled small">
+            <li class="mb-1"><a href="listings.html">Browse Listings</a></li>
+            <li class="mb-1"><a href="create-listing.html">Post an Item</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-2 col-6">
+          <h6 class="mb-3">Account</h6>
+          <ul class="list-unstyled small">
+            <li class="mb-1"><a href="wireframes/login-wireframe.html">Login</a></li>
+            <li class="mb-1"><a href="wireframes/register-wireframe.html">Register</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-4">
+          <h6 class="mb-3">About</h6>
+          <p class="small mb-0">CPT_S 489 · Team REJ · WSU</p>
+        </div>
+      </div>
+      <hr class="border-secondary mt-3" />
+      <div class="text-center small">© 2026 CougarMarket — CPT_S 489 | Team REJ</div>
+    </div>
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
