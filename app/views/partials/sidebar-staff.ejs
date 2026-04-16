@@ -1,0 +1,17 @@
+<aside class="p-3 border rounded bg-white">
+  <h6 class="text-uppercase text-muted small fw-bold">Moderator Tools</h6>
+  <ul class="list-unstyled mb-3">
+    <li><a class="text-decoration-none d-block py-1" href="/moderator">Overview</a></li>
+    <li><a class="text-decoration-none d-block py-1" href="/moderator/listings">Pending Listings</a></li>
+    <li><a class="text-decoration-none d-block py-1" href="/moderator/users">Flag Users</a></li>
+  </ul>
+  <% if (currentUser && currentUser.role === 'admin') { %>
+    <h6 class="text-uppercase text-muted small fw-bold">Admin</h6>
+    <ul class="list-unstyled mb-0">
+      <li><a class="text-decoration-none d-block py-1" href="/admin">Overview</a></li>
+      <li><a class="text-decoration-none d-block py-1" href="/admin/users">Users</a></li>
+      <li><a class="text-decoration-none d-block py-1" href="/admin/listings">All Listings</a></li>
+      <li><a class="text-decoration-none d-block py-1" href="/admin/stats">Marketplace Stats</a></li>
+    </ul>
+  <% } %>
+</aside>

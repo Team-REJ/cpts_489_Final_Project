@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><%- include('partials/head') %></head>
+<body>
+<%- include('partials/navbar') %>
+
+<main class="container py-5">
+  <%- include('partials/alerts') %>
+
+  <div class="py-5 text-center">
+    <h1 class="display-5 fw-bold text-crimson">CougarMarket</h1>
+    <p class="lead text-muted">A campus marketplace for WSU students. Buy, sell, and trade with other Cougs.</p>
+    <div class="mt-4 d-flex gap-2 justify-content-center">
+      <a href="/listings" class="btn btn-crimson">Browse Listings</a>
+      <% if (!currentUser) { %>
+        <a href="/register" class="btn btn-outline-crimson">Sign up with your WSU email</a>
+      <% } else { %>
+        <a href="/listings/new" class="btn btn-outline-crimson">Post a Listing</a>
+      <% } %>
+    </div>
+  </div>
+</main>
+
+<%- include('partials/footer') %>
+</body>
+</html>
