@@ -2,7 +2,7 @@ const Request = require('../models/request.model');
 const Message = require('../models/message.model');
 const Listing = require('../models/listing.model');
 const Notification = require('../models/notification.model');
-const { NOTIFICATION_TYPE, MESSAGE_TYPE } = require('../../config/constants');
+const { NOTIFICATION_TYPE, MESSAGE_TYPE, REQUEST_STATUS } = require('../../config/constants');
 
 function setFlash(req, type, message) {
   req.session.flash = { type, message };
@@ -146,6 +146,63 @@ exports.postAccept = (req, res, next) => {
 
     setFlash(req, 'success', 'Request accepted.');
     res.redirect('/requests/' + req.params.id);
+  } catch (err) {
+    next(err);
+  }
+};
+
+exports.postOffer = (req, res, next) => {
+  try {
+    const requestId = req.params.id;
+    const request = Request.findById(requestId);
+
+    if (!request) {
+      setFlash(req, 'error', 'Request not found.');
+      return res.redirect('/dashboard');
+    }
+
+    const isBuyer = request.buyer_id === req.session.userId;
+    const isSeller = request.seller_id === req.session.userId;
+    if (!isBuyer && !isSeller) {
+      setFlash(req, 'error', 'Unauthorized.');
+      return res.redirect('/dashboard');
+    }
+
+    if (request.status !== REQUEST_STATUS.PENDING && request.status !== REQUEST_STATUS.NEGOTIATING) {
+      setFlash(req, 'error', 'This thread is closed to new offers.');
+      return res.redirect('/requests/' + requestId);
+    }
+
+    const amount = parseFloat(req.body.amount);
+    if (!amount || isNaN(amount) || amount <= 0) {
+      setFlash(req, 'error', 'Enter a valid offer amount.');
+      return res.redirect('/requests/' + requestId);
+    }
+
+    const offeredBy = isBuyer ? 'buyer' : 'seller';
+    Request.updateOffer(requestId, amount, offeredBy);
+
+    if (request.status === REQUEST_STATUS.PENDING) {
+      Request.updateStatus(requestId, REQUEST_STATUS.NEGOTIATING);
+    }
+
+    Message.create({
+      request_id: requestId,
+      sender_id: req.session.userId,
+      body: `${offeredBy === 'buyer' ? 'Buyer' : 'Seller'} offered $${amount.toFixed(2)}.`,
+      message_type: MESSAGE_TYPE.OFFER
+    });
+
+    const recipientId = isBuyer ? request.seller_id : request.buyer_id;
+    Notification.create({
+      recipient_id: recipientId,
+      type: NOTIFICATION_TYPE.OFFER_MADE,
+      body: `New counter-offer of $${amount.toFixed(2)} on your request thread.`,
+      related_request_id: requestId
+    });
+
+    setFlash(req, 'success', 'Offer submitted.');
+    res.redirect('/requests/' + requestId);
   } catch (err) {
     next(err);
   }
