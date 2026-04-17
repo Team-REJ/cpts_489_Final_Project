@@ -4,6 +4,9 @@ const Message = require('../models/message.model');
 const Notification = require('../models/notification.model');
 const {
   LISTING_STATUS,
+  LISTING_TYPE,
+  LISTING_CATEGORY,
+  LISTING_CONDITION,
   REQUEST_STATUS,
   MESSAGE_TYPE,
   NOTIFICATION_TYPE,
@@ -11,6 +14,14 @@ const {
 
 function setFlash(req, type, message) {
   req.session.flash = { type, message };
+}
+
+function renderEditError(res, listing, values, message) {
+  return res.status(400).render('edit-listing', {
+    title: 'Edit Listing',
+    listing: { ...listing, ...values },
+    error: message,
+  });
 }
 
 exports.getAll = (req, res, next) => {
@@ -88,15 +99,52 @@ exports.postUpdate = (req, res, next) => {
       return res.redirect('/dashboard');
     }
 
-    const { title, description, category, condition, type, price, status } = req.body;
+    const { title, description, category, condition, type, price } = req.body;
+    const values = {
+      title: String(title || '').trim(),
+      description: String(description || '').trim(),
+      category: String(category || '').trim(),
+      condition: String(condition || '').trim(),
+      type: String(type || '').trim(),
+      price: String(price || '').trim(),
+      status: listing.status,
+    };
+
+    if (!values.title || !values.description || !values.category || !values.condition || !values.type) {
+      return renderEditError(res, listing, values, 'All required fields must be filled.');
+    }
+
+    if (!Object.values(LISTING_CATEGORY).includes(values.category)) {
+      return renderEditError(res, listing, values, 'Choose a valid category.');
+    }
+
+    if (!Object.values(LISTING_CONDITION).includes(values.condition)) {
+      return renderEditError(res, listing, values, 'Choose a valid condition.');
+    }
+
+    if (!Object.values(LISTING_TYPE).includes(values.type)) {
+      return renderEditError(res, listing, values, 'Choose a valid listing type.');
+    }
+
+    let parsedPrice = null;
+    if (values.type === LISTING_TYPE.SELL) {
+      if (!values.price) {
+        return renderEditError(res, listing, values, 'Asking price is required for For Sale listings.');
+      }
+      parsedPrice = Number(values.price);
+      if (!Number.isFinite(parsedPrice) || parsedPrice < 0) {
+        return renderEditError(res, listing, values, 'Enter a valid asking price.');
+      }
+    }
+
     Listing.update(req.params.id, {
-      title,
-      description,
-      category,
-      condition,
-      type,
-      price: price ? parseFloat(price) : null,
-      status: status || listing.status
+      title: values.title,
+      description: values.description,
+      category: values.category,
+      condition: values.condition,
+      type: values.type,
+      price: parsedPrice,
+      status: values.status
     });
 
     setFlash(req, 'success', 'Listing updated successfully.');
