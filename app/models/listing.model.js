@@ -65,6 +65,15 @@ class ListingModel {
   }
 
   /**
+   * Update only a listing's status
+   * @param {number} id
+   * @param {string} status
+   */
+  static updateStatus(id, status) {
+    return db.prepare('UPDATE listings SET status = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?').run(status, id);
+  }
+
+  /**
    * Update view count
    * @param {number} id 
    */
