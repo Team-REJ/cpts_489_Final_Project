@@ -93,12 +93,26 @@
         <% } %>
       </div>
 
+      <%
+        var isBuyer = currentUser.id === request.buyer_id;
+        var isSeller = currentUser.id === request.seller_id;
+        var myRole = isBuyer ? 'buyer' : (isSeller ? 'seller' : null);
+        var listingSold = listing && listing.status === 'completed';
+        var requestTerminated = request.status === 'rejected' || request.status === 'cancelled' || listingSold;
+        var stillNegotiating = !requestTerminated && (request.status === 'pending' || request.status === 'negotiating');
+        var threadOpen = !requestTerminated;
+        var otherPartyMadeLastOffer = request.offered_by && request.offered_by !== myRole;
+        var canCounterOffer = stillNegotiating && myRole && otherPartyMadeLastOffer;
+        var canAccept = stillNegotiating && (
+          (isSeller && (!request.offered_by || request.offered_by === 'buyer')) ||
+          (isBuyer && request.offered_by === 'seller')
+        );
+        var canReject = stillNegotiating && isSeller;
+        var canMarkSold = isSeller && request.status === 'accepted' && listing && listing.status === 'active';
+      %>
+
       <!-- Counter-offer form -->
-      <% var isBuyer = currentUser.id === request.buyer_id; %>
-      <% var isSeller = currentUser.id === request.seller_id; %>
-      <% var threadOpen = request.status === 'pending' || request.status === 'negotiating'; %>
-      <% var canOffer = threadOpen && (isBuyer || isSeller) && request.offered_by !== (isBuyer ? 'buyer' : 'seller'); %>
-      <% if (canOffer) { %>
+      <% if (canCounterOffer) { %>
         <div class="form-section mb-3">
           <h6 class="fw-bold mb-3"><i class="bi bi-currency-dollar text-crimson me-1"></i>Make a Counter-Offer</h6>
           <form action="/requests/<%= request.id %>/offer" method="POST">
@@ -117,36 +131,70 @@
         </div>
       <% } %>
 
-      <!-- Seller actions -->
-      <% if (currentUser.id === request.seller_id && (request.status === 'pending' || request.status === 'negotiating')) { %>
+      <!-- Action buttons -->
+      <% if (canAccept || canReject) { %>
         <div class="form-section mb-3">
           <h6 class="fw-bold mb-3"><i class="bi bi-lightning-fill text-crimson me-1"></i>Actions</h6>
           <div class="d-grid gap-2">
-            <form action="/requests/<%= request.id %>/accept" method="POST">
-              <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
-              <button type="submit" class="btn btn-crimson btn-sm w-100" onclick="return confirm('Accept this request? The listing will be marked as completed.')">
-                <i class="bi bi-check-circle me-1"></i>Accept Request
-              </button>
-            </form>
-            <form action="/requests/<%= request.id %>/reject" method="POST">
-              <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
-              <button type="submit" class="btn btn-outline-danger btn-sm w-100" onclick="return confirm('Reject this request?')">
-                <i class="bi bi-x-circle me-1"></i>Reject Request
-              </button>
-            </form>
+            <% if (canAccept) { %>
+              <form action="/requests/<%= request.id %>/accept" method="POST">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                <button type="submit" class="btn btn-crimson btn-sm w-100" onclick="return confirm('Accept this offer? The conversation stays open so you can coordinate pickup.')">
+                  <i class="bi bi-check-circle me-1"></i>Accept Offer
+                </button>
+              </form>
+            <% } %>
+            <% if (canReject) { %>
+              <form action="/requests/<%= request.id %>/reject" method="POST">
+                <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                <button type="submit" class="btn btn-outline-danger btn-sm w-100" onclick="return confirm('Reject this request? This closes the thread.')">
+                  <i class="bi bi-x-circle me-1"></i>Reject Request
+                </button>
+              </form>
+            <% } %>
           </div>
         </div>
       <% } %>
 
-      <% if (request.status === 'accepted') { %>
+      <!-- Mark as sold (seller only, after acceptance) -->
+      <% if (canMarkSold) { %>
+        <div class="form-section mb-3">
+          <h6 class="fw-bold mb-3"><i class="bi bi-bag-check-fill text-crimson me-1"></i>Finalize Exchange</h6>
+          <form action="/listings/<%= listing.id %>/sold" method="POST">
+            <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+            <button type="submit" class="btn btn-success btn-sm w-100" onclick="return confirm('Mark this listing as sold? This closes the listing and any other open requests on it.')">
+              <i class="bi bi-check2-square me-1"></i>Mark Listing as Sold
+            </button>
+            <div class="form-text mt-1 small">
+              <i class="bi bi-info-circle me-1"></i>Only click once you have handed off the item.
+            </div>
+          </form>
+        </div>
+      <% } %>
+
+      <!-- Status banners -->
+      <% if (listingSold) { %>
+        <div class="alert alert-secondary small mb-3">
+          <i class="bi bi-bag-check-fill me-1"></i>
+          The listing has been <strong>marked as sold</strong>. This thread is now closed.
+        </div>
+      <% } else if (request.status === 'accepted') { %>
         <div class="alert alert-success small mb-3">
           <i class="bi bi-check-circle-fill me-1"></i>
-          This request has been <strong>accepted</strong>. The listing is now marked as completed.
+          Offer <strong>accepted</strong>. Coordinate pickup in the conversation.
+          <% if (isSeller) { %>
+            Hit <strong>Mark Listing as Sold</strong> once the hand-off is complete.
+          <% } %>
         </div>
       <% } else if (request.status === 'rejected') { %>
         <div class="alert alert-danger small mb-3">
           <i class="bi bi-x-circle-fill me-1"></i>
           This request was <strong>rejected</strong> by the seller.
+        </div>
+      <% } else if (request.status === 'cancelled') { %>
+        <div class="alert alert-warning small mb-3">
+          <i class="bi bi-slash-circle me-1"></i>
+          This request was <strong>cancelled</strong>.
         </div>
       <% } %>
 
@@ -204,7 +252,7 @@
         </div>
 
         <!-- Chat input bar -->
-        <% if (request.status === 'pending' || request.status === 'negotiating') { %>
+        <% if (threadOpen) { %>
           <div class="chat-input-bar">
             <form action="/requests/<%= request.id %>/message" method="POST" id="messageForm">
               <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
@@ -224,7 +272,11 @@
           <div class="chat-input-bar">
             <div class="alert alert-light small mb-0 text-center">
               <i class="bi bi-lock me-1"></i>
-              This thread is closed. The request has been <strong><%= request.status %></strong>.
+              <% if (listingSold) { %>
+                This thread is closed. The listing was marked as <strong>sold</strong>.
+              <% } else { %>
+                This thread is closed. The request has been <strong><%= request.status %></strong>.
+              <% } %>
             </div>
           </div>
         <% } %>
