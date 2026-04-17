@@ -36,7 +36,7 @@ class ModerationModel {
    */
   static findAll() {
     return db.prepare(`
-      SELECT m.*, a.first_name as actor_fname, a.last_name as actor_lname, 
+      SELECT m.*, a.first_name as actor_fname, a.last_name as actor_lname,
              t.first_name as target_fname, t.last_name as target_lname,
              l.title as listing_title
       FROM moderation_actions m
@@ -45,6 +45,23 @@ class ModerationModel {
       LEFT JOIN listings l ON m.target_listing_id = l.id
       ORDER BY m.created_at DESC
     `).all();
+  }
+
+  /**
+   * Most-recent moderation actions across all staff, with actor/target/listing names.
+   */
+  static findRecent(limit = 10) {
+    return db.prepare(`
+      SELECT m.*, a.first_name AS actor_fname, a.last_name AS actor_lname,
+             t.first_name AS target_fname, t.last_name AS target_lname,
+             l.title AS listing_title
+      FROM moderation_actions m
+      LEFT JOIN users a ON m.actor_id = a.id
+      LEFT JOIN users t ON m.target_user_id = t.id
+      LEFT JOIN listings l ON m.target_listing_id = l.id
+      ORDER BY m.created_at DESC
+      LIMIT ?
+    `).all(limit);
   }
 
   /**

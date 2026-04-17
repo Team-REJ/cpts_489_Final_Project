@@ -7,6 +7,7 @@ const { requireStaff } = require('../../../middleware/roles');
 router.use(requireAuth, requireStaff);
 
 router.get('/',                      moderatorController.getDashboard);
+router.get('/activity',              moderatorController.getActivity);
 router.get('/listings',              moderatorController.getListings);
 router.get('/users',                 moderatorController.getUsers);
 router.post('/listings/:id/approve', moderatorController.postApproveListing);

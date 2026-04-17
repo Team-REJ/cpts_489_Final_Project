@@ -1,5 +1,6 @@
 const Moderation = require('../models/moderation.model');
 const Listing = require('../models/listing.model');
+const Request = require('../models/request.model');
 const User = require('../models/user.model');
 const Notification = require('../models/notification.model');
 const {
@@ -105,6 +106,28 @@ exports.postRejectListing = (req, res, next) => {
 
     setFlash(req, 'success', 'Listing rejected and owner notified.');
     res.redirect('/moderator');
+  } catch (err) {
+    next(err);
+  }
+};
+
+/**
+ * Platform-wide activity feed for moderator oversight.
+ * Shows recent listings, requests, and moderation actions across all users.
+ * GET /moderator/activity
+ */
+exports.getActivity = (req, res, next) => {
+  try {
+    const recentListings = Listing.findRecent(15);
+    const recentRequests = Request.findRecent(15);
+    const recentActions = Moderation.findRecent(15);
+
+    res.render('moderator-activity', {
+      title: 'Activity Feed',
+      recentListings,
+      recentRequests,
+      recentActions,
+    });
   } catch (err) {
     next(err);
   }

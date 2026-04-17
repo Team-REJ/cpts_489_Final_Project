@@ -81,6 +81,21 @@ class RequestModel {
   }
 
   /**
+   * Most-recently-created requests across the platform, joined with listing and buyer.
+   */
+  static findRecent(limit = 10) {
+    return db.prepare(`
+      SELECT r.*, l.title AS listing_title,
+             b.first_name AS buyer_first_name, b.last_name AS buyer_last_name
+      FROM requests r
+      LEFT JOIN listings l ON r.listing_id = l.id
+      LEFT JOIN users b ON r.buyer_id = b.id
+      ORDER BY r.created_at DESC
+      LIMIT ?
+    `).all(limit);
+  }
+
+  /**
    * Find requests on a listing that are still open (pending, negotiating, or accepted).
    * Optionally excludes one request id (e.g., the one just accepted).
    */

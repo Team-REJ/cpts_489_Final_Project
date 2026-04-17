@@ -101,8 +101,21 @@ class ListingModel {
   }
 
   /**
+   * Most-recently-created listings across all statuses, joined with owner name.
+   */
+  static findRecent(limit = 10) {
+    return db.prepare(`
+      SELECT l.*, u.first_name AS owner_first_name, u.last_name AS owner_last_name
+      FROM listings l
+      LEFT JOIN users u ON l.owner_id = u.id
+      ORDER BY l.created_at DESC
+      LIMIT ?
+    `).all(limit);
+  }
+
+  /**
    * Search listings by title or description
-   * @param {string} query 
+   * @param {string} query
    * @returns {Array} listings
    */
   static search(query) {
