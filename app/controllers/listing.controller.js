@@ -34,8 +34,7 @@ exports.postCreate = (req, res, next) => {
     const { title, description, category, condition, type, price } = req.body;
     
     if (!title || !description || !category || !condition || !type) {
-      setFlash(req, 'error', 'All required fields must be filled.');
-      return res.render('create-listing', { title: 'Create Listing', values: req.body });
+      return res.render('create-listing', { title: 'Create Listing', values: req.body, error: 'All required fields must be filled.' });
     }
 
     const result = Listing.create({
