@@ -111,6 +111,70 @@ exports.postRejectListing = (req, res, next) => {
 };
 
 /**
+ * Dedicated pending-listings page (full table view).
+ * GET /moderator/listings
+ */
+exports.getListings = (req, res, next) => {
+  try {
+    const pendingListings = Listing.findByStatus(LISTING_STATUS.PENDING);
+    res.render('moderator-listings', {
+      title: 'Pending Listings',
+      pendingListings,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+/**
+ * Browse every user so moderators can flag/unflag.
+ * GET /moderator/users
+ */
+exports.getUsers = (req, res, next) => {
+  try {
+    const users = User.findAll();
+    res.render('moderator-users', {
+      title: 'User Moderation',
+      users,
+      userStatus: USER_STATUS,
+    });
+  } catch (err) {
+    next(err);
+  }
+};
+
+/**
+ * Clear a flagged status back to active.
+ * POST /moderator/users/:id/unflag
+ */
+exports.postUnflagUser = (req, res, next) => {
+  try {
+    const userId = parseInt(req.params.id, 10);
+    const target = User.findById(userId);
+    if (!target) return renderNotFound(res, 'User not found.');
+
+    if (target.status !== USER_STATUS.FLAGGED) {
+      setFlash(req, 'error', 'User is not currently flagged.');
+      return res.redirect('/moderator/users');
+    }
+
+    User.updateStatus(userId, USER_STATUS.ACTIVE);
+
+    Moderation.log({
+      actor_id: req.user.id,
+      action: MODERATION_ACTION.UNSUSPEND_USER,
+      target_user_id: userId,
+      reason: req.body.reason || 'Flag cleared after review.',
+    });
+
+    setFlash(req, 'success', 'User flag cleared.');
+    res.redirect('/moderator/users');
+  } catch (err) {
+    next(err);
+  }
+};
+
+/**
  * Flag a user account for follow-up
  * POST /moderator/users/:id/flag
  */
