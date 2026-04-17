@@ -38,7 +38,7 @@ class ListingModel {
    * @returns {Array} listings
    */
   static findByOwner(ownerId) {
-    return db.prepare('SELECT * FROM listings WHERE owner_id = ? ORDER BY created_at DESC').all();
+    return db.prepare('SELECT * FROM listings WHERE owner_id = ? ORDER BY created_at DESC').all(ownerId);
   }
 
   /**
