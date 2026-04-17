@@ -132,6 +132,7 @@ docker-compose.override.yml
 .vscode/
 !.vscode/extensions.json
 !.vscode/settings.json
+.claude/
 *.swp
 *.swo
 *.swn
