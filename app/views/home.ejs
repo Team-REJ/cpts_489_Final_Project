@@ -4,22 +4,182 @@
 <body>
 <%- include('partials/navbar') %>
 
-<main class="container py-5">
-  <%- include('partials/alerts') %>
+<%- include('partials/alerts') %>
 
-  <div class="py-5 text-center">
-    <h1 class="display-5 fw-bold text-crimson">CougarMarket</h1>
-    <p class="lead text-muted">A campus marketplace for WSU students. Buy, sell, and trade with other Cougs.</p>
-    <div class="mt-4 d-flex gap-2 justify-content-center">
-      <a href="/listings" class="btn btn-crimson">Browse Listings</a>
-      <% if (!currentUser) { %>
-        <a href="/register" class="btn btn-outline-crimson">Sign up with your WSU email</a>
-      <% } else { %>
-        <a href="/listings/new" class="btn btn-outline-crimson">Post a Listing</a>
-      <% } %>
+<!-- Hero -->
+<section class="hero-section">
+  <div class="container">
+    <div class="row align-items-center g-5">
+      <div class="col-lg-7">
+        <h1 class="mb-3">The WSU Marketplace,<br />Built for Cougs.</h1>
+        <p class="lead mb-4">
+          Buy, sell, trade, or give away with students across the Pullman campus.
+          No shipping, no strangers — just Cougs trading with Cougs.
+        </p>
+        <div class="d-flex flex-wrap gap-2">
+          <a href="/listings" class="btn btn-crimson btn-lg px-4">
+            <i class="bi bi-search me-2"></i>Browse Listings
+          </a>
+          <% if (!currentUser) { %>
+            <a href="/register" class="btn btn-outline-light btn-lg px-4">
+              <i class="bi bi-mortarboard me-2"></i>Sign up with WSU email
+            </a>
+          <% } else { %>
+            <a href="/listings/new" class="btn btn-outline-light btn-lg px-4">
+              <i class="bi bi-plus-circle me-2"></i>Post a Listing
+            </a>
+          <% } %>
+        </div>
+      </div>
+      <div class="col-lg-5 text-center d-none d-lg-block">
+        <i class="bi bi-shop" style="font-size:11rem;color:rgba(255,255,255,0.12);"></i>
+      </div>
     </div>
   </div>
-</main>
+</section>
+
+<!-- Stats strip -->
+<section class="py-5" style="background:#f9fafb;">
+  <div class="container">
+    <div class="row g-4 text-center">
+      <div class="col-md-4">
+        <div class="display-4 fw-bold text-crimson"><%= counts.active_listings %></div>
+        <div class="text-muted small text-uppercase fw-semibold" style="letter-spacing:0.5px;">
+          Items available right now
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="display-4 fw-bold text-crimson"><%= counts.total_users %></div>
+        <div class="text-muted small text-uppercase fw-semibold" style="letter-spacing:0.5px;">
+          Cougs on the platform
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="display-4 fw-bold text-crimson"><%= counts.completed_exchanges %></div>
+        <div class="text-muted small text-uppercase fw-semibold" style="letter-spacing:0.5px;">
+          Completed exchanges
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- How it works -->
+<section class="py-5">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold mb-2">How CougarMarket Works</h2>
+      <p class="text-muted mb-0">Three steps from sign-up to done deal.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="step-card">
+          <div class="step-circle">1</div>
+          <h5 class="fw-bold mb-2">Sign up with WSU email</h5>
+          <p class="text-muted small mb-0">
+            We verify your <code>@wsu.edu</code> domain, so every listing and offer comes from a real Coug.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="step-card">
+          <div class="step-circle">2</div>
+          <h5 class="fw-bold mb-2">Post, browse, or message</h5>
+          <p class="text-muted small mb-0">
+            List what you're selling, trading, or giving away in under a minute.
+            Moderators review every post before it goes live.
+          </p>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="step-card">
+          <div class="step-circle">3</div>
+          <h5 class="fw-bold mb-2">Meet safely on campus</h5>
+          <p class="text-muted small mb-0">
+            Negotiate inside the built-in message thread, agree on an offer,
+            and hand off the item somewhere public on campus.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- What makes it different -->
+<section class="py-5" style="background:#f9fafb;">
+  <div class="container">
+    <div class="text-center mb-5">
+      <h2 class="fw-bold mb-2">Why students use CougarMarket</h2>
+      <p class="text-muted mb-0">Built for a campus, not a continent.</p>
+    </div>
+    <div class="row g-4">
+      <div class="col-md-4">
+        <div class="d-flex align-items-start gap-3">
+          <i class="bi bi-shield-check fs-1 text-crimson"></i>
+          <div>
+            <h6 class="fw-bold mb-1">WSU-only</h6>
+            <p class="small text-muted mb-0">
+              Domain-enforced registration and moderator review keep spam and scams off the platform.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="d-flex align-items-start gap-3">
+          <i class="bi bi-currency-exchange fs-1 text-crimson"></i>
+          <div>
+            <h6 class="fw-bold mb-1">Sell, trade, or give away</h6>
+            <p class="small text-muted mb-0">
+              Not every exchange is about money. Post textbooks, dorm stuff,
+              or clothing as <strong>sell</strong>, <strong>trade</strong>, or <strong>free</strong>.
+            </p>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="d-flex align-items-start gap-3">
+          <i class="bi bi-chat-dots fs-1 text-crimson"></i>
+          <div>
+            <h6 class="fw-bold mb-1">Built-in negotiation</h6>
+            <p class="small text-muted mb-0">
+              Every request opens a private thread with counter-offers and messaging —
+              no phone numbers traded, no third-party apps needed.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- Final CTA -->
+<section class="py-5 text-center" style="background:var(--crimson);color:#fff;">
+  <div class="container">
+    <h2 class="fw-bold mb-2">
+      <% if (!currentUser) { %>
+        Ready to join the Coug marketplace?
+      <% } else { %>
+        Got something sitting in your dorm?
+      <% } %>
+    </h2>
+    <p class="mb-4" style="color:rgba(255,255,255,0.85);">
+      <% if (!currentUser) { %>
+        Sign up in under a minute with your WSU email.
+      <% } else { %>
+        Turn it into cash, a trade, or karma — list it now.
+      <% } %>
+    </p>
+    <% if (!currentUser) { %>
+      <a href="/register" class="btn btn-light btn-lg px-4 fw-semibold" style="color:var(--crimson);">
+        Create your account
+      </a>
+    <% } else { %>
+      <a href="/listings/new" class="btn btn-light btn-lg px-4 fw-semibold" style="color:var(--crimson);">
+        Post a Listing
+      </a>
+    <% } %>
+  </div>
+</section>
 
 <%- include('partials/footer') %>
 </body>

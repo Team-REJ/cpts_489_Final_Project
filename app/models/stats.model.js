@@ -69,6 +69,20 @@ class StatsModel {
   }
 
   /**
+   * Lean counts for the public homepage.
+   */
+  static getHomepageCounts() {
+    const activeListings = db.prepare("SELECT COUNT(*) as count FROM listings WHERE status = 'active'").get().count;
+    const totalUsers = db.prepare('SELECT COUNT(*) as count FROM users').get().count;
+    const completedExchanges = db.prepare("SELECT COUNT(*) as count FROM listings WHERE status = 'completed'").get().count;
+    return {
+      active_listings: activeListings,
+      total_users: totalUsers,
+      completed_exchanges: completedExchanges,
+    };
+  }
+
+  /**
    * Calculate total volume of accepted offers
    * @returns {number}
    */
