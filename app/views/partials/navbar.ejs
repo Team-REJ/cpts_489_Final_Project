@@ -6,19 +6,33 @@
     </button>
     <div class="collapse navbar-collapse" id="navMain">
       <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-        <li class="nav-item"><a class="nav-link" href="/">Home</a></li>
-        <li class="nav-item"><a class="nav-link" href="/listings">Browse Listings</a></li>
+        <li class="nav-item">
+          <a class="nav-link <%= navActive('/') ? 'active-page' : '' %>" href="/" <%- navActive('/') ? 'aria-current="page"' : '' %>>Home</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link <%= navActive('/listings') ? 'active-page' : '' %>" href="/listings" <%- navActive('/listings') ? 'aria-current="page"' : '' %>>Browse Listings</a>
+        </li>
         <% if (currentUser) { %>
-          <li class="nav-item"><a class="nav-link" href="/listings/new">Create Listing</a></li>
-          <li class="nav-item"><a class="nav-link" href="/dashboard">Dashboard</a></li>
+          <li class="nav-item">
+            <a class="nav-link <%= navActive('/listings/new') ? 'active-page' : '' %>" href="/listings/new" <%- navActive('/listings/new') ? 'aria-current="page"' : '' %>>Create Listing</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link <%= navActive('/dashboard') ? 'active-page' : '' %>" href="/dashboard" <%- navActive('/dashboard') ? 'aria-current="page"' : '' %>>Dashboard</a>
+          </li>
           <% if (currentUser.role === 'moderator' || currentUser.role === 'admin') { %>
-            <li class="nav-item"><a class="nav-link" href="/moderator">Moderator</a></li>
+            <li class="nav-item">
+              <a class="nav-link <%= navActive('/moderator') ? 'active-page' : '' %>" href="/moderator" <%- navActive('/moderator') ? 'aria-current="page"' : '' %>>Moderator</a>
+            </li>
           <% } %>
           <% if (currentUser.role === 'admin') { %>
-            <li class="nav-item"><a class="nav-link" href="/admin">Admin</a></li>
+            <li class="nav-item">
+              <a class="nav-link <%= navActive('/admin') ? 'active-page' : '' %>" href="/admin" <%- navActive('/admin') ? 'aria-current="page"' : '' %>>Admin</a>
+            </li>
           <% } %>
         <% } %>
-        <li class="nav-item"><a class="nav-link" href="/about">About</a></li>
+        <li class="nav-item">
+          <a class="nav-link <%= navActive('/about') ? 'active-page' : '' %>" href="/about" <%- navActive('/about') ? 'aria-current="page"' : '' %>>About</a>
+        </li>
       </ul>
       <div class="d-flex gap-2 align-items-center">
         <% if (currentUser) { %>

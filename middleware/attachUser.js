@@ -33,5 +33,15 @@ module.exports = function attachUser(req, res, next) {
     res.locals.csrfToken = req.csrfToken();
   }
 
+  const currentPath = req.path;
+  res.locals.navActive = (href) => {
+    if (href === '/') return currentPath === '/';
+    if (href === '/listings') {
+      return currentPath === '/listings'
+        || (currentPath.startsWith('/listings/') && currentPath !== '/listings/new');
+    }
+    return currentPath === href || currentPath.startsWith(href + '/');
+  };
+
   next();
 };
