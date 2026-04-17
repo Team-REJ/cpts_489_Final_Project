@@ -8,7 +8,7 @@ const Notification = require('../models/notification.model');
  */
 exports.getIndex = (req, res, next) => {
   try {
-    const userId = req.session.userId;
+    const userId = req.user.id;
 
     // 1. Fetch user's own listings
     const myListings = Listing.findByOwner(userId);

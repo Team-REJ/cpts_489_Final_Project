@@ -38,7 +38,7 @@ exports.postCreate = (req, res, next) => {
     }
 
     const result = Listing.create({
-      owner_id: req.session.userId,
+      owner_id: req.user.id,
       title,
       description,
       category,
@@ -60,7 +60,7 @@ exports.getEdit = (req, res, next) => {
     if (!listing) return res.status(404).render('error', { title: 'Not Found', status: 404, message: 'Listing not found.' });
     
     // Ownership Check
-    if (listing.owner_id !== req.session.userId) {
+    if (listing.owner_id !== req.user.id) {
       setFlash(req, 'error', 'You do not have permission to edit this listing.');
       return res.redirect('/listings/' + req.params.id);
     }
@@ -74,7 +74,7 @@ exports.getEdit = (req, res, next) => {
 exports.postUpdate = (req, res, next) => {
   try {
     const listing = Listing.findById(req.params.id);
-    if (!listing || listing.owner_id !== req.session.userId) {
+    if (!listing || listing.owner_id !== req.user.id) {
       setFlash(req, 'error', 'An error occurred during verification.');
       return res.redirect('/dashboard');
     }
@@ -100,7 +100,7 @@ exports.postUpdate = (req, res, next) => {
 exports.postDelete = (req, res, next) => {
   try {
     const listing = Listing.findById(req.params.id);
-    if (!listing || listing.owner_id !== req.session.userId) {
+    if (!listing || listing.owner_id !== req.user.id) {
       setFlash(req, 'error', 'An error occurred during verification.');
       return res.redirect('/dashboard');
     }

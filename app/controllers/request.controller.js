@@ -2,7 +2,7 @@ const Request = require('../models/request.model');
 const Message = require('../models/message.model');
 const Listing = require('../models/listing.model');
 const Notification = require('../models/notification.model');
-const { NOTIFICATION_TYPE, MESSAGE_TYPE, REQUEST_STATUS } = require('../../config/constants');
+const { NOTIFICATION_TYPE, MESSAGE_TYPE, REQUEST_STATUS, LISTING_STATUS } = require('../../config/constants');
 
 function setFlash(req, type, message) {
   req.session.flash = { type, message };
@@ -18,7 +18,7 @@ exports.getThread = (req, res, next) => {
     }
 
     // Authorization: User must be buyer or seller
-    if (request.buyer_id !== req.session.userId && request.seller_id !== req.session.userId) {
+    if (request.buyer_id !== req.user.id && request.seller_id !== req.user.id) {
       setFlash(req, 'error', 'You do not have permission to view this thread.');
       return res.redirect('/dashboard');
     }
@@ -47,14 +47,14 @@ exports.postCreate = (req, res, next) => {
       return res.redirect('/listings');
     }
 
-    if (listing.owner_id === req.session.userId) {
+    if (listing.owner_id === req.user.id) {
       setFlash(req, 'error', 'You cannot send a request for your own listing.');
       return res.redirect('/listings/' + listing_id);
     }
 
     const requestResult = Request.create({
       listing_id,
-      buyer_id: req.session.userId,
+      buyer_id: req.user.id,
       seller_id: listing.owner_id,
       current_offer: offer_amount ? parseFloat(offer_amount) : listing.price
     });
@@ -64,7 +64,7 @@ exports.postCreate = (req, res, next) => {
     // Create the initial message
     Message.create({
       request_id: requestId,
-      sender_id: req.session.userId,
+      sender_id: req.user.id,
       body: initial_message || 'I am interested in this item.',
       message_type: MESSAGE_TYPE.USER
     });
@@ -91,19 +91,19 @@ exports.postMessage = (req, res, next) => {
     const { body } = req.body;
     const request = Request.findById(requestId);
 
-    if (!request || (request.buyer_id !== req.session.userId && request.seller_id !== req.session.userId)) {
+    if (!request || (request.buyer_id !== req.user.id && request.seller_id !== req.user.id)) {
       setFlash(req, 'error', 'Unauthorized.');
       return res.redirect('/dashboard');
     }
 
     Message.create({
       request_id: requestId,
-      sender_id: req.session.userId,
+      sender_id: req.user.id,
       body
     });
 
     // Notify the other party
-    const recipientId = (req.session.userId === request.buyer_id) ? request.seller_id : request.buyer_id;
+    const recipientId = (req.user.id === request.buyer_id) ? request.seller_id : request.buyer_id;
     Notification.create({
       recipient_id: recipientId,
       type: NOTIFICATION_TYPE.MESSAGE_RECEIVED,
@@ -120,15 +120,14 @@ exports.postMessage = (req, res, next) => {
 exports.postAccept = (req, res, next) => {
   try {
     const request = Request.findById(req.params.id);
-    if (!request || request.seller_id !== req.session.userId) {
+    if (!request || request.seller_id !== req.user.id) {
       setFlash(req, 'error', 'Unauthorized.');
       return res.redirect('/dashboard');
     }
 
-    Request.updateStatus(req.params.id, 'accepted');
-    
-    // Also mark listing as completed if appropriate
-    Listing.updateStatus(request.listing_id, 'completed');
+    Request.updateStatus(req.params.id, REQUEST_STATUS.ACCEPTED);
+
+    Listing.updateStatus(request.listing_id, LISTING_STATUS.COMPLETED);
 
     Message.create({
       request_id: req.params.id,
@@ -161,8 +160,8 @@ exports.postOffer = (req, res, next) => {
       return res.redirect('/dashboard');
     }
 
-    const isBuyer = request.buyer_id === req.session.userId;
-    const isSeller = request.seller_id === req.session.userId;
+    const isBuyer = request.buyer_id === req.user.id;
+    const isSeller = request.seller_id === req.user.id;
     if (!isBuyer && !isSeller) {
       setFlash(req, 'error', 'Unauthorized.');
       return res.redirect('/dashboard');
@@ -188,7 +187,7 @@ exports.postOffer = (req, res, next) => {
 
     Message.create({
       request_id: requestId,
-      sender_id: req.session.userId,
+      sender_id: req.user.id,
       body: `${offeredBy === 'buyer' ? 'Buyer' : 'Seller'} offered $${amount.toFixed(2)}.`,
       message_type: MESSAGE_TYPE.OFFER
     });
@@ -211,12 +210,12 @@ exports.postOffer = (req, res, next) => {
 exports.postReject = (req, res, next) => {
   try {
     const request = Request.findById(req.params.id);
-    if (!request || request.seller_id !== req.session.userId) {
+    if (!request || request.seller_id !== req.user.id) {
       setFlash(req, 'error', 'Unauthorized.');
       return res.redirect('/dashboard');
     }
 
-    Request.updateStatus(req.params.id, 'rejected');
+    Request.updateStatus(req.params.id, REQUEST_STATUS.REJECTED);
 
     Message.create({
       request_id: req.params.id,

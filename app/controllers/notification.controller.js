@@ -19,7 +19,7 @@ exports.getPage = (req, res, next) => {
  */
 exports.getAll = (req, res, next) => {
   try {
-    const notifications = Notification.findByUser(req.session.userId);
+    const notifications = Notification.findByUser(req.user.id);
     res.json({ success: true, notifications });
   } catch (err) {
     res.status(500).json({ success: false, error: 'Database error' });
@@ -32,7 +32,7 @@ exports.getAll = (req, res, next) => {
  */
 exports.getUnreadCount = (req, res, next) => {
   try {
-    const count = Notification.getUnreadCount(req.session.userId);
+    const count = Notification.getUnreadCount(req.user.id);
     res.json({ success: true, count });
   } catch (err) {
     res.status(500).json({ success: false, error: 'Database error' });
@@ -65,7 +65,7 @@ exports.markRead = (req, res, next) => {
  */
 exports.markAllRead = (req, res, next) => {
   try {
-    Notification.markAllAsRead(req.session.userId);
+    Notification.markAllAsRead(req.user.id);
     res.json({ success: true });
   } catch (err) {
     res.status(500).json({ success: false, error: 'Database error' });
