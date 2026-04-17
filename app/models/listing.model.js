@@ -24,6 +24,25 @@ class ListingModel {
   }
 
   /**
+   * Get every listing regardless of status (admin use)
+   * @returns {Array} listings
+   */
+  static findAll() {
+    return db.prepare('SELECT * FROM listings ORDER BY created_at DESC').all();
+  }
+
+  /**
+   * Get listings by a specific status
+   * @param {string} status
+   * @returns {Array} listings
+   */
+  static findByStatus(status) {
+    return db
+      .prepare('SELECT * FROM listings WHERE status = ? ORDER BY created_at DESC')
+      .all(status);
+  }
+
+  /**
    * Find a listing by ID
    * @param {number} id 
    * @returns {Object|undefined} listing
