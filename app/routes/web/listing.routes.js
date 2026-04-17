@@ -9,6 +9,7 @@ router.post('/',              requireAuth, listingController.postCreate);
 router.get('/:id',            listingController.getDetails);
 router.get('/:id/edit',       requireAuth, listingController.getEdit);
 router.post('/:id',           requireAuth, listingController.postUpdate);
+router.post('/:id/sold',      requireAuth, listingController.postMarkSold);
 router.post('/:id/delete',    requireAuth, listingController.postDelete);
 
 module.exports = router;

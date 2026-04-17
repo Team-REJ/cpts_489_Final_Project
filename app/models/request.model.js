@@ -67,17 +67,34 @@ class RequestModel {
 
   /**
    * Update current offer
-   * @param {number} id 
-   * @param {number} amount 
+   * @param {number} id
+   * @param {number} amount
    * @param {string} offeredBy - 'buyer' or 'seller'
    */
   static updateOffer(id, amount, offeredBy) {
     const stmt = db.prepare(`
-      UPDATE requests 
+      UPDATE requests
       SET current_offer = ?, offered_by = ?, updated_at = CURRENT_TIMESTAMP
       WHERE id = ?
     `);
     return stmt.run(amount, offeredBy, id);
+  }
+
+  /**
+   * Find requests on a listing that are still open (pending, negotiating, or accepted).
+   * Optionally excludes one request id (e.g., the one just accepted).
+   */
+  static findOpenByListing(listingId, excludeRequestId = null) {
+    const sql = `
+      SELECT * FROM requests
+      WHERE listing_id = ?
+        AND status IN ('pending','negotiating','accepted')
+        ${excludeRequestId ? 'AND id != ?' : ''}
+      ORDER BY created_at ASC
+    `;
+    return excludeRequestId
+      ? db.prepare(sql).all(listingId, excludeRequestId)
+      : db.prepare(sql).all(listingId);
   }
 }
 

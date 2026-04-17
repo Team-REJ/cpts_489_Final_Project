@@ -64,6 +64,7 @@ const NOTIFICATION_TYPE = Object.freeze({
   LISTING_APPROVED: 'listing_approved',
   LISTING_REJECTED: 'listing_rejected',
   LISTING_REMOVED: 'listing_removed',
+  LISTING_SOLD: 'listing_sold',
   REQUEST_ACCEPTED: 'request_accepted',
   REQUEST_REJECTED: 'request_rejected',
   ACCOUNT_FLAGGED: 'account_flagged',
