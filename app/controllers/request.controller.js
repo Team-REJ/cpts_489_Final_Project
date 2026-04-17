@@ -2,7 +2,7 @@ const Request = require('../models/request.model');
 const Message = require('../models/message.model');
 const Listing = require('../models/listing.model');
 const Notification = require('../models/notification.model');
-const { NOTIFICATION_TYPE, MESSAGE_TYPE, REQUEST_STATUS, LISTING_STATUS } = require('../../config/constants');
+const { NOTIFICATION_TYPE, MESSAGE_TYPE, REQUEST_STATUS } = require('../../config/constants');
 
 function setFlash(req, type, message) {
   req.session.flash = { type, message };
@@ -120,30 +120,51 @@ exports.postMessage = (req, res, next) => {
 exports.postAccept = (req, res, next) => {
   try {
     const request = Request.findById(req.params.id);
-    if (!request || request.seller_id !== req.user.id) {
+    const isBuyer = request && request.buyer_id === req.user.id;
+    const isSeller = request && request.seller_id === req.user.id;
+
+    if (!request || (!isBuyer && !isSeller)) {
       setFlash(req, 'error', 'Unauthorized.');
       return res.redirect('/dashboard');
     }
 
+    if (request.status !== REQUEST_STATUS.PENDING && request.status !== REQUEST_STATUS.NEGOTIATING) {
+      setFlash(req, 'error', 'This thread is no longer open to new actions.');
+      return res.redirect('/requests/' + req.params.id);
+    }
+
+    const myRole = isBuyer ? 'buyer' : 'seller';
+    if (!request.offered_by) {
+      if (!isSeller) {
+        setFlash(req, 'error', 'Only the seller can accept the initial request.');
+        return res.redirect('/requests/' + req.params.id);
+      }
+    } else if (request.offered_by === myRole) {
+      setFlash(req, 'error', 'You cannot accept your own offer. Wait for the other party to respond.');
+      return res.redirect('/requests/' + req.params.id);
+    }
+
     Request.updateStatus(req.params.id, REQUEST_STATUS.ACCEPTED);
 
-    Listing.updateStatus(request.listing_id, LISTING_STATUS.COMPLETED);
-
+    const amount = request.current_offer;
+    const amountText = amount ? `Offer of $${amount.toFixed(2)} accepted.` : 'Offer accepted.';
     Message.create({
       request_id: req.params.id,
       sender_id: null,
-      body: 'Request has been accepted. The item is now marked as sold.',
+      body: `${amountText} Coordinate pickup below.`,
       message_type: MESSAGE_TYPE.SYSTEM
     });
 
+    const recipientId = isBuyer ? request.seller_id : request.buyer_id;
+    const acceptorLabel = isBuyer ? 'buyer' : 'seller';
     Notification.create({
-      recipient_id: request.buyer_id,
+      recipient_id: recipientId,
       type: NOTIFICATION_TYPE.REQUEST_ACCEPTED,
-      body: 'Your purchase request was accepted!',
+      body: `The ${acceptorLabel} accepted the offer. Coordinate pickup in the thread.`,
       related_request_id: req.params.id
     });
 
-    setFlash(req, 'success', 'Request accepted.');
+    setFlash(req, 'success', 'Offer accepted. Keep coordinating pickup in the thread.');
     res.redirect('/requests/' + req.params.id);
   } catch (err) {
     next(err);
