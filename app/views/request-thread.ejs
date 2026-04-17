@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><%- include('partials/head') %></head>
+<body>
+<%- include('partials/navbar') %>
+
+<!-- Page header -->
+<div class="page-header">
+  <div class="container">
+    <nav aria-label="breadcrumb" class="mb-2">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+        <li class="breadcrumb-item active">Request Thread</li>
+      </ol>
+    </nav>
+    <h1 class="h3 fw-bold mb-0">Purchase Request Thread</h1>
+    <p class="text-muted small mb-0">Negotiate, message, and finalize your exchange here.</p>
+  </div>
+</div>
+
+<div class="container py-4">
+  <%- include('partials/alerts') %>
+  <div class="row g-4">
+
+    <!-- Left column: listing & request info -->
+    <div class="col-lg-4">
+
+      <!-- Listing card -->
+      <div class="form-section mb-3">
+        <h6 class="fw-bold mb-3"><i class="bi bi-tag-fill text-crimson me-1"></i>Listing</h6>
+        <% if (listing) { %>
+          <div class="d-flex align-items-center gap-3 mb-3">
+            <i class="bi bi-tag" style="font-size:3rem;color:#aaa;"></i>
+            <div>
+              <div class="fw-semibold"><%= listing.title %></div>
+              <% if (listing.type === 'sell' && listing.price) { %>
+                <div class="text-crimson fw-bold">$<%= listing.price.toFixed(2) %> asking</div>
+              <% } else if (listing.type === 'free') { %>
+                <div class="fw-bold" style="color:#16a34a;">Free</div>
+              <% } else { %>
+                <div class="text-primary fw-bold">Trade</div>
+              <% } %>
+              <div class="small text-muted"><%= listing.category.replace('_', ' ') %> · <%= listing.condition.replace('_', ' ') %></div>
+            </div>
+          </div>
+          <a href="/listings/<%= listing.id %>" class="btn btn-outline-secondary btn-sm w-100">
+            <i class="bi bi-eye me-1"></i>View Full Listing
+          </a>
+        <% } else { %>
+          <p class="text-muted small">Listing data unavailable.</p>
+        <% } %>
+      </div>
+
+      <!-- Request status -->
+      <div class="form-section mb-3">
+        <h6 class="fw-bold mb-3"><i class="bi bi-info-circle-fill text-crimson me-1"></i>Request Details</h6>
+        <div class="mb-2">
+          <div class="small text-muted">Status</div>
+          <span class="status-badge badge-<%= request.status %>"><%= request.status %></span>
+        </div>
+        <div class="mb-2">
+          <div class="small text-muted">Buyer</div>
+          <div class="d-flex align-items-center gap-2 mt-1">
+            <div class="seller-avatar" style="width:28px;height:28px;font-size:0.8rem;">B</div>
+            <span class="small fw-semibold">
+              User #<%= request.buyer_id %>
+              <% if (currentUser.id === request.buyer_id) { %>(You)<% } %>
+            </span>
+          </div>
+        </div>
+        <div class="mb-2">
+          <div class="small text-muted">Seller</div>
+          <div class="d-flex align-items-center gap-2 mt-1">
+            <div class="seller-avatar" style="width:28px;height:28px;font-size:0.8rem;">S</div>
+            <span class="small fw-semibold">
+              User #<%= request.seller_id %>
+              <% if (currentUser.id === request.seller_id) { %>(You)<% } %>
+            </span>
+          </div>
+        </div>
+        <div class="mb-2">
+          <div class="small text-muted">Opened</div>
+          <div class="small"><%= new Date(request.created_at).toLocaleDateString('en-US', { month: 'long', day: 'numeric', year: 'numeric' }) %></div>
+        </div>
+        <% if (request.current_offer) { %>
+          <hr />
+          <div class="p-2 rounded" style="background:var(--crimson-bg);border:1px solid #fad0d8;">
+            <div class="small text-muted mb-1">Current Offer</div>
+            <div class="fs-5 fw-bold text-crimson">$<%= request.current_offer.toFixed(2) %></div>
+            <div class="small text-muted">Offered by <%= request.offered_by %></div>
+          </div>
+        <% } %>
+      </div>
+
+      <!-- Seller actions -->
+      <% if (currentUser.id === request.seller_id && (request.status === 'pending' || request.status === 'negotiating')) { %>
+        <div class="form-section mb-3">
+          <h6 class="fw-bold mb-3"><i class="bi bi-lightning-fill text-crimson me-1"></i>Actions</h6>
+          <div class="d-grid gap-2">
+            <form action="/requests/<%= request.id %>/accept" method="POST">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+              <button type="submit" class="btn btn-crimson btn-sm w-100" onclick="return confirm('Accept this request? The listing will be marked as completed.')">
+                <i class="bi bi-check-circle me-1"></i>Accept Request
+              </button>
+            </form>
+            <form action="/requests/<%= request.id %>/reject" method="POST">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+              <button type="submit" class="btn btn-outline-danger btn-sm w-100" onclick="return confirm('Reject this request?')">
+                <i class="bi bi-x-circle me-1"></i>Reject Request
+              </button>
+            </form>
+          </div>
+        </div>
+      <% } %>
+
+      <% if (request.status === 'accepted') { %>
+        <div class="alert alert-success small mb-3">
+          <i class="bi bi-check-circle-fill me-1"></i>
+          This request has been <strong>accepted</strong>. The listing is now marked as completed.
+        </div>
+      <% } else if (request.status === 'rejected') { %>
+        <div class="alert alert-danger small mb-3">
+          <i class="bi bi-x-circle-fill me-1"></i>
+          This request was <strong>rejected</strong> by the seller.
+        </div>
+      <% } %>
+
+    </div>
+
+    <!-- Right column: chat -->
+    <div class="col-lg-8">
+      <div class="form-section h-100 d-flex flex-column">
+        <div class="d-flex justify-content-between align-items-center mb-3">
+          <h5 class="fw-bold mb-0">
+            <i class="bi bi-chat-dots-fill text-crimson me-2"></i>Conversation
+          </h5>
+          <span class="small text-muted"><%= messages.length %> message<%= messages.length !== 1 ? 's' : '' %></span>
+        </div>
+
+        <!-- Chat window -->
+        <div class="chat-window flex-fill mb-3" id="chatWindow">
+
+          <% if (messages.length === 0) { %>
+            <div class="text-center my-3">
+              <span class="badge bg-light border text-muted small px-3 py-1">
+                No messages yet. Start the conversation below.
+              </span>
+            </div>
+          <% } %>
+
+          <% messages.forEach(function(msg) { %>
+            <% if (msg.message_type === 'system') { %>
+              <!-- System message -->
+              <div class="text-center my-1">
+                <span class="badge bg-light border text-muted small px-3 py-1">
+                  <%= msg.body %>
+                  · <%= new Date(msg.created_at).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }) %>
+                </span>
+              </div>
+            <% } else if (msg.sender_id === currentUser.id) { %>
+              <!-- Sent message -->
+              <div class="chat-bubble sent">
+                <div class="bubble-inner"><%= msg.body %></div>
+                <div class="bubble-meta">
+                  You &nbsp;·&nbsp; <%= new Date(msg.created_at).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }) %>
+                </div>
+              </div>
+            <% } else { %>
+              <!-- Received message -->
+              <div class="chat-bubble received">
+                <div class="bubble-inner"><%= msg.body %></div>
+                <div class="bubble-meta">
+                  <%= msg.first_name || 'User' %> &nbsp;·&nbsp; <%= new Date(msg.created_at).toLocaleTimeString('en-US', { hour: 'numeric', minute: '2-digit' }) %>
+                </div>
+              </div>
+            <% } %>
+          <% }); %>
+
+        </div>
+
+        <!-- Chat input bar -->
+        <% if (request.status === 'pending' || request.status === 'negotiating') { %>
+          <div class="chat-input-bar">
+            <form action="/requests/<%= request.id %>/message" method="POST" id="messageForm">
+              <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+              <div class="input-group">
+                <textarea class="form-control" name="body" rows="2" placeholder="Type a message…" required minlength="1"></textarea>
+                <button type="submit" class="btn btn-crimson px-3">
+                  <i class="bi bi-send-fill"></i>
+                </button>
+              </div>
+            </form>
+            <div class="form-text mt-1">
+              <i class="bi bi-shield-check text-success me-1"></i>
+              Messages are only visible to you, the other party, and CougarMarket moderators.
+            </div>
+          </div>
+        <% } else { %>
+          <div class="chat-input-bar">
+            <div class="alert alert-light small mb-0 text-center">
+              <i class="bi bi-lock me-1"></i>
+              This thread is closed. The request has been <strong><%= request.status %></strong>.
+            </div>
+          </div>
+        <% } %>
+
+      </div>
+    </div>
+
+  </div><!-- /row -->
+</div><!-- /container -->
+
+<%- include('partials/footer') %>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  // Auto-scroll chat to bottom
+  (function() {
+    var chat = document.getElementById('chatWindow');
+    if (chat) chat.scrollTop = chat.scrollHeight;
+  })();
+</script>
+</body>
+</html>
