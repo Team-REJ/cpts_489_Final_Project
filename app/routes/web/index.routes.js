@@ -6,11 +6,7 @@ router.get('/', (req, res) => {
 });
 
 router.get('/about', (req, res) => {
-  res.status(501).render('error', {
-    title: 'Not Implemented',
-    status: 501,
-    message: 'Not implemented yet \u2014 about page',
-  });
+  res.render('about', { title: 'About' });
 });
 
 module.exports = router;
