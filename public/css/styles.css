@@ -570,3 +570,109 @@ footer.site-footer h6          { color: #e5e7eb; }
   font-weight: bold;
   margin-right: 4px;
 }
+
+/* ───────────────────────────────────────
+   Notification Badge (navbar)
+   ─────────────────────────────────────── */
+#navBellLink {
+  font-size: 1.15rem;
+  transition: opacity 0.15s;
+}
+#navBellLink:hover { opacity: 0.8; }
+
+/* ───────────────────────────────────────
+   List-group notification items
+   ─────────────────────────────────────── */
+.notification-item {
+  transition: background 0.15s;
+  cursor: pointer;
+}
+.notification-item:hover {
+  background: var(--crimson-bg) !important;
+}
+
+/* ───────────────────────────────────────
+   Responsive — Large screens (≥1280px)
+   ─────────────────────────────────────── */
+@media (min-width: 1280px) {
+  .hero-section h1 { font-size: 3.2rem; }
+  .chat-window { height: 500px; }
+}
+
+/* ───────────────────────────────────────
+   Responsive — Tablet (≤768px)
+   ─────────────────────────────────────── */
+@media (max-width: 768px) {
+  .hero-section {
+    min-height: 400px;
+    padding: 48px 0;
+  }
+  .hero-section h1 { font-size: 2rem; }
+  .hero-section .lead { font-size: 1rem; }
+
+  .stat-card .stat-number { font-size: 1.5rem; }
+  .stat-card { padding: 1rem 1.2rem; }
+
+  .form-section { padding: 1.25rem 1.5rem; }
+  .img-placeholder-lg { height: 240px; }
+
+  .chat-window { height: 320px; }
+
+  .page-header { padding: 1rem 0; }
+
+  .listing-card .card-img-placeholder { height: 140px; }
+
+  .user-avatar-lg {
+    width: 48px;
+    height: 48px;
+    font-size: 1.2rem;
+  }
+
+  .category-card { padding: 1rem 0.75rem; }
+  .category-card .cat-emoji { font-size: 1.8rem; }
+
+  /* Stack dashboard header */
+  .page-header .d-flex { flex-wrap: wrap; }
+  .page-header .ms-auto {
+    margin-left: 0 !important;
+    margin-top: 0.75rem;
+    width: 100%;
+  }
+}
+
+/* ───────────────────────────────────────
+   Responsive — Mobile (≤375px)
+   ─────────────────────────────────────── */
+@media (max-width: 480px) {
+  .hero-section {
+    min-height: 300px;
+    padding: 32px 0;
+  }
+  .hero-section h1 { font-size: 1.6rem; }
+
+  .stat-card .stat-number { font-size: 1.3rem; }
+  .stat-card .stat-label  { font-size: 0.7rem; }
+  .stat-card { padding: 0.75rem 1rem; border-radius: 10px; }
+
+  .form-section { padding: 1rem; border-radius: 10px; }
+
+  .listing-card { border-radius: 10px; }
+  .listing-card .card-img-placeholder { height: 120px; font-size: 2.5rem; }
+  .listing-card .card-body { padding: 0.75rem; }
+  .listing-card .price-sell,
+  .listing-card .price-free,
+  .listing-card .price-trade { font-size: 1rem; }
+  .listing-card .item-title { font-size: 0.85rem; }
+
+  .chat-window { height: 260px; padding: 0.75rem; }
+  .chat-bubble { max-width: 88%; }
+  .bubble-inner { font-size: 0.83rem; padding: 0.5rem 0.8rem; }
+
+  .img-placeholder-lg { height: 180px; font-size: 3.5rem; }
+
+  .nav-tabs .nav-link { font-size: 0.8rem; padding: 0.5rem 0.75rem; }
+
+  .table-section { font-size: 0.82rem; }
+
+  .seller-avatar { width: 36px; height: 36px; font-size: 1rem; }
+}

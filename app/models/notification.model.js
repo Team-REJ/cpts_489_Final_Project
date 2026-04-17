@@ -55,6 +55,15 @@ class NotificationModel {
   }
 
   /**
+   * Find a notification by ID
+   * @param {number} id
+   * @returns {Object|undefined}
+   */
+  static findById(id) {
+    return db.prepare('SELECT * FROM notifications WHERE id = ?').get(id);
+  }
+
+  /**
    * Delete a notification
    * @param {number} id 
    */

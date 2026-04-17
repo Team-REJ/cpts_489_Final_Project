@@ -1,15 +1,20 @@
 <aside class="p-3 border rounded bg-white">
   <h6 class="text-uppercase text-muted small fw-bold">My Account</h6>
   <ul class="list-unstyled mb-3">
-    <li><a class="text-decoration-none d-block py-1" href="/dashboard">Dashboard</a></li>
-    <li><a class="text-decoration-none d-block py-1" href="/listings/new">Create Listing</a></li>
-    <li><a class="text-decoration-none d-block py-1" href="/listings?mine=1">My Listings</a></li>
-    <li><a class="text-decoration-none d-block py-1" href="/listings">Browse Listings</a></li>
+    <li><a class="text-decoration-none d-block py-1" href="/dashboard"><i class="bi bi-speedometer2 me-2"></i>Dashboard</a></li>
+    <li><a class="text-decoration-none d-block py-1" href="/listings/new"><i class="bi bi-plus-circle me-2"></i>Create Listing</a></li>
+    <li><a class="text-decoration-none d-block py-1" href="/listings"><i class="bi bi-search me-2"></i>Browse Listings</a></li>
   </ul>
-  <h6 class="text-uppercase text-muted small fw-bold">Planned</h6>
+  <h6 class="text-uppercase text-muted small fw-bold">Activity</h6>
   <ul class="list-unstyled mb-0">
-    <li><a class="text-decoration-none d-block py-1 text-muted" href="#">Messages</a></li>
-    <li><a class="text-decoration-none d-block py-1 text-muted" href="#">Notifications</a></li>
-    <li><a class="text-decoration-none d-block py-1" href="/settings">Settings</a></li>
+    <li>
+      <a class="text-decoration-none d-block py-1" href="/notifications">
+        <i class="bi bi-bell me-2"></i>Notifications
+        <% if (typeof unreadCount !== 'undefined' && unreadCount > 0) { %>
+          <span class="badge bg-crimson rounded-pill ms-1"><%= unreadCount %></span>
+        <% } %>
+      </a>
+    </li>
+    <li><a class="text-decoration-none d-block py-1" href="/settings"><i class="bi bi-gear me-2"></i>Settings</a></li>
   </ul>
 </aside>

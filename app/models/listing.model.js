@@ -38,7 +38,7 @@ class ListingModel {
    * @returns {Array} listings
    */
   static findByOwner(ownerId) {
-    return db.prepare('SELECT * FROM listings WHERE owner_id = ? ORDER BY created_at DESC').all();
+    return db.prepare('SELECT * FROM listings WHERE owner_id = ? ORDER BY created_at DESC').all(ownerId);
   }
 
   /**
@@ -62,6 +62,15 @@ class ListingModel {
    */
   static delete(id) {
     return db.prepare('DELETE FROM listings WHERE id = ?').run(id);
+  }
+
+  /**
+   * Update only a listing's status
+   * @param {number} id
+   * @param {string} status
+   */
+  static updateStatus(id, status) {
+    return db.prepare('UPDATE listings SET status = ?, updated_at = CURRENT_TIMESTAMP WHERE id = ?').run(status, id);
   }
 
   /**

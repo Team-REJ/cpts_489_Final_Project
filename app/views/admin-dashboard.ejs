@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><%- include('partials/head') %></head>
+<body>
+<%- include('partials/navbar') %>
+
+<!-- Page header -->
+<div class="page-header">
+  <div class="container-fluid">
+    <div class="d-flex justify-content-between align-items-start">
+      <div>
+        <h1 class="h3 fw-bold mb-0"><i class="bi bi-shield-lock-fill me-2"></i>Admin Dashboard</h1>
+        <p class="text-muted small mb-0">Moderate listings, manage users, and monitor platform health.</p>
+      </div>
+      <span class="badge bg-warning text-dark px-3 py-2"><i class="bi bi-shield-fill me-1"></i>ADMIN</span>
+    </div>
+  </div>
+</div>
+
+<div class="container-fluid py-0">
+  <div class="row g-0" style="min-height:calc(100vh - 56px);">
+
+    <!-- Sidebar -->
+    <div class="col-lg-2 bg-white border-end py-4">
+      <div class="px-3 mb-3">
+        <div class="small text-uppercase text-muted fw-bold mb-2">Navigation</div>
+      </div>
+      <nav class="nav flex-column">
+        <a class="nav-link active d-flex align-items-center" href="/admin"
+           style="background:var(--crimson-bg);color:var(--crimson);padding:0.55rem 1.25rem;font-weight:600;font-size:0.9rem;">
+          <i class="bi bi-speedometer2 me-2"></i>Overview
+        </a>
+        <a class="nav-link d-flex align-items-center" href="/admin/users"
+           style="padding:0.55rem 1.25rem;color:#374151;font-size:0.9rem;">
+          <i class="bi bi-people me-2"></i>Users
+        </a>
+        <a class="nav-link d-flex align-items-center" href="/listings"
+           style="padding:0.55rem 1.25rem;color:#374151;font-size:0.9rem;">
+          <i class="bi bi-grid me-2"></i>All Listings
+        </a>
+        <hr class="mx-3 my-2" />
+        <a class="nav-link d-flex align-items-center" href="/"
+           style="padding:0.55rem 1.25rem;color:#374151;font-size:0.9rem;">
+          <i class="bi bi-arrow-left me-2"></i>Back to Site
+        </a>
+      </nav>
+    </div>
+
+    <!-- Main Content -->
+    <div class="col-lg-10 p-4" style="background:#f9fafb;">
+
+      <%- include('partials/alerts') %>
+
+      <!-- Stats -->
+      <!-- TODO: These need real data from Jaydon's admin controller -->
+      <div class="row g-3 mb-4">
+        <div class="col-6 col-lg-3">
+          <div class="stat-card">
+            <div class="d-flex justify-content-between">
+              <div>
+                <div class="stat-number text-crimson">—</div>
+                <div class="stat-label">Total Users</div>
+              </div>
+              <i class="bi bi-people stat-icon"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="stat-card">
+            <div class="d-flex justify-content-between">
+              <div>
+                <div class="stat-number" style="color:#16a34a;">—</div>
+                <div class="stat-label">Active Listings</div>
+              </div>
+              <i class="bi bi-check-circle stat-icon"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="stat-card">
+            <div class="d-flex justify-content-between">
+              <div>
+                <div class="stat-number text-warning">—</div>
+                <div class="stat-label">Pending Approval</div>
+              </div>
+              <i class="bi bi-hourglass-split stat-icon"></i>
+            </div>
+          </div>
+        </div>
+        <div class="col-6 col-lg-3">
+          <div class="stat-card">
+            <div class="d-flex justify-content-between">
+              <div>
+                <div class="stat-number text-primary">—</div>
+                <div class="stat-label">Total Requests</div>
+              </div>
+              <i class="bi bi-inbox stat-icon"></i>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Placeholder -->
+      <div class="alert alert-light border text-center py-5">
+        <i class="bi bi-hammer fs-1 text-muted"></i>
+        <h5 class="fw-bold mt-3">Admin Dashboard — Under Construction</h5>
+        <p class="text-muted mb-3">
+          This page is scaffolded and ready for data once the admin controller is implemented.
+        </p>
+        <div class="d-flex justify-content-center gap-2">
+          <a href="/admin/users" class="btn btn-outline-crimson btn-sm">Manage Users</a>
+          <a href="/moderator" class="btn btn-outline-secondary btn-sm">Moderator Panel</a>
+        </div>
+      </div>
+
+    </div><!-- /main content -->
+  </div><!-- /row -->
+</div><!-- /container-fluid -->
+
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

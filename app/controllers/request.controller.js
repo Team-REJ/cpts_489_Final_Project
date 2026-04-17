@@ -128,7 +128,7 @@ exports.postAccept = (req, res, next) => {
     Request.updateStatus(req.params.id, 'accepted');
     
     // Also mark listing as completed if appropriate
-    Listing.update(request.listing_id, { status: 'completed' });
+    Listing.updateStatus(request.listing_id, 'completed');
 
     Message.create({
       request_id: req.params.id,

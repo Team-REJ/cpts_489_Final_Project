@@ -32,6 +32,13 @@ exports.getUnreadCount = (req, res, next) => {
  */
 exports.markRead = (req, res, next) => {
   try {
+    const notification = Notification.findById(req.params.id);
+    if (!notification) {
+      return res.status(404).json({ success: false, error: 'Notification not found' });
+    }
+    if (notification.recipient_id !== req.user.id) {
+      return res.status(403).json({ success: false, error: 'Forbidden' });
+    }
     Notification.markAsRead(req.params.id);
     res.json({ success: true });
   } catch (err) {

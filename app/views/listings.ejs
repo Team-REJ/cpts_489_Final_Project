@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><%- include('partials/head') %></head>
+<body>
+<%- include('partials/navbar') %>
+
+<!-- Page header -->
+<div class="page-header">
+  <div class="container">
+    <nav aria-label="breadcrumb" class="mb-2">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item active">Browse Listings</li>
+      </ol>
+    </nav>
+    <h1 class="h3 fw-bold mb-0">Browse Listings</h1>
+    <p class="text-muted small mb-0">Items available from WSU students</p>
+  </div>
+</div>
+
+<div class="container py-4">
+  <div class="row g-4">
+
+    <!-- Sidebar filters -->
+    <div class="col-lg-3">
+      <div class="form-section mb-3 p-3">
+        <h6 class="fw-bold mb-3"><i class="bi bi-funnel-fill me-1 text-crimson"></i>Filter Results</h6>
+
+        <!-- Search -->
+        <div class="mb-3">
+          <label class="form-label">Search</label>
+          <div class="input-group input-group-sm">
+            <input type="text" class="form-control" id="searchInput" placeholder="Keywords…" value="" />
+            <button class="btn btn-crimson" type="button" id="searchBtn"><i class="bi bi-search"></i></button>
+          </div>
+        </div>
+
+        <!-- Category -->
+        <div class="mb-3">
+          <label class="form-label">Category</label>
+          <select class="form-select form-select-sm" id="filterCategory">
+            <option value="">All Categories</option>
+            <option value="textbooks">Textbooks</option>
+            <option value="electronics">Electronics</option>
+            <option value="furniture">Furniture</option>
+            <option value="clothing">Clothing</option>
+            <option value="sports">Sports</option>
+            <option value="dorm_essentials">Dorm Essentials</option>
+          </select>
+        </div>
+
+        <!-- Listing Type -->
+        <div class="mb-3">
+          <label class="form-label">Listing Type</label>
+          <div class="d-flex flex-column gap-1">
+            <div class="form-check">
+              <input class="form-check-input filter-type" type="checkbox" value="sell" id="typeSell" checked />
+              <label class="form-check-label small" for="typeSell">For Sale</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input filter-type" type="checkbox" value="trade" id="typeTrade" checked />
+              <label class="form-check-label small" for="typeTrade">Trade</label>
+            </div>
+            <div class="form-check">
+              <input class="form-check-input filter-type" type="checkbox" value="free" id="typeFree" checked />
+              <label class="form-check-label small" for="typeFree">Free</label>
+            </div>
+          </div>
+        </div>
+
+        <!-- Condition -->
+        <div class="mb-3">
+          <label class="form-label">Condition</label>
+          <select class="form-select form-select-sm" id="filterCondition">
+            <option value="">Any Condition</option>
+            <option value="new">New</option>
+            <option value="like_new">Like New</option>
+            <option value="good">Good</option>
+            <option value="fair">Fair</option>
+            <option value="poor">Poor</option>
+          </select>
+        </div>
+
+        <button class="btn btn-crimson btn-sm w-100" id="applyFilters">Apply Filters</button>
+        <button class="btn btn-outline-secondary btn-sm w-100 mt-2" id="clearFilters">Clear All</button>
+      </div>
+    </div>
+
+    <!-- Listing grid -->
+    <div class="col-lg-9">
+
+      <!-- Sort bar -->
+      <div class="d-flex justify-content-between align-items-center mb-3 flex-wrap gap-2">
+        <span class="text-muted small">Showing <strong><%= listings.length %></strong> listing<%= listings.length !== 1 ? 's' : '' %></span>
+        <div class="d-flex gap-2 align-items-center">
+          <span class="small text-muted">Sort by:</span>
+          <select class="form-select form-select-sm" style="width:auto;" id="sortSelect">
+            <option value="newest">Newest First</option>
+            <option value="price-asc">Price: Low to High</option>
+            <option value="price-desc">Price: High to Low</option>
+          </select>
+        </div>
+      </div>
+
+      <!-- Grid -->
+      <div class="row g-3" id="listingsGrid">
+        <% if (listings.length === 0) { %>
+          <div class="col-12 text-center py-5">
+            <i class="bi bi-inbox fs-1 text-muted"></i>
+            <p class="text-muted mt-2">No listings found.</p>
+            <% if (currentUser) { %>
+              <a href="/listings/new" class="btn btn-crimson">Post the first listing</a>
+            <% } %>
+          </div>
+        <% } else { %>
+          <% listings.forEach(function(listing) { %>
+            <div class="col-6 col-md-4 listing-item"
+                 data-category="<%= listing.category %>"
+                 data-type="<%= listing.type %>"
+                 data-condition="<%= listing.condition %>"
+                 data-price="<%= listing.price || 0 %>"
+                 data-created="<%= listing.created_at %>">
+              <a href="/listings/<%= listing.id %>" class="text-decoration-none text-dark">
+                <div class="listing-card">
+                  <div class="card-img-placeholder">
+                    <% if (listing.category === 'textbooks') { %>
+                      <i class="bi bi-book fs-1 text-muted"></i>
+                    <% } else if (listing.category === 'electronics') { %>
+                      <i class="bi bi-laptop fs-1 text-muted"></i>
+                    <% } else if (listing.category === 'furniture') { %>
+                      <i class="bi bi-person-workspace fs-1 text-muted"></i>
+                    <% } else if (listing.category === 'sports') { %>
+                      <i class="bi bi-bicycle fs-1 text-muted"></i>
+                    <% } else if (listing.category === 'clothing') { %>
+                      <i class="bi bi-bag fs-1 text-muted"></i>
+                    <% } else if (listing.category === 'dorm_essentials') { %>
+                      <i class="bi bi-house fs-1 text-muted"></i>
+                    <% } else { %>
+                      <i class="bi bi-box fs-1 text-muted"></i>
+                    <% } %>
+                  </div>
+                  <div class="card-body">
+                    <div class="d-flex justify-content-between mb-1">
+                      <% if (listing.type === 'sell') { %>
+                        <span class="price-sell">$<%= listing.price ? listing.price.toFixed(2) : '0.00' %></span>
+                      <% } else if (listing.type === 'free') { %>
+                        <span class="price-free">Free</span>
+                      <% } else { %>
+                        <span class="price-trade">Trade</span>
+                      <% } %>
+                      <span class="status-badge badge-<%= listing.status %>"><%= listing.status %></span>
+                    </div>
+                    <div class="item-title"><%= listing.title %></div>
+                    <div class="d-flex justify-content-between mt-2">
+                      <span class="status-badge type-<%= listing.type %>"><%= listing.type.toUpperCase() %></span>
+                    </div>
+                    <div class="mt-2">
+                      <span class="badge bg-light border text-muted small"><%= listing.condition.replace('_', ' ') %></span>
+                      <span class="badge bg-light border text-muted small ms-1"><%= listing.category.replace('_', ' ') %></span>
+                    </div>
+                  </div>
+                </div>
+              </a>
+            </div>
+          <% }); %>
+        <% } %>
+      </div>
+
+    </div><!-- /col-lg-9 -->
+  </div><!-- /row -->
+</div><!-- /container -->
+
+<%- include('partials/footer') %>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script src="/js/search.js"></script>
+</body>
+</html>
