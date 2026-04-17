@@ -52,13 +52,12 @@
       <%- include('partials/alerts') %>
 
       <!-- Stats -->
-      <!-- TODO: These need real data from Jaydon's admin controller -->
       <div class="row g-3 mb-4">
         <div class="col-6 col-lg-3">
           <div class="stat-card">
             <div class="d-flex justify-content-between">
               <div>
-                <div class="stat-number text-crimson">—</div>
+                <div class="stat-number text-crimson"><%= summary.total_users %></div>
                 <div class="stat-label">Total Users</div>
               </div>
               <i class="bi bi-people stat-icon"></i>
@@ -69,7 +68,7 @@
           <div class="stat-card">
             <div class="d-flex justify-content-between">
               <div>
-                <div class="stat-number" style="color:#16a34a;">—</div>
+                <div class="stat-number" style="color:#16a34a;"><%= summary.active_listings %></div>
                 <div class="stat-label">Active Listings</div>
               </div>
               <i class="bi bi-check-circle stat-icon"></i>
@@ -80,7 +79,7 @@
           <div class="stat-card">
             <div class="d-flex justify-content-between">
               <div>
-                <div class="stat-number text-warning">—</div>
+                <div class="stat-number text-warning"><%= pendingCount %></div>
                 <div class="stat-label">Pending Approval</div>
               </div>
               <i class="bi bi-hourglass-split stat-icon"></i>
@@ -91,7 +90,7 @@
           <div class="stat-card">
             <div class="d-flex justify-content-between">
               <div>
-                <div class="stat-number text-primary">—</div>
+                <div class="stat-number text-primary"><%= summary.total_requests %></div>
                 <div class="stat-label">Total Requests</div>
               </div>
               <i class="bi bi-inbox stat-icon"></i>
@@ -100,17 +99,128 @@
         </div>
       </div>
 
-      <!-- Placeholder -->
-      <div class="alert alert-light border text-center py-5">
-        <i class="bi bi-hammer fs-1 text-muted"></i>
-        <h5 class="fw-bold mt-3">Admin Dashboard — Under Construction</h5>
-        <p class="text-muted mb-3">
-          This page is scaffolded and ready for data once the admin controller is implemented.
-        </p>
-        <div class="d-flex justify-content-center gap-2">
-          <a href="/admin/users" class="btn btn-outline-crimson btn-sm">Manage Users</a>
-          <a href="/moderator" class="btn btn-outline-secondary btn-sm">Moderator Panel</a>
+      <!-- Distribution panels -->
+      <div class="row g-3 mb-4">
+        <div class="col-lg-4">
+          <div class="form-section h-100">
+            <h6 class="fw-bold mb-3"><i class="bi bi-pie-chart me-2 text-crimson"></i>Users by Role</h6>
+            <% if (userRoles.length === 0) { %>
+              <p class="small text-muted mb-0">No user data.</p>
+            <% } else { %>
+              <ul class="list-unstyled small mb-0">
+                <% userRoles.forEach(function(row) { %>
+                  <li class="d-flex justify-content-between py-1 border-bottom">
+                    <span class="text-capitalize"><%= row.role %></span>
+                    <span class="fw-semibold"><%= row.count %></span>
+                  </li>
+                <% }); %>
+              </ul>
+            <% } %>
+          </div>
         </div>
+        <div class="col-lg-4">
+          <div class="form-section h-100">
+            <h6 class="fw-bold mb-3"><i class="bi bi-bar-chart me-2 text-crimson"></i>Listings by Status</h6>
+            <% if (listingStatus.length === 0) { %>
+              <p class="small text-muted mb-0">No listing data.</p>
+            <% } else { %>
+              <ul class="list-unstyled small mb-0">
+                <% listingStatus.forEach(function(row) { %>
+                  <li class="d-flex justify-content-between py-1 border-bottom">
+                    <span class="text-capitalize"><%= row.status %></span>
+                    <span class="fw-semibold"><%= row.count %></span>
+                  </li>
+                <% }); %>
+              </ul>
+            <% } %>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="form-section h-100">
+            <h6 class="fw-bold mb-3"><i class="bi bi-tags me-2 text-crimson"></i>Listings by Category</h6>
+            <% if (listingCategory.length === 0) { %>
+              <p class="small text-muted mb-0">No category data.</p>
+            <% } else { %>
+              <ul class="list-unstyled small mb-0">
+                <% listingCategory.forEach(function(row) { %>
+                  <li class="d-flex justify-content-between py-1 border-bottom">
+                    <span><%= row.category.replace('_', ' ') %></span>
+                    <span class="fw-semibold"><%= row.count %></span>
+                  </li>
+                <% }); %>
+              </ul>
+            <% } %>
+          </div>
+        </div>
+      </div>
+
+      <!-- Request status + transaction volume -->
+      <div class="row g-3 mb-4">
+        <div class="col-lg-8">
+          <div class="form-section h-100">
+            <h6 class="fw-bold mb-3"><i class="bi bi-inbox me-2 text-crimson"></i>Requests by Status</h6>
+            <% if (requestStatus.length === 0) { %>
+              <p class="small text-muted mb-0">No request data yet.</p>
+            <% } else { %>
+              <div class="row g-2">
+                <% requestStatus.forEach(function(row) { %>
+                  <div class="col-6 col-md-4">
+                    <div class="border rounded p-2 text-center">
+                      <div class="fs-4 fw-bold"><%= row.count %></div>
+                      <div class="small text-muted text-capitalize"><%= row.status %></div>
+                    </div>
+                  </div>
+                <% }); %>
+              </div>
+            <% } %>
+          </div>
+        </div>
+        <div class="col-lg-4">
+          <div class="form-section h-100 text-center">
+            <h6 class="fw-bold mb-3"><i class="bi bi-cash-stack me-2 text-crimson"></i>Transaction Volume</h6>
+            <div class="fs-3 fw-bold text-crimson">$<%= transactionVolume.toFixed(2) %></div>
+            <div class="small text-muted">Total value of accepted requests</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Recent moderation activity -->
+      <div class="form-section mb-4">
+        <h6 class="fw-bold mb-3"><i class="bi bi-clock-history me-2 text-crimson"></i>Recent Moderation Activity</h6>
+        <% if (recentActions.length === 0) { %>
+          <p class="small text-muted mb-0">No moderation actions yet.</p>
+        <% } else { %>
+          <table class="table table-sm align-middle mb-0">
+            <thead>
+              <tr>
+                <th>Action</th>
+                <th>Actor</th>
+                <th>Target</th>
+                <th>Reason</th>
+                <th>When</th>
+              </tr>
+            </thead>
+            <tbody>
+              <% recentActions.forEach(function(a) { %>
+                <tr>
+                  <td><span class="badge bg-secondary text-capitalize"><%= a.action.replace(/_/g, ' ') %></span></td>
+                  <td class="small"><%= a.actor_fname ? a.actor_fname + ' ' + a.actor_lname : '—' %></td>
+                  <td class="small">
+                    <% if (a.listing_title) { %>
+                      Listing: <em><%= a.listing_title %></em>
+                    <% } else if (a.target_fname) { %>
+                      User: <%= a.target_fname %> <%= a.target_lname %>
+                    <% } else { %>
+                      —
+                    <% } %>
+                  </td>
+                  <td class="small text-muted"><%= a.reason || '—' %></td>
+                  <td class="small text-muted"><%= new Date(a.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' }) %></td>
+                </tr>
+              <% }); %>
+            </tbody>
+          </table>
+        <% } %>
       </div>
 
     </div><!-- /main content -->

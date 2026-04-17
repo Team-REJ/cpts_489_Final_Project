@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><%- include('partials/head') %></head>
+<body>
+<%- include('partials/navbar') %>
+
+<!-- Page header -->
+<div class="page-header">
+  <div class="container">
+    <div class="d-flex justify-content-between align-items-start">
+      <div>
+        <h1 class="h3 fw-bold mb-0"><i class="bi bi-grid me-2"></i>All Listings</h1>
+        <p class="text-muted small mb-0">Browse every listing across all statuses. Remove listings that violate policy.</p>
+      </div>
+      <span class="badge bg-warning text-dark px-3 py-2"><i class="bi bi-shield-fill me-1"></i>ADMIN</span>
+    </div>
+  </div>
+</div>
+
+<div class="container py-4">
+  <%- include('partials/alerts') %>
+
+  <div class="d-flex justify-content-between align-items-center mb-3">
+    <div class="small text-muted"><%= listings.length %> listing<%= listings.length === 1 ? '' : 's' %> total</div>
+    <input type="text" id="listingSearch" class="form-control form-control-sm" style="max-width: 280px;" placeholder="Search by title…" />
+  </div>
+
+  <% if (listings.length === 0) { %>
+    <div class="alert alert-light border text-center py-5">
+      <i class="bi bi-inbox fs-1 text-muted"></i>
+      <p class="text-muted mt-2 mb-0">No listings yet.</p>
+    </div>
+  <% } else { %>
+    <div class="table-section">
+      <table class="table table-hover align-middle mb-0" id="listingsTable">
+        <thead>
+          <tr>
+            <th>Title</th>
+            <th>Owner ID</th>
+            <th>Type</th>
+            <th>Category</th>
+            <th>Price</th>
+            <th>Status</th>
+            <th>Created</th>
+            <th>Actions</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% listings.forEach(function(l) { %>
+            <tr data-search="<%= l.title.toLowerCase() %>">
+              <td>
+                <a href="/listings/<%= l.id %>" class="fw-semibold small text-decoration-none"><%= l.title %></a>
+              </td>
+              <td class="small text-muted">#<%= l.owner_id %></td>
+              <td><span class="status-badge type-<%= l.type %>"><%= l.type.toUpperCase() %></span></td>
+              <td class="small text-muted text-capitalize"><%= l.category.replace('_', ' ') %></td>
+              <td class="small">
+                <% if (l.type === 'sell' && l.price) { %>
+                  $<%= l.price.toFixed(2) %>
+                <% } else if (l.type === 'free') { %>
+                  <span class="text-success">Free</span>
+                <% } else { %>
+                  <span class="text-primary">Trade</span>
+                <% } %>
+              </td>
+              <td>
+                <span class="badge
+                  <%= l.status === 'active' ? 'bg-success' :
+                      l.status === 'pending' ? 'bg-warning text-dark' :
+                      l.status === 'completed' ? 'bg-secondary' :
+                      l.status === 'rejected' ? 'bg-danger' :
+                      'bg-dark' %> text-uppercase">
+                  <%= l.status %>
+                </span>
+              </td>
+              <td class="small text-muted"><%= new Date(l.created_at).toLocaleDateString('en-US', { month: 'short', day: 'numeric' }) %></td>
+              <td>
+                <% if (l.status === 'removed') { %>
+                  <span class="small text-muted">Removed</span>
+                <% } else { %>
+                  <form action="/admin/listings/<%= l.id %>/remove" method="POST" class="d-inline">
+                    <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+                    <input type="hidden" name="reason" value="Removed by admin." />
+                    <button type="submit" class="btn btn-outline-danger btn-sm" onclick="return confirm('Remove this listing? The owner will be notified.')">
+                      <i class="bi bi-trash me-1"></i>Remove
+                    </button>
+                  </form>
+                <% } %>
+              </td>
+            </tr>
+          <% }); %>
+        </tbody>
+      </table>
+    </div>
+  <% } %>
+
+  <div class="mt-3">
+    <a href="/admin" class="btn btn-outline-secondary btn-sm">
+      <i class="bi bi-arrow-left me-1"></i>Back to Admin Dashboard
+    </a>
+  </div>
+
+</div>
+
+<%- include('partials/footer') %>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<script>
+  (function() {
+    var input = document.getElementById('listingSearch');
+    var table = document.getElementById('listingsTable');
+    if (!input || !table) return;
+    input.addEventListener('input', function() {
+      var q = input.value.trim().toLowerCase();
+      var rows = table.querySelectorAll('tbody tr');
+      rows.forEach(function(row) {
+        var hay = row.getAttribute('data-search') || '';
+        row.style.display = !q || hay.indexOf(q) !== -1 ? '' : 'none';
+      });
+    });
+  })();
+</script>
+</body>
+</html>
