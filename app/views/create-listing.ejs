@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<html lang="en">
+<head><%- include('partials/head') %></head>
+<body>
+<%- include('partials/navbar') %>
+
+<!-- Page Header -->
+<div class="page-header">
+  <div class="container">
+    <nav aria-label="breadcrumb" class="mb-2">
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="/">Home</a></li>
+        <li class="breadcrumb-item"><a href="/dashboard">Dashboard</a></li>
+        <li class="breadcrumb-item active">Create Listing</li>
+      </ol>
+    </nav>
+    <h1 class="h3 fw-bold mb-0">Create New Listing</h1>
+    <p class="text-muted small mb-0">Fill in the details below to post your item to the marketplace.</p>
+  </div>
+</div>
+
+<div class="container py-4">
+  <%- include('partials/alerts') %>
+
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+
+      <!-- Inline error (from Bug 1.3 fix) -->
+      <% if (typeof error !== 'undefined' && error) { %>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          <%= error %>
+          <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+        </div>
+      <% } %>
+
+      <!-- Info Banner -->
+      <div class="alert alert-light border mb-4 small" role="alert">
+        <i class="bi bi-info-circle-fill text-crimson me-1"></i>
+        <strong>Note:</strong> New listings will be reviewed by a moderator before going live.
+        This usually takes less than 24 hours.
+      </div>
+
+      <!-- Form -->
+      <form action="/listings" method="POST">
+        <input type="hidden" name="_csrf" value="<%= csrfToken %>" />
+
+        <!-- Section 1: Basic Info -->
+        <div class="form-section mb-4">
+          <h5 class="fw-bold mb-4">
+            <span class="step-circle d-inline-flex align-items-center justify-content-center me-2"
+                  style="width:28px;height:28px;font-size:0.85rem;">1</span>
+            Basic Information
+          </h5>
+
+          <div class="mb-3">
+            <label class="form-label" for="title">
+              Listing Title <span class="required-star">*</span>
+            </label>
+            <input type="text" class="form-control" id="title" name="title"
+                   placeholder="e.g. MacBook Pro 2021 M1 — Excellent Condition"
+                   maxlength="100" required
+                   value="<%= values && values.title ? values.title : '' %>" />
+            <div class="form-text">Be specific. A good title helps buyers find your item.</div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="description">
+              Description <span class="required-star">*</span>
+            </label>
+            <textarea class="form-control" id="description" name="description" rows="5" required
+              placeholder="Describe your item in detail — age, features, reason for selling, what's included, preferred meetup location, etc."><%= values && values.description ? values.description : '' %></textarea>
+            <div class="form-text">More detail = more interest.</div>
+          </div>
+        </div>
+
+        <!-- Section 2: Category & Condition -->
+        <div class="form-section mb-4">
+          <h5 class="fw-bold mb-4">
+            <span class="step-circle d-inline-flex align-items-center justify-content-center me-2"
+                  style="width:28px;height:28px;font-size:0.85rem;">2</span>
+            Category &amp; Condition
+          </h5>
+
+          <div class="row g-3">
+            <div class="col-md-6">
+              <label class="form-label" for="category">
+                Category <span class="required-star">*</span>
+              </label>
+              <select class="form-select" id="category" name="category" required>
+                <option value="" disabled <%= (!values || !values.category) ? 'selected' : '' %>>Select a category…</option>
+                <option value="textbooks" <%= (values && values.category === 'textbooks') ? 'selected' : '' %>>Textbooks</option>
+                <option value="electronics" <%= (values && values.category === 'electronics') ? 'selected' : '' %>>Electronics</option>
+                <option value="furniture" <%= (values && values.category === 'furniture') ? 'selected' : '' %>>Furniture</option>
+                <option value="clothing" <%= (values && values.category === 'clothing') ? 'selected' : '' %>>Clothing</option>
+                <option value="sports" <%= (values && values.category === 'sports') ? 'selected' : '' %>>Sports</option>
+                <option value="dorm_essentials" <%= (values && values.category === 'dorm_essentials') ? 'selected' : '' %>>Dorm Essentials</option>
+              </select>
+            </div>
+            <div class="col-md-6">
+              <label class="form-label" for="condition">
+                Condition <span class="required-star">*</span>
+              </label>
+              <select class="form-select" id="condition" name="condition" required>
+                <option value="" disabled <%= (!values || !values.condition) ? 'selected' : '' %>>Select condition…</option>
+                <option value="new" <%= (values && values.condition === 'new') ? 'selected' : '' %>>New — Never used</option>
+                <option value="like_new" <%= (values && values.condition === 'like_new') ? 'selected' : '' %>>Like New — Used briefly</option>
+                <option value="good" <%= (values && values.condition === 'good') ? 'selected' : '' %>>Good — Normal wear</option>
+                <option value="fair" <%= (values && values.condition === 'fair') ? 'selected' : '' %>>Fair — Visible wear</option>
+                <option value="poor" <%= (values && values.condition === 'poor') ? 'selected' : '' %>>Poor — Heavy use</option>
+              </select>
+            </div>
+          </div>
+        </div>
+
+        <!-- Section 3: Listing Type & Price -->
+        <div class="form-section mb-4">
+          <h5 class="fw-bold mb-4">
+            <span class="step-circle d-inline-flex align-items-center justify-content-center me-2"
+                  style="width:28px;height:28px;font-size:0.85rem;">3</span>
+            Listing Type &amp; Price
+          </h5>
+
+          <div class="mb-3">
+            <label class="form-label">Listing Type <span class="required-star">*</span></label>
+            <div class="row g-3">
+              <div class="col-md-4">
+                <label class="d-block border rounded p-3 text-center" style="cursor:pointer;border-color:#e5e7eb!important;">
+                  <input type="radio" name="type" value="sell" class="form-check-input me-1" <%= (!values || !values.type || values.type === 'sell') ? 'checked' : '' %> />
+                  <strong>For Sale</strong>
+                  <div class="small text-muted mt-1">You set a price</div>
+                </label>
+              </div>
+              <div class="col-md-4">
+                <label class="d-block border rounded p-3 text-center" style="cursor:pointer;border-color:#e5e7eb!important;">
+                  <input type="radio" name="type" value="trade" class="form-check-input me-1" <%= (values && values.type === 'trade') ? 'checked' : '' %> />
+                  <strong>Trade</strong>
+                  <div class="small text-muted mt-1">Swap for another item</div>
+                </label>
+              </div>
+              <div class="col-md-4">
+                <label class="d-block border rounded p-3 text-center" style="cursor:pointer;border-color:#e5e7eb!important;">
+                  <input type="radio" name="type" value="free" class="form-check-input me-1" <%= (values && values.type === 'free') ? 'checked' : '' %> />
+                  <strong>Free</strong>
+                  <div class="small text-muted mt-1">Give it away</div>
+                </label>
+              </div>
+            </div>
+          </div>
+
+          <div class="mb-0">
+            <label class="form-label" for="price">
+              Asking Price
+              <span class="text-muted small ms-1">(required for "For Sale" listings)</span>
+            </label>
+            <div class="input-group" style="max-width:280px;">
+              <span class="input-group-text">$</span>
+              <input type="number" class="form-control" id="price" name="price" placeholder="0.00"
+                     min="0" step="0.01"
+                     value="<%= values && values.price ? values.price : '' %>" />
+            </div>
+            <div class="form-text">Leave blank if your listing type is Trade or Free.</div>
+          </div>
+        </div>
+
+        <!-- Submit -->
+        <div class="d-flex gap-3 justify-content-end">
+          <a href="/dashboard" class="btn btn-outline-secondary px-4">Cancel</a>
+          <button type="submit" class="btn btn-crimson px-5">
+            <i class="bi bi-check2-circle me-1"></i>Post Listing
+          </button>
+        </div>
+
+      </form>
+    </div><!-- /col-lg-8 -->
+  </div><!-- /row -->
+</div><!-- /container -->
+
+<%- include('partials/footer') %>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
