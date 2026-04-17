@@ -14,8 +14,9 @@ const listingRoutes   = require('./app/routes/web/listing.routes');
 const requestRoutes   = require('./app/routes/web/request.routes');
 const dashboardRoutes = require('./app/routes/web/dashboard.routes');
 const moderatorRoutes = require('./app/routes/web/moderator.routes');
-const adminRoutes     = require('./app/routes/web/admin.routes');
-const settingsRoutes  = require('./app/routes/web/settings.routes');
+const adminRoutes        = require('./app/routes/web/admin.routes');
+const settingsRoutes     = require('./app/routes/web/settings.routes');
+const notificationRoutes = require('./app/routes/web/notification.routes');
 
 const listingApi      = require('./app/routes/api/listing.api.routes');
 const requestApi      = require('./app/routes/api/request.api.routes');
@@ -54,6 +55,7 @@ app.use('/dashboard', dashboardRoutes);
 app.use('/moderator', moderatorRoutes);
 app.use('/admin', adminRoutes);
 app.use('/settings', settingsRoutes);
+app.use('/notifications', notificationRoutes);
 
 app.use('/api/listings',      listingApi);
 app.use('/api/requests',      requestApi);

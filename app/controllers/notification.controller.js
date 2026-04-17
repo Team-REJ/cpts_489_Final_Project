@@ -1,6 +1,19 @@
 const Notification = require('../models/notification.model');
 
 /**
+ * Render the notifications page for the authenticated user
+ * GET /notifications
+ */
+exports.getPage = (req, res, next) => {
+  try {
+    const notifications = Notification.findByUser(req.user.id);
+    res.render('notifications', { title: 'Notifications', notifications });
+  } catch (err) {
+    next(err);
+  }
+};
+
+/**
  * Fetch all notifications for the authenticated user
  * GET /api/notifications
  */
